@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical"
+    tools:context="com.neolab.enigma.activity.LoginActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/login_frame_inform_user_margin_bottom"
+        android:layout_marginEnd="@dimen/login_frame_inform_user_margin"
+        android:layout_marginLeft="@dimen/login_frame_inform_user_margin"
+        android:layout_marginRight="@dimen/login_frame_inform_user_margin"
+        android:layout_marginStart="@dimen/login_frame_inform_user_margin"
+        android:layout_marginTop="@dimen/login_frame_inform_user_margin"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/login_user_information_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_background"
+                android:orientation="vertical"
+                android:padding="@dimen/login_frame_inform_user_padding"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/login_logo_margin_top"
+                    android:contentDescription="@string/image_dsc"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    style="@style/Eni.Login.TextView12sp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/login_title" />
+
+                <TextView
+                    style="@style/Eni.Login.TextView12sp"
+                    android:text="@string/login_company_id" />
+
+                <EditText
+                    android:id="@+id/login_company_code_editText"
+                    style="@style/Eni.Login.EditText.Text15sp"
+                    android:inputType="text" />
+
+                <TextView
+                    style="@style/Eni.Login.TextView12sp"
+                    android:text="@string/login_employee_id" />
+
+                <EditText
+                    android:id="@+id/login_employee_code_editText"
+                    style="@style/Eni.Login.EditText.Text15sp"
+                    android:inputType="text" />
+
+                <TextView
+                    style="@style/Eni.Login.TextView12sp"
+                    android:text="@string/login_password" />
+
+                <EditText
+                    android:id="@+id/login_password_editText"
+                    style="@style/Eni.Login.EditText.Text15sp"
+                    android:inputType="textPassword" />
+
+                <CheckBox
+                    android:id="@+id/login_show_password_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/login_text_margin_top"
+                    android:checked="false"
+                    android:text="@string/login_show_password"
+                    android:theme="@style/Eni.Login.CheckBox.ShowPassword" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/login_login_button_margin_top"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/button_login"
+                android:enabled="false"
+                android:text="@string/login"
+                android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:id="@+id/login_reset_password_via_email_relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_text_margin_top">
+
+                <LinearLayout
+                    android:id="@+id/login_reset_password_via_email_linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/login_forgot_password"
+                        android:textColor="@color/login_textView_reset_password_via_mail"
+                        android:textSize="@dimen/text_13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/login_reset_password_via_email"
+                        android:textColor="@color/login_textView_reset_password_via_mail"
+                        android:textSize="@dimen/text_10sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
+                    android:layout_marginRight="@dimen/login_forgot_password_margin_right"
+                    android:layout_toLeftOf="@id/login_reset_password_via_email_linearLayout"
+                    android:layout_toStartOf="@id/login_reset_password_via_email_linearLayout"
+                    android:contentDescription="@string/image_dsc"
+                    android:src="@drawable/ic_lock_red" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_reset_password_via_phone_relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_text_margin_top">
+
+                <LinearLayout
+                    android:id="@+id/login_reset_password_via_phone_linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/login_forgot_password"
+                        android:textColor="@color/login_textView_reset_password_via_phone"
+                        android:textSize="@dimen/text_13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/login_reset_password_via_phone"
+                        android:textColor="@color/login_textView_reset_password_via_phone"
+                        android:textSize="@dimen/text_10sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
+                    android:layout_marginRight="@dimen/login_forgot_password_margin_right"
+                    android:layout_toLeftOf="@id/login_reset_password_via_phone_linearLayout"
+                    android:layout_toStartOf="@id/login_reset_password_via_phone_linearLayout"
+                    android:contentDescription="@string/image_dsc"
+                    android:src="@drawable/ic_lock_blue" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/login_text_margin_top"
+                android:text="@string/login_copyright"
+                android:textSize="@dimen/text_13sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
