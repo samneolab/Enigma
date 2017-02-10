@@ -12,7 +12,7 @@ public class DataLoginResponse {
     @Expose
     public String token;
     @SerializedName("user_info")
-    public UserInformationDto userInformationDto;
+    public UserDto userDto;
     @SerializedName("csrf_token")
     public String csrfToken;
 

@@ -60,6 +60,6 @@ public abstract class BasePreference {
     /**
      * Read data from preferences
      */
-    protected abstract void getData(SharedPreferences editor);
+    protected abstract void getData(SharedPreferences preference);
 
 }

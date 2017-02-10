@@ -13,5 +13,14 @@
     <string name="login_reset_password_via_phone">（メールアドレスを登録されていない方）</string>
     <string name="login_copyright">© 2017 enigma Co.,LTD</string>
 
-    <string name="image_dsc"/>
+    <string name="image_dsc" />
+
+    <!-- Drawer menu item-->
+    <string name="item_top">トップへ</string>
+    <string name="item_update_profile">利用者情報</string>
+    <string name="item_logout">ログアウト</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

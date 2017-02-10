@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * @author LongHV.
  */
 
-public class UserInformationDto {
+public class UserDto {
 
     @Expose
     public int id;
@@ -24,6 +24,6 @@ public class UserInformationDto {
     @Expose
     public int status;
     @SerializedName("company")
-    public UserCompanyDto userCompanyDto;
+    public CompanyDto companyDto;
 
 }

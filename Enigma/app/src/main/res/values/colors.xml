@@ -19,5 +19,8 @@
     <color name="login_textView_reset_password_via_mail">#df3519</color>
     <color name="login_textView_reset_password_via_phone">#004f89</color>
     <color name="login_textView_copyright">#424448</color>
+    <color name="button_pressed_start">#99e7e7e7</color>
+    <color name="button_pressed_end">#99e7e7e7</color>
+    <color name="loading">#0099D9</color>
 
 </resources>

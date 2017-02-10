@@ -7,34 +7,10 @@
         <item name="android:expandableListPreferredItemPaddingLeft">0dp</item>
         <item name="android:expandableListPreferredChildPaddingLeft">0dp</item>
         <item name="android:scrollingCache">false</item>
-        <item name="actionBarStyle">@style/EniTheme.ActionBarStyle</item>
         <item name="android:actionMenuTextColor">@color/toolbar_title</item>
         <item name="actionMenuTextColor">@color/toolbar_title</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
-    </style>
-
-    <style name="EniTheme.ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="background">@color/colorPrimary</item>
-        <item name="android:titleTextStyle">@style/EniTheme.titleTextStyle</item>
-        <item name="titleTextStyle">@style/EniTheme.titleTextStyle</item>
-        <item name="android:icon">@android:color/transparent</item>
-    </style>
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="EniTheme.titleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/toolbar_title</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="EniTheme.NoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -71,11 +47,40 @@
         <item name="android:background">@drawable/edittext_background</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--CheckBox style-->
     <style name="Eni.Login.CheckBox.ShowPassword" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/login_checkbox_checked_background</item>
         <item name="colorAccent">@color/login_checkbox_unChecked_background</item>
         <item name="android:textColorSecondary">@color/login_checkbox_unChecked_background</item>
     </style>
 
+    <!--AVLoadingIndicatorView style-->
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Large">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Small">
+        <item name="minWidth">24dip</item>
+        <item name="maxWidth">24dip</item>
+        <item name="minHeight">24dip</item>
+        <item name="maxHeight">24dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
 
 </resources>

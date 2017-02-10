@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @author LongHV.
  */
 
-public class UserCompanyDto {
+public class CompanyDto {
 
     @Expose
     public int id;

@@ -4,16 +4,17 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="login_edittext_padding">5dp</dimen>
 
-    <!--Text size-->
+    <!-- Text size -->
     <dimen name="text_16sp">16sp</dimen>
 
+    <dimen name="text_9sp">9sp</dimen>
     <dimen name="text_10sp">10sp</dimen>
     <dimen name="text_12sp">12sp</dimen>
     <dimen name="text_13sp">13sp</dimen>
     <dimen name="text_15sp">15sp</dimen>
 
 
-    <!--Login-->
+    <!-- Login -->
     <dimen name="login_text_margin_top">12dp</dimen>
     <dimen name="login_frame_inform_user_margin">15dp</dimen>
     <dimen name="login_frame_inform_user_margin_bottom">8dp</dimen>
@@ -22,10 +23,16 @@
     <dimen name="login_login_button">15dp</dimen>
     <dimen name="login_login_button_margin_top">30dp</dimen>
 
-    <!--Toolbar-->
+    <!-- Toolbar -->
     <dimen name="toolbar_height_line">1dp</dimen>
     <dimen name="login_logo_margin_top">8dp</dimen>
     <dimen name="login_forgot_password_margin_right">12dp</dimen>
 
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="navigation_padding">10dp</dimen>
+    <dimen name="navigation_width">240dp</dimen>
+    <dimen name="drawer_item_padding_left">15dp</dimen>
+    <dimen name="drawer_item_padding_top">8dp</dimen>
+    <dimen name="drawer_item_title_margin_left">12dp</dimen>
 
 </resources>

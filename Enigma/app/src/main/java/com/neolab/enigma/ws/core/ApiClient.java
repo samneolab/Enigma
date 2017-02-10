@@ -10,6 +10,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neolab.enigma.BuildConfig;
+import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.ws.ApiService;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -45,9 +47,11 @@ public final class ApiClient {
         @Override
         public void intercept(RequestFacade request) {
             request.addHeader(HEADER_UA, createUserAgent());
-            // TODO add token
-            String accessToken = null;
-            Log.i(TAG, "access_token:" + accessToken);
+            EncryptionPreference encryptionPreference = new EncryptionPreference(context.getApplicationContext());
+            String accessToken = encryptionPreference.token;
+            if (BuildConfig.DEBUG) {
+                EniLogUtil.d(getClass(), "[API Token]" + accessToken);
+            }
             if (!TextUtils.isEmpty(accessToken)) {
                 request.addHeader(HEADER_AUTH, AUTH_PREFIX + accessToken);
             }
