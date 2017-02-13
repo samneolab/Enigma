@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Enigma</string>
+
+    <!--login-->
+    <string name="login">Login</string>
+    <string name="login_title">Please enter login information.</string>
+    <string name="login_company_id">Company ID</string>
+    <string name="login_employee_id">Employee ID</string>
+    <string name="login_password">Password</string>
+    <string name="login_show_password">Show password</string>
+    <string name="login_forgot_password">If you forgot your password, click here</string>
+    <string name="login_reset_password_via_email">(Person who registered mail address)</string>
+    <string name="login_reset_password_via_phone">(If you do not have a registered e-mail address)</string>
+    <string name="login_copyright">© 2017 enigma Co.,LTD</string>
+
+    <string name="image_dsc" />
+
+    <!-- Drawer menu item-->
+    <string name="item_top">Top</string>
+    <string name="item_update_profile">User information</string>
+    <string name="item_logout">Logout</string>
+
+    <!-- Top Fragment -->
+    <string name="top_notification">Notification</string>
+    <string name="top_past_notification_list"><u>Past Announcement List</u></string>
+
+</resources>

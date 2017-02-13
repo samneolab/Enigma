@@ -1,0 +1,395 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    tools:context="com.neolab.enigma.fragment.top.TopFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        tools:ignore="InefficientWeight,ObsoleteLayoutParam,UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="ScrollViewSize">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/top_urgent_notification_frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/top_frame_margin"
+                    android:layout_marginLeft="@dimen/top_frame_margin"
+                    android:layout_marginRight="@dimen/top_frame_margin"
+                    android:layout_marginStart="@dimen/top_frame_margin"
+                    android:layout_marginTop="@dimen/top_frame_margin"
+                    android:background="@drawable/login_background"
+                    android:paddingBottom="@dimen/top_frame_margin"
+                    android:paddingEnd="@dimen/top_urgent_notification_padding_right"
+                    android:paddingLeft="@dimen/top_urgent_notification_padding_left"
+                    android:paddingRight="@dimen/top_urgent_notification_padding_right"
+                    android:paddingStart="@dimen/top_urgent_notification_padding_left"
+                    android:paddingTop="@dimen/top_frame_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableLeft="@drawable/ic_urgent"
+                        android:drawablePadding="@dimen/top_urgent_notification_padding_right"
+                        android:drawableStart="@drawable/ic_urgent"
+                        android:text="@string/top_urgent_notification"
+                        android:textColor="@color/top_urgent_notification" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:contentDescription="@string/image_dsc"
+                        android:src="@drawable/ic_menu_list" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/login_frame_inform_user_margin"
+                    android:background="@color/top_background_gray"
+                    android:paddingBottom="@dimen/top_notification_margin_top"
+                    android:paddingEnd="@dimen/top_frame_margin"
+                    android:paddingLeft="@dimen/top_frame_margin"
+                    android:paddingRight="@dimen/top_frame_margin"
+                    android:paddingStart="@dimen/top_frame_margin"
+                    android:paddingTop="@dimen/top_notification_margin_top">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/top_notification" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:text="@string/top_past_notification_list"
+                        android:textColor="@color/top_list_notification" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/top_line_yellow" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/top_notification_item1_linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/top_notification_item_height"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="@dimen/top_notification_item_padding_right"
+                            android:paddingLeft="@dimen/top_notification_item_padding_left"
+                            android:paddingRight="@dimen/top_notification_item_padding_right"
+                            android:paddingStart="@dimen/top_notification_item_padding_left"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <TextView
+                                android:id="@+id/top_notification_item1_textView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/top_line_margin_left"
+                                android:layout_marginRight="@dimen/top_line_margin_left"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:maxLines="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/image_dsc"
+                                android:src="@drawable/ic_menu_list" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="@dimen/top_line_margin_right"
+                            android:layout_marginLeft="@dimen/top_line_margin_left"
+                            android:layout_marginRight="@dimen/top_line_margin_right"
+                            android:layout_marginStart="@dimen/top_line_margin_left"
+                            android:background="@color/top_line_gray" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/top_notification_item2_linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/top_notification_item_height"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="@dimen/top_notification_item_padding_right"
+                            android:paddingLeft="@dimen/top_notification_item_padding_left"
+                            android:paddingRight="@dimen/top_notification_item_padding_right"
+                            android:paddingStart="@dimen/top_notification_item_padding_left"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <TextView
+                                android:id="@+id/top_notification_item2_textView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/top_line_margin_left"
+                                android:layout_marginRight="@dimen/top_line_margin_left"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:maxLines="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/image_dsc"
+                                android:src="@drawable/ic_menu_list" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="@dimen/top_line_margin_right"
+                            android:layout_marginLeft="@dimen/top_line_margin_left"
+                            android:layout_marginRight="@dimen/top_line_margin_right"
+                            android:layout_marginStart="@dimen/top_line_margin_left"
+                            android:background="@color/top_line_gray" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/top_notification_item3_linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/top_notification_item_height"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingEnd="@dimen/top_notification_item_padding_right"
+                        android:paddingLeft="@dimen/top_notification_item_padding_left"
+                        android:paddingRight="@dimen/top_notification_item_padding_right"
+                        android:paddingStart="@dimen/top_notification_item_padding_left"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:id="@+id/top_notification_item3_textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/top_line_margin_left"
+                            android:layout_marginRight="@dimen/top_line_margin_left"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/image_dsc"
+                            android:src="@drawable/ic_menu_list" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/top_frame_margin"
+                    android:background="@drawable/top_amount_prepaid_available_background"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/top_amount_prepaid_available"
+                        android:textColor="@color/top_amount_prepaid_available"
+                        android:textSize="@dimen/text_10sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/top_amount_prepaid_available_sub_layout"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/top_yen_unit"
+                            android:textColor="@color/top_yen_unit"
+                            android:textSize="@dimen/text_10sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/top_urgent_notification_padding_left"
+                            android:layout_marginStart="@dimen/top_urgent_notification_padding_left"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:includeFontPadding="false"
+                            android:textSize="@dimen/text_20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/top_amount_including_system_usage_fee"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_9sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/top_pending_text"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="6dp"
+                            android:text="@string/top_applying"
+                            android:textColor="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/top_money_pending_layout"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="6dp"
+                            android:paddingRight="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/top_yen_unit"
+                                android:textColor="@color/top_yen_unit"
+                                android:textSize="@dimen/text_10sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:textSize="@dimen/text_15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="@dimen/top_frame_margin"
+                android:layout_marginLeft="@dimen/top_frame_margin"
+                android:layout_marginRight="@dimen/top_frame_margin"
+                android:layout_marginStart="@dimen/top_frame_margin"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/top_apply_for_prepayment_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_login"
+                    android:text="@string/top_apply_for_prepayment"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/top_view_history_background"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/top_history_item_height"
+                        android:gravity="center"
+                        android:text="@string/top_view_history_for_this_month"
+                        android:textColor="@color/top_history_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blue_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/top_history_item_height"
+                        android:layout_marginTop="1dp"
+                        android:gravity="center"
+                        android:text="@string/top_view_history_every_month"
+                        android:textColor="@color/top_history_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blue_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/top_history_item_height"
+                        android:layout_marginTop="1dp"
+                        android:gravity="center"
+                        android:text="@string/top_reload_screen"
+                        android:textColor="@color/top_history_text" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/login_text_margin_top"
+                    android:includeFontPadding="false"
+                    android:text="@string/login_copyright"
+                    android:textSize="@dimen/text_10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

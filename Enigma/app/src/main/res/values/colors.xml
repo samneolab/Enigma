@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="toolbar_title">#004f89</color>
+    <color name="toolbar_line">#004f89</color>
+    <color name="blue_background">#cfe2fa</color>
+    <color name="white">#ffffff</color>
+    <color name="text_primary">#333333</color>
+
+    <color name="login_editText_border">#8e8e8e</color>
+    <color name="login_editText_text">#cbcbcb</color>
+    <color name="login_checkbox_unChecked_background">#cccccc</color>
+    <color name="login_checkbox_checked_background">#ffad38</color>
+    <color name="login_button_login_enable">#ffad38</color>
+    <color name="login_button_login_disable">#F1BC72</color>
+    <color name="login_textView_reset_password_via_mail">#df3519</color>
+    <color name="login_textView_reset_password_via_phone">#004f89</color>
+    <color name="login_textView_copyright">#424448</color>
+    <color name="button_pressed_start">#99e7e7e7</color>
+    <color name="button_pressed_end">#99e7e7e7</color>
+    <color name="loading">#0099D9</color>
+    
+    <!-- Top -->
+    <color name="top_background_gray">#eeeeee</color>
+    <color name="top_list_notification">#004f89</color>
+    <color name="top_urgent_notification">#cc1919</color>
+    <color name="top_line_yellow">#ffad38</color>
+    <color name="top_line_gray">#dddddd</color>
+    <color name="top_amount_prepaid_available">#004f89</color>
+    <color name="top_amount_prepaid_available_background">#A6C3E2</color>
+    <color name="top_yen_unit">#888888</color>
+    <color name="top_pending_background">#cc1919</color>
+    <color name="top_history_background_layout">#ffe8c8</color>
+    <color name="top_history_text">#004f89</color>
+
 </resources>
