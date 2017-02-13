@@ -3,13 +3,11 @@ package com.neolab.enigma.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,6 +17,7 @@ import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
 import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.menu.MenuDto;
+import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.util.EniLogUtil;
 
 import java.util.ArrayList;
@@ -44,6 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         setupToolbar();
         initDrawer();
+        addFragment(new TopFragment(), true);
     }
 
     /**

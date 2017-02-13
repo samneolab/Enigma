@@ -1,15 +1,19 @@
 package com.neolab.enigma.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.neolab.enigma.R;
 
 /**
+ * Base Activity
+ *
  * @author LongHV.
  */
 
@@ -57,5 +61,22 @@ public class BaseActivity extends AppCompatActivity {
             startActivity(new Intent(BaseActivity.this, cls));
             overridePendingTransition(R.anim.animation_fade_in, R.anim.animation_fade_out);
         }
+    }
+
+    /**
+     * Add fragment to activity
+     *
+     * @param fragment Fragment
+     * @param isBackStack Transaction will be remembered after it is committed,
+     * and will reverse its operation when later popped off the stack
+     */
+    protected void addFragment(Fragment fragment, boolean isBackStack) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (isBackStack) {
+            transaction.addToBackStack(fragment.getClass().getName());
+        }
+        transaction.replace(R.id.main_root_frameLayout, fragment);
+        transaction.commit();
     }
 }

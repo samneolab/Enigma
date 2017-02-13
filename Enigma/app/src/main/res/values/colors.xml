@@ -22,5 +22,18 @@
     <color name="button_pressed_start">#99e7e7e7</color>
     <color name="button_pressed_end">#99e7e7e7</color>
     <color name="loading">#0099D9</color>
+    
+    <!-- Top -->
+    <color name="top_background_gray">#eeeeee</color>
+    <color name="top_list_notification">#004f89</color>
+    <color name="top_urgent_notification">#cc1919</color>
+    <color name="top_line_yellow">#ffad38</color>
+    <color name="top_line_gray">#dddddd</color>
+    <color name="top_amount_prepaid_available">#004f89</color>
+    <color name="top_amount_prepaid_available_background">#A6C3E2</color>
+    <color name="top_yen_unit">#888888</color>
+    <color name="top_pending_background">#cc1919</color>
+    <color name="top_history_background_layout">#ffe8c8</color>
+    <color name="top_history_text">#004f89</color>
 
 </resources>
