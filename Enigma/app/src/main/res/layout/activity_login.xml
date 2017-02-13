@@ -104,14 +104,21 @@
                     android:gravity="bottom"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/login_button"
+                    <FrameLayout
+                        android:id="@+id/login_frameLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@drawable/button_login"
-                        android:enabled="false"
-                        android:text="@string/login"
-                        android:textColor="@color/white" />
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/login_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/button_login"
+                            android:enabled="true"
+                            android:text="@string/login"
+                            android:textColor="@color/white" />
+
+                    </FrameLayout>
 
                     <RelativeLayout
                         android:id="@+id/login_reset_password_via_email_relativeLayout"

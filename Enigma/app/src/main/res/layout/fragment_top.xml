@@ -27,6 +27,7 @@
                     android:id="@+id/top_urgent_notification_frameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/login_frame_inform_user_margin"
                     android:layout_marginEnd="@dimen/top_frame_margin"
                     android:layout_marginLeft="@dimen/top_frame_margin"
                     android:layout_marginRight="@dimen/top_frame_margin"
@@ -38,9 +39,11 @@
                     android:paddingLeft="@dimen/top_urgent_notification_padding_left"
                     android:paddingRight="@dimen/top_urgent_notification_padding_right"
                     android:paddingStart="@dimen/top_urgent_notification_padding_left"
-                    android:paddingTop="@dimen/top_frame_margin">
+                    android:paddingTop="@dimen/top_frame_margin"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/top_urgent_notification_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -62,7 +65,6 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/login_frame_inform_user_margin"
                     android:background="@color/top_background_gray"
                     android:paddingBottom="@dimen/top_notification_margin_top"
                     android:paddingEnd="@dimen/top_frame_margin"
@@ -100,7 +102,8 @@
                         android:id="@+id/top_notification_item1_linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -145,7 +148,8 @@
                         android:id="@+id/top_notification_item2_linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -196,6 +200,7 @@
                         android:paddingLeft="@dimen/top_notification_item_padding_left"
                         android:paddingRight="@dimen/top_notification_item_padding_right"
                         android:paddingStart="@dimen/top_notification_item_padding_left"
+                        android:visibility="invisible"
                         tools:ignore="UseCompoundDrawables">
 
                         <TextView
@@ -234,7 +239,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:layout_marginTop="6dp"
                         android:background="@drawable/top_amount_prepaid_available_sub_layout"
                         android:gravity="center_vertical"
@@ -249,6 +254,7 @@
                             android:textSize="@dimen/text_10sp" />
 
                         <TextView
+                            android:id="@+id/top_amount_prepayment_available_textView"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/top_urgent_notification_padding_left"
@@ -304,6 +310,7 @@
                                 android:textSize="@dimen/text_10sp" />
 
                             <TextView
+                                android:id="@+id/top_money_pending_textView"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -331,6 +338,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/top_apply_for_prepayment_button"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/top_apply_for_prepayment_height"
                     android:layout_gravity="center"

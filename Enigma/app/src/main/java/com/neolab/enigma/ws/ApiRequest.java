@@ -1,8 +1,12 @@
 package com.neolab.enigma.ws;
 
+import com.neolab.enigma.dto.MoneyPrepaymentDto;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
 import com.neolab.enigma.ws.respone.LoginResponse;
+import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
+import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 
 /**
  * Use to request data from server.
@@ -19,13 +23,50 @@ public final class ApiRequest {
         void onFailure();
     }
 
+    /**
+     * Constructor
+     */
     private ApiRequest() {
-        // no instance
     }
 
+    /**
+     * Login request
+     *
+     * @param companyCode Company code
+     * @param employeeCode Employee code
+     * @param employeePassword Employee password
+     * @param callback LoginResponse
+     */
     public static void login(String companyCode, String employeeCode, String employeePassword
             , ApiCallback<LoginResponse> callback) {
         ApiClient.getService().login(companyCode, employeeCode, employeePassword, callback);
+    }
+
+    /**
+     * Get emergency announcement
+     *
+     * @param callback Announcement callback
+     */
+    public static void getEmergencyAnnouncement(ApiCallback<EmergencyAnnouncementResponse> callback) {
+        ApiClient.getService().getEmergencyAnnouncement(callback);
+    }
+
+    /**
+     * Get announcement list
+     *
+     * @param callback Announcement list callback
+     */
+    public static void getAnnouncementList(ApiCallback<AnnouncementResponse> callback) {
+        ApiClient.getService().getAnnouncementList(callback);
+    }
+
+    /**
+     * Get money available for prepayment
+     *
+     * @param callback MoneyPrepaymentDto callback
+     */
+    public static void getMoneyAvailableForPrepayment(ApiCallback<MoneyPrepaymentResponse> callback) {
+        ApiClient.getService().getMoneyAvailableForPrepayment(callback);
     }
 
 }

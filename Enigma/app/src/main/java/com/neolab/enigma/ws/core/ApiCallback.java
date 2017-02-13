@@ -1,6 +1,7 @@
 package com.neolab.enigma.ws.core;
 
-import android.util.Log;
+import com.neolab.enigma.BuildConfig;
+import com.neolab.enigma.util.EniLogUtil;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -11,13 +12,14 @@ import retrofit.RetrofitError;
  * @param <T> expected response type
  */
 public abstract class ApiCallback<T> implements Callback<T> {
-    private static final String TAG = ApiCallback.class.getSimpleName();
 
     public abstract void failure(RetrofitError retrofitError, ApiError apiError);
 
     @Override
     public void failure(RetrofitError error) {
-        Log.e(TAG, "kind:" + error.getKind());
+        if (BuildConfig.DEBUG) {
+            EniLogUtil.d(getClass(), "[failure ] RetrofitError kind:" + error.getKind());
+        }
         switch (error.getKind()) {
             case NETWORK:
                 failure(error, ApiError.ERROR_NETWORK);

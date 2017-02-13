@@ -1,5 +1,6 @@
 package com.neolab.enigma.ws.core;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -36,6 +37,7 @@ public final class ApiClient {
     private static final String AUTH_PREFIX = "Bearer ";
     private static final int TIMEOUT_CONNECTION = 10000;
 
+    @SuppressLint("StaticFieldLeak")
     private static ApiClient sInstance;
     private Context context;
     private ApiService service;
