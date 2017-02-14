@@ -50,12 +50,11 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        eniCancelNowLoading();
-        super.onBackPressed();
-    }
-
+    /**
+     * Start new activity
+     *
+     * @param cls Class
+     */
     protected void startActivity(Class<?> cls){
         if (cls != null) {
             startActivity(new Intent(BaseActivity.this, cls));
@@ -78,5 +77,12 @@ public class BaseActivity extends AppCompatActivity {
         }
         transaction.replace(R.id.main_root_frameLayout, fragment);
         transaction.commit();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        eniCancelNowLoading();
+        super.onBackPressed();
     }
 }

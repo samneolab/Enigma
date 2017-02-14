@@ -12,6 +12,7 @@
     <dimen name="text_15sp">15sp</dimen>
     <dimen name="text_16sp">16sp</dimen>
     <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
 
     <!-- Login -->
     <dimen name="login_text_margin_top">10dp</dimen>
@@ -34,7 +35,7 @@
     <dimen name="drawer_item_padding_top">8dp</dimen>
     <dimen name="drawer_item_title_margin_left">12dp</dimen>
 
-    <!-- Top -->
+    <!-- Top screen-->
     <dimen name="top_frame_margin">10dp</dimen>
     <dimen name="top_notification_margin_top">6dp</dimen>
     <dimen name="top_urgent_notification_padding_left">6dp</dimen>
@@ -46,5 +47,11 @@
     <dimen name="top_line_margin_right">10dp</dimen>
     <dimen name="top_history_item_height">40dp</dimen>
     <dimen name="top_apply_for_prepayment_height">40dp</dimen>
+    <dimen name="top_dialog_detail_padding">12dp</dimen>
+    <dimen name="top_announcement_detail_content_margin_top">4dp</dimen>
+
+    <!-- Payment screen -->
+    <dimen name="payment_frame_margin">10dp</dimen>
+    <dimen name="payment_sub_frame_padding">12dp</dimen>
 
 </resources>

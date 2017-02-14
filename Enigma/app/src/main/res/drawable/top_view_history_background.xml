@@ -2,6 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/top_history_background_layout" />
-
     <corners android:radius="2dp" />
+    <gradient
+        android:angle="270"
+        android:endColor="@color/top_history_background_layout"
+        android:startColor="@color/top_history_background_layout" />
 </shape>

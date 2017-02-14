@@ -35,5 +35,7 @@
     <color name="top_pending_background">#cc1919</color>
     <color name="top_history_background_layout">#ffe8c8</color>
     <color name="top_history_text">#004f89</color>
+    <color name="top_dialog_announcement_detail_title_background">#cfe2fa</color>
+    <color name="top_button_close">#004f89</color>
 
 </resources>

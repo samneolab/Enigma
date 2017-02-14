@@ -20,16 +20,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="112dp"
+            <TextView
+                android:id="@+id/toolbar_back_textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/image_dsc"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_back"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_back"
+                android:padding="4dp"
+                android:text="@string/back"
+                android:textColor="#223092"
+                android:visibility="gone"
+                tools:ignore="RelativeOverlap" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                tools:ignore="RelativeOverlap">
+
+                <ImageView
+                    android:id="@+id/toolbar_logo_imageView"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_dsc"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/toolbar_title_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/toolbar_title"
+                    android:textSize="@dimen/text_16sp"
+                    android:visibility="gone" />
+            </FrameLayout>
 
             <ImageView
-                android:id="@+id/ivMenuDrawer"
+                android:id="@+id/toolbar_menu_drawer_imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

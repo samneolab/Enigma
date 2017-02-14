@@ -1,0 +1,97 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical"
+    tools:context="com.neolab.enigma.fragment.history.ThisMonthFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/payment_frame_margin"
+        android:background="@drawable/top_money_pending_layout"
+        android:orientation="vertical"
+        android:padding="@dimen/payment_sub_frame_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/payment_fill_money_apply" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/payment_amount" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/payment_money_payment_editText"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/payment_edittext_normal"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/login_editText_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="@string/payment_yen" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/payment_prepayment_application_amount"
+            android:textSize="@dimen/text_12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_apply_for_prepayment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:foreground="@drawable/button_foreground"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/payment_frame_margin"
+            android:foreground="@drawable/button_foreground">
+
+            <TextView
+                android:id="@+id/top_apply_for_prepayment_textView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:background="@drawable/button_login"
+                android:gravity="center"
+                android:text="@string/top_apply_for_prepayment"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/payment_frame_margin"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
+    </LinearLayout>
+
+</FrameLayout>

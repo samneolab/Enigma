@@ -5,6 +5,7 @@ import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
 import com.neolab.enigma.ws.respone.LoginResponse;
 import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 
@@ -67,6 +68,15 @@ public final class ApiRequest {
      */
     public static void getMoneyAvailableForPrepayment(ApiCallback<MoneyPrepaymentResponse> callback) {
         ApiClient.getService().getMoneyAvailableForPrepayment(callback);
+    }
+
+    /**
+     * Get announcement detail
+     *
+     * @param callback Announcement detail callback
+     */
+    public static void getAnnouncementDetaik(int id, ApiCallback<AnnouncementDetailResponse> callback) {
+        ApiClient.getService().getAnnouncementDetail(id, callback);
     }
 
 }
