@@ -1,0 +1,139 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical"
+    tools:context="com.neolab.enigma.fragment.history.ThisMonthFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/payment_frame_margin"
+        android:background="@drawable/top_money_pending_layout"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingLeft="@dimen/payment_sub_frame_padding"
+        android:paddingRight="@dimen/payment_sub_frame_padding"
+        android:paddingTop="@dimen/payment_sub_frame_padding">
+
+        <TextView
+            android:id="@+id/confirm_payment_title_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/confirm_payment_confirm_apply_prepayment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/confirm_payment_amount" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/confirm_payment_salary_prepayment_textView"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/payment_edittext_normal"
+                android:textSize="@dimen/text_15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="@string/confirm_payment_yen"
+                android:textColor="@color/payment_yen_unit" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/confirm_payment_fee_usage_system" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/confirm_payment_fee_usage_system_textView"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/payment_edittext_normal"
+                android:textSize="@dimen/text_15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="@string/confirm_payment_yen"
+                android:textColor="@color/payment_yen_unit" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/confirm_payment_prepayment_amount_exceeded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/confirm_payment_prepayment_amount_exceeded"
+            android:textColor="@color/confirm_payment_prepayment_amount_exceeded"
+            android:textSize="@dimen/text_12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:foreground="@drawable/button_foreground"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/confirm_payment_apply_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/payment_frame_margin"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:background="@drawable/button_login"
+                android:clickable="false"
+                android:enabled="true"
+                android:gravity="center"
+                android:text="@string/confirm_payment_apply"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="@dimen/payment_frame_margin"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
+    </LinearLayout>
+
+</FrameLayout>

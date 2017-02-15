@@ -34,6 +34,7 @@
     <string name="top_view_history_every_month">月次の履歴を見る</string>
     <string name="top_reload_screen">画面を再読み込み</string>
     <string name="top_close">X</string>
+    <string name="top_there_is_no_notification">お知らせはありません。</string>
 
     <!-- Payment Fragment -->
     <string name="payment_title">前払い申請</string>
@@ -43,6 +44,17 @@
     <string name="payment_prepayment_application_amount">＊前払い申請金額は1,000円単位となります。</string>
     <string name="payment_apply">申請する</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Confirm Payment Fragment -->
+    <string name="confirm_payment_confirm_apply_prepayment">この内容で申請しますか？</string>
+    <string name="confirm_payment_please_check_information">下記の内容についてご確認ください。</string>
+    <string name="confirm_payment_amount">申請金額</string>
+    <string name="confirm_payment_fee_usage_system">システム利用料</string>
+    <string name="confirm_payment_yen">円</string>
+    <string name="confirm_payment_apply">申請する</string>
+    <string name="confirm_payment_prepayment_amount_exceeded">前払い可能金額を超過しています。</string>
+
+    <!-- Complete payment fragment -->
+    <string name="complete_payment_application_was_accepted">申請を受け付けました。</string>
+    <string name="complete_payment_reduce_next_salary">次回給与控除額</string>
 
 </resources>

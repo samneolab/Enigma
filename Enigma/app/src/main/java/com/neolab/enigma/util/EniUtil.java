@@ -1,5 +1,8 @@
 package com.neolab.enigma.util;
 
+import android.annotation.SuppressLint;
+
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,7 +27,9 @@ public class EniUtil {
      * @return date
      */
     public static String getDateAnnouncement(String dateTime) {
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date;
         try {
@@ -46,6 +51,16 @@ public class EniUtil {
         } catch (ParseException ex) {
         }
         return "";
+    }
+
+    /**
+     * The method is used to convert money to format xxx,yyy
+     *
+     * @param money the money
+     * @return number format
+     */
+    public static String convertMoneyFormat(int  money){
+        return String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(money));
     }
 
 }

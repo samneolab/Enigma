@@ -16,6 +16,8 @@ public class EniConstant {
     public static final int MAX_LENGTH_FOR_PASSWORD_CODE = 255;
     public static final int MIN_LENGTH_FOR_PASSWORD_CODE = 6;
 
+    public static final String EMPTY = "";
+
     /**
      * User status after login
      */
@@ -31,9 +33,14 @@ public class EniConstant {
      * The class manage display item on toolbar
      */
     public static class ToolbarType {
+        /** Visible only logo and drawer menu */
         public static final int HOME = 1;
+        /** Visible only back button, title and drawer menu */
         public static final int DETAIL_DISPLAY_DRAWER = 2;
+        /** Visible only back button, title */
         public static final int DETAIL_NOT_DISPLAY_DRAWER = 3;
+        /** Visible only title */
+        public static final int ONLY_TITLE = 4;
     }
 
     public static final class MenuItem {

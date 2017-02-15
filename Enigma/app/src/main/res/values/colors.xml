@@ -9,6 +9,7 @@
     <color name="blue_background">#cfe2fa</color>
     <color name="white">#ffffff</color>
     <color name="text_primary">#333333</color>
+    <color name="black">#000000</color>
 
     <color name="login_editText_border">#8e8e8e</color>
     <color name="login_editText_text">#cbcbcb</color>
@@ -37,5 +38,8 @@
     <color name="top_history_text">#004f89</color>
     <color name="top_dialog_announcement_detail_title_background">#cfe2fa</color>
     <color name="top_button_close">#004f89</color>
+
+    <color name="payment_yen_unit">#555555</color>
+    <color name="confirm_payment_prepayment_amount_exceeded">#cc1919</color>
 
 </resources>

@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
-import com.neolab.enigma.dto.MoneyPrepaymentDto;
-import com.neolab.enigma.dto.ToolbarTypeDto;
+import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
+import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.announcement.AnnouncementListFragment;
@@ -30,10 +30,8 @@ import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -60,10 +58,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     private TextView mNotificationTextView;
 
     private FrameLayout mApplyPrepaymentLayout;
-    private TextView mApplyPrepaymentTextView;
+    private View mApplyPrepaymentButton;
     private FrameLayout mViewHistoryThisMonthLayout;
     private FrameLayout mViewHistoryEveryMonthLayout;
     private FrameLayout mReloadScreenLayout;
+    private View mMessageNoNotificationTextView;
 
     /**
      * Emergency announcement
@@ -98,10 +97,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         mNotificationItem3TexView = findViewById(R.id.top_notification_item3_textView);
         mNotificationTextView = findViewById(R.id.top_last_notification_list_textView);
         mApplyPrepaymentLayout = findViewById(R.id.top_apply_for_prepayment_layout);
-        mApplyPrepaymentTextView = findViewById(R.id.top_apply_for_prepayment_textView);
+        mApplyPrepaymentButton = findViewById(R.id.top_apply_for_prepayment_textView);
         mViewHistoryThisMonthLayout = findViewById(R.id.top_view_history_this_month_layout);
         mViewHistoryEveryMonthLayout = findViewById(R.id.top_view_history_every_month_layout);
         mReloadScreenLayout = findViewById(R.id.top_reload_screen_layout);
+        mMessageNoNotificationTextView = findViewById(R.id.top_message_no_notification_textView);
 
         mAmountPrepaymentAvailableTextView = findViewById(R.id.top_amount_prepayment_available_textView);
         mMoneyPendingTextView = findViewById(R.id.top_money_pending_textView);
@@ -109,7 +109,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        mApplyPrepaymentTextView.setEnabled(false);
+        mApplyPrepaymentButton.setEnabled(false);
         mApplyPrepaymentLayout.setEnabled(false);
         mUrgentNotificationFrameLayout.setVisibility(View.GONE);
         mNotificationItem1Layout.setVisibility(View.INVISIBLE);
@@ -135,10 +135,10 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    protected ToolbarTypeDto getToolbarTypeDto() {
-        ToolbarTypeDto toolbarTypeDto = new ToolbarTypeDto();
-        toolbarTypeDto.type = EniConstant.ToolbarType.HOME;
-        return toolbarTypeDto;
+    protected HeaderDto getHeaderTypeDto() {
+        HeaderDto headerDto = new HeaderDto();
+        headerDto.type = EniConstant.ToolbarType.HOME;
+        return headerDto;
     }
 
     /**
@@ -159,6 +159,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 mNotificationItem1TexView.setText(announcementDtoList.get(0).title);
                 break;
             default:
+                mMessageNoNotificationTextView.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -202,7 +203,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
 
     private void getAnnouncementDetail(AnnouncementDto announcementDto) {
         eniShowNowLoading(getActivity());
-        ApiRequest.getAnnouncementDetaik(announcementDto.id, new ApiCallback<AnnouncementDetailResponse>() {
+        ApiRequest.getAnnouncementDetail(announcementDto.id, new ApiCallback<AnnouncementDetailResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
@@ -269,19 +270,19 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                     MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
                     if (moneyPrepaymentDto != null) {
                         mAmountPrepaymentAvailableTextView.setText(
-                                String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(moneyPrepaymentDto.remainPayment)));
+                                EniUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
                         if (moneyPrepaymentDto.remainPayment > 0) {
-                            mApplyPrepaymentTextView.setEnabled(true);
+                            mApplyPrepaymentButton.setEnabled(true);
                             mApplyPrepaymentLayout.setEnabled(true);
                         } else {
-                            mApplyPrepaymentTextView.setEnabled(false);
+                            mApplyPrepaymentButton.setEnabled(false);
                             mApplyPrepaymentLayout.setEnabled(false);
                         }
                         if (moneyPrepaymentDto.amountOfSalary > 0) {
                             mMoneyPendingTextView.setText(
-                                    String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(moneyPrepaymentDto.amountOfSalary)));
+                                    EniUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
                         } else {
-                            mMoneyPendingTextView.setText("");
+                            mMoneyPendingTextView.setText(EniConstant.EMPTY);
                         }
                     }
                 }

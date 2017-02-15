@@ -24,7 +24,6 @@ public abstract class ApiCallback<T> implements Callback<T> {
             case NETWORK:
                 failure(error, ApiError.ERROR_NETWORK);
                 break;
-
             default:
                 failure(error, ApiError.ERROR_PLEASE_TRY_LATER);
         }

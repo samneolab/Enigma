@@ -1,8 +1,10 @@
 package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
+import com.neolab.enigma.ws.respone.FeeResponse;
 import com.neolab.enigma.ws.respone.LoginResponse;
 import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -39,4 +41,11 @@ public interface ApiService {
 
     @GET("/announcements/{id}")
     void getAnnouncementDetail(@Path("id") int id, ApiCallback<AnnouncementDetailResponse> callback);
+
+    @GET("/payment-request/fee-setting")
+    void getMaxMoneyPrepayment(ApiCallback<FeeResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/payment-request")
+    void paymentRequest(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, ApiCallback<PaymentRequestResponse> callback);
 }

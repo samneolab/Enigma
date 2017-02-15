@@ -1,10 +1,11 @@
 package com.neolab.enigma.ws;
 
-import com.neolab.enigma.dto.MoneyPrepaymentDto;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
+import com.neolab.enigma.ws.respone.FeeResponse;
 import com.neolab.enigma.ws.respone.LoginResponse;
 import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -15,6 +16,7 @@ import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
  * @author LongHV3
  */
 public final class ApiRequest {
+
     /**
      * A callback for result request
      */
@@ -75,8 +77,27 @@ public final class ApiRequest {
      *
      * @param callback Announcement detail callback
      */
-    public static void getAnnouncementDetaik(int id, ApiCallback<AnnouncementDetailResponse> callback) {
+    public static void getAnnouncementDetail(int id, ApiCallback<AnnouncementDetailResponse> callback) {
         ApiClient.getService().getAnnouncementDetail(id, callback);
+    }
+
+    /**
+     * Get announcement detail
+     *
+     * @param callback Announcement detail callback
+     */
+    public static void getMaxMoneyPrepayment(ApiCallback<FeeResponse> callback) {
+        ApiClient.getService().getMaxMoneyPrepayment(callback);
+    }
+
+    /**
+     * Request prepayment salary
+     *
+     * @param amountOfSalary the salary has requested
+     * @param callback Callback
+     */
+    public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback){
+        ApiClient.getService().paymentRequest(amountOfSalary, callback);
     }
 
 }

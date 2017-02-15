@@ -2,7 +2,7 @@ package com.neolab.enigma.ws.respone;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.neolab.enigma.dto.MoneyPrepaymentDto;
+import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
 
 /**
  * @author LongHV.

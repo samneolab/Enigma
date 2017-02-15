@@ -1,4 +1,4 @@
-package com.neolab.enigma.dto;
+package com.neolab.enigma.dto.ws.payment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

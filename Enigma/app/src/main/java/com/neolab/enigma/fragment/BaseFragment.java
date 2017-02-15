@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
-import com.neolab.enigma.dto.ToolbarTypeDto;
+import com.neolab.enigma.dto.HeaderDto;
+import com.neolab.enigma.util.EniLogUtil;
 
 /**
  * Base Fragment
@@ -27,7 +29,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData();
     protected abstract void findView();
     protected abstract void initEvent();
-    protected abstract ToolbarTypeDto getToolbarTypeDto();
+    protected abstract HeaderDto getHeaderTypeDto();
 
     /** Control access */
     private final Object mutex = new Object();
@@ -61,6 +63,9 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         onBaseFragmentListener = (OnBaseFragmentListener)activity;
+        if (BuildConfig.DEBUG){
+            EniLogUtil.d(getClass(), "onAttach");
+        }
     }
 
     @Nullable
@@ -74,7 +79,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        onBaseFragmentListener.onToolbarListener(getToolbarTypeDto());
+        onBaseFragmentListener.onHeaderListener(getHeaderTypeDto());
     }
 
     public void setContentView(int layoutResID) {
@@ -171,7 +176,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public interface OnBaseFragmentListener {
-        void onToolbarListener(ToolbarTypeDto toolbarTypeDto);
+        void onHeaderListener(HeaderDto headerDto);
     }
 
 }

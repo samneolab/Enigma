@@ -4,15 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,9 +21,10 @@ import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.activity.adapter.DrawerAdapter;
-import com.neolab.enigma.dto.ToolbarTypeDto;
+import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.preference.EncryptionPreference;
 import com.neolab.enigma.util.EniLogUtil;
@@ -119,8 +121,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         } else {
+            Fragment currentFragment = getVisibleFragment();
+            if (currentFragment instanceof CompletePaymentFragment) {
+                // clear all fragment in stack
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                TopFragment topFragment = new TopFragment();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, 0);
+                transaction.replace(R.id.main_root_frameLayout, topFragment);
+                transaction.commit();
+                return;
+            }
             super.onBackPressed();
         }
+    }
+
+    /**
+     * Get fragment is visible on activity
+     *
+     * @return current fragment visible
+     */
+    private Fragment getVisibleFragment() {
+        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment != null && fragment.isVisible())
+                return fragment;
+        }
+        return null;
     }
 
     @Override
@@ -210,12 +239,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void onToolbarListener(ToolbarTypeDto toolbarTypeDto) {
+    public void onHeaderListener(HeaderDto headerDto) {
         mLogoImageView.setVisibility(View.GONE);
         mMenuDrawerImageView.setVisibility(View.GONE);
         mBackTextView.setVisibility(View.GONE);
         mTitleTextView.setVisibility(View.GONE);
-        switch (toolbarTypeDto.type) {
+        switch (headerDto.type) {
             case EniConstant.ToolbarType.HOME:
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
@@ -228,7 +257,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case EniConstant.ToolbarType.DETAIL_NOT_DISPLAY_DRAWER:
                 mBackTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setVisibility(View.VISIBLE);
-                mTitleTextView.setText(toolbarTypeDto.title);
+                mTitleTextView.setText(headerDto.title);
+                break;
+            case EniConstant.ToolbarType.ONLY_TITLE:
+                mTitleTextView.setVisibility(View.VISIBLE);
+                mTitleTextView.setText(headerDto.title);
+                break;
+            default:
                 break;
         }
     }
