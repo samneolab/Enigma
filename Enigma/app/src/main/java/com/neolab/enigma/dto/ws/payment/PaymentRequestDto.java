@@ -9,7 +9,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author LongHV.
  */
-
 public class PaymentRequestDto implements Parcelable{
 
     @Expose

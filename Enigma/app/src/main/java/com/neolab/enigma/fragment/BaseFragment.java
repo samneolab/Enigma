@@ -111,13 +111,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * Add fragment to activity
+     * Replace fragment to activity
      *
      * @param fragment    Fragment
      * @param isBackStack Transaction will be remembered after it is committed,
      *                    and will reverse its operation when later popped off the stack
      */
-    protected void addFragment(Fragment fragment, boolean isBackStack) {
+    protected void replaceFragment(Fragment fragment, boolean isBackStack) {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);

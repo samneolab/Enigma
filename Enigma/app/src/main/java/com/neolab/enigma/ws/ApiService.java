@@ -2,6 +2,7 @@ package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.respone.FeeResponse;
+import com.neolab.enigma.ws.respone.HistoryThisMonthResponse;
 import com.neolab.enigma.ws.respone.LoginResponse;
 import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.PaymentRequestResponse;
@@ -48,4 +49,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/payment-request")
     void paymentRequest(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, ApiCallback<PaymentRequestResponse> callback);
+
+    @GET("/payment-request")
+    void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback);
 }

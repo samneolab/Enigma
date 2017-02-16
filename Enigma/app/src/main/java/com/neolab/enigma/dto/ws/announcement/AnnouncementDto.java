@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author LongHV.
  */
-
 public class AnnouncementDto {
 
     @Expose

@@ -244,20 +244,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mMenuDrawerImageView.setVisibility(View.GONE);
         mBackTextView.setVisibility(View.GONE);
         mTitleTextView.setVisibility(View.GONE);
+        if (headerDto == null) {
+            return;
+        }
         switch (headerDto.type) {
             case EniConstant.ToolbarType.HOME:
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
                 break;
-            case EniConstant.ToolbarType.DETAIL_DISPLAY_DRAWER:
+            case EniConstant.ToolbarType.DISPLAY_BACK_LOGO_DRAWER:
                 mBackTextView.setVisibility(View.VISIBLE);
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
                 break;
-            case EniConstant.ToolbarType.DETAIL_NOT_DISPLAY_DRAWER:
+            case EniConstant.ToolbarType.DISPLAY_BACK_TITLE:
                 mBackTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
+                break;
+            case EniConstant.ToolbarType.DISPLAY_BACK_TITLE_DRAWER:
+                mBackTextView.setVisibility(View.VISIBLE);
+                mTitleTextView.setVisibility(View.VISIBLE);
+                mTitleTextView.setText(headerDto.title);
+                mMenuDrawerImageView.setVisibility(View.VISIBLE);
                 break;
             case EniConstant.ToolbarType.ONLY_TITLE:
                 mTitleTextView.setVisibility(View.VISIBLE);

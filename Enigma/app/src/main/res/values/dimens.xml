@@ -7,6 +7,7 @@
     <!-- Text size -->
     <dimen name="text_9sp">9sp</dimen>
     <dimen name="text_10sp">10sp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
     <dimen name="text_12sp">12sp</dimen>
     <dimen name="text_13sp">13sp</dimen>
     <dimen name="text_15sp">15sp</dimen>
@@ -22,6 +23,7 @@
     <dimen name="login_button_login_radius">3dp</dimen>
     <dimen name="login_login_button">15dp</dimen>
     <dimen name="login_login_button_margin_top">30dp</dimen>
+    <dimen name="login_edittext_height">40dp</dimen>
 
     <!-- Toolbar -->
     <dimen name="toolbar_height_line">1dp</dimen>
@@ -46,12 +48,15 @@
     <dimen name="top_line_margin_left">10dp</dimen>
     <dimen name="top_line_margin_right">10dp</dimen>
     <dimen name="top_history_item_height">40dp</dimen>
-    <dimen name="top_apply_for_prepayment_height">40dp</dimen>
+    <dimen name="top_apply_for_prepayment_height">45dp</dimen>
     <dimen name="top_dialog_detail_padding">12dp</dimen>
     <dimen name="top_announcement_detail_content_margin_top">4dp</dimen>
 
     <!-- Payment screen -->
     <dimen name="payment_frame_margin">10dp</dimen>
     <dimen name="payment_sub_frame_padding">12dp</dimen>
+
+    <!-- History screen-->
+    <dimen name="history_frame_margin">10dp</dimen>
 
 </resources>

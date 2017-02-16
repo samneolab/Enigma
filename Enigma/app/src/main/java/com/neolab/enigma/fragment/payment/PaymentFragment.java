@@ -143,7 +143,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected HeaderDto getHeaderTypeDto() {
         HeaderDto headerDto = new HeaderDto();
-        headerDto.type = EniConstant.ToolbarType.DETAIL_NOT_DISPLAY_DRAWER;
+        headerDto.type = EniConstant.ToolbarType.DISPLAY_BACK_TITLE;
         headerDto.title = getResources().getString(R.string.payment_title);
         return headerDto;
     }
@@ -157,7 +157,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
                 bundle.putParcelable(ConfirmPaymentFragment.KEY_FEE, mSalaryDto);
                 bundle.putString(ConfirmPaymentFragment.KEY_AMOUNT_MONEY_PAYMENT, mMoneyPrepaymentEditText.getText().toString());
                 confirmPaymentFragment.setArguments(bundle);
-                addFragment(confirmPaymentFragment, true);
+                replaceFragment(confirmPaymentFragment, true);
                 break;
             default:
                 break;

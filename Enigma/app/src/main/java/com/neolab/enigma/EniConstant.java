@@ -35,12 +35,14 @@ public class EniConstant {
     public static class ToolbarType {
         /** Visible only logo and drawer menu */
         public static final int HOME = 1;
-        /** Visible only back button, title and drawer menu */
-        public static final int DETAIL_DISPLAY_DRAWER = 2;
+        /** Visible only back button, logo and drawer menu */
+        public static final int DISPLAY_BACK_LOGO_DRAWER = 2;
         /** Visible only back button, title */
-        public static final int DETAIL_NOT_DISPLAY_DRAWER = 3;
+        public static final int DISPLAY_BACK_TITLE = 3;
+        /** Visible only back button, title and drawer menu */
+        public static final int DISPLAY_BACK_TITLE_DRAWER = 4;
         /** Visible only title */
-        public static final int ONLY_TITLE = 4;
+        public static final int ONLY_TITLE = 5;
     }
 
     public static final class MenuItem {
@@ -48,6 +50,17 @@ public class EniConstant {
         public static final int USER_INFORMATION = 2;
         public static final int LOGOUT = 3;
     }
+
+    /** Request salary is applying, waiting system */
+    public static final int HISTORY_SALARY_REQUEST_APPLYING = 1;
+    /** Parenthesis start*/
+    public static final String PARENTHESIS_START = "(";
+    /** Parenthesis end */
+    public static final String PARENTHESIS_END = ")";
+    /** Space */
+    public static final String SPACE = " ";
+    /** Large space */
+    public static final String LARGE_SPACE = "  ";
 
     public EniConstant(){
     }

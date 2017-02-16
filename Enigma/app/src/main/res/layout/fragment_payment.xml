@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/blue_background"
     android:orientation="vertical"
-    tools:context="com.neolab.enigma.fragment.history.ThisMonthFragment">
+    tools:context="com.neolab.enigma.fragment.history.HistoryPaymentThisMonthFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/payment_frame_margin"
-        android:background="@drawable/top_money_pending_layout"
+        android:background="@drawable/top_amount_prepaid_available_sub_layout"
         android:orientation="vertical"
         android:padding="@dimen/payment_sub_frame_padding">
 
@@ -35,13 +35,14 @@
             <EditText
                 android:id="@+id/payment_money_payment_editText"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/login_edittext_height"
                 android:layout_weight="1"
                 android:background="@drawable/payment_edittext_normal"
                 android:inputType="number"
                 android:maxLength="5"
                 android:maxLines="1"
-                android:textColor="@color/login_editText_text" />
+                android:textColor="@color/login_editText_text"
+                android:textSize="@dimen/text_15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:text="@string/payment_yen"
-                android:textColor="@color/payment_yen_unit" />
+                android:textColor="@color/payment_yen_unit"
+                android:textSize="@dimen/text_15sp" />
         </LinearLayout>
 
         <TextView

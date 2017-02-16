@@ -18,6 +18,7 @@ import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.announcement.AnnouncementListFragment;
+import com.neolab.enigma.fragment.history.HistoryPaymentThisMonthFragment;
 import com.neolab.enigma.fragment.payment.PaymentFragment;
 import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
@@ -172,7 +173,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.top_last_notification_list_textView:
                 AnnouncementListFragment announcementListFragment = new AnnouncementListFragment();
-                addFragment(announcementListFragment, true);
+                replaceFragment(announcementListFragment, true);
                 break;
             case R.id.top_notification_item1_layout:
                 getAnnouncementDetail(mAnnouncementDtoList.get(0));
@@ -185,11 +186,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.top_apply_for_prepayment_layout:
                 PaymentFragment paymentFragment = new PaymentFragment();
-                addFragment(paymentFragment, true);
+                replaceFragment(paymentFragment, true);
                 break;
             case R.id.top_view_history_this_month_layout:
-                PaymentFragment paymentFragment1 = new PaymentFragment();
-                addFragment(paymentFragment1, true);
+                HistoryPaymentThisMonthFragment fragment = new HistoryPaymentThisMonthFragment();
+                replaceFragment(fragment, true);
                 break;
             case R.id.top_view_history_every_month_layout:
                 break;
@@ -326,7 +327,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     public void showAnnouncementDetailDialog(AnnouncementDto announcementDto) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.dialog_top_announcement_detail, null);
+        final View view = inflater.inflate(R.layout.top_announcement_detail_dialog, null);
         builder.setView(view);
         builder.setCancelable(false);
         final AlertDialog dialog = builder.create();
@@ -339,7 +340,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         FrameLayout closeTextView = (FrameLayout) view.findViewById(R.id.top_announcement_detail_close_layout);
         if (announcementDto != null) {
             titleTextView.setText(announcementDto.title);
-            startTimeTextView.setText(EniUtil.getDateAnnouncement(announcementDto.startTime));
+            startTimeTextView.setText(EniUtil.getDateAnnouncementWithFormat(announcementDto.startTime));
             contentTextView.setText(announcementDto.content);
         }
         closeTextView.setOnClickListener(new View.OnClickListener() {

@@ -24,9 +24,9 @@ public class EniUtil {
      * Convert date from format yyyy-MM-dd HH:mm:ss to yyyy-MM-dd or yyyy年MM月dd日
      *
      * @param dateTime datetime with format yyyy-MM-dd HH:mm:ss
-     * @return date
+     * @return date yyyy-MM-dd or yyyy年MM月dd日
      */
-    public static String getDateAnnouncement(String dateTime) {
+    public static String getDateAnnouncementWithFormat(String dateTime) {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         @SuppressLint("SimpleDateFormat")
@@ -54,12 +54,32 @@ public class EniUtil {
     }
 
     /**
+     * Convert date from format yyyy-MM-dd HH:mm:ss to yyyy/MM/dd
+     *
+     * @param dateTime datetime with format yyyy-MM-dd HH:mm:ss
+     * @return date with format yyyy/MM/dd
+     */
+    public static String getDateRequestPaymentWithFormat(String dateTime) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date;
+        try {
+            date = originalFormat.parse(dateTime);
+            return targetFormat.format(date);
+        } catch (ParseException ex) {
+            return "";
+        }
+    }
+
+    /**
      * The method is used to convert money to format xxx,yyy
      *
      * @param money the money
      * @return number format
      */
-    public static String convertMoneyFormat(int  money){
+    public static String convertMoneyFormat(int money) {
         return String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(money));
     }
 

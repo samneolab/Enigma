@@ -11,6 +11,7 @@
     <color name="text_primary">#333333</color>
     <color name="black">#000000</color>
 
+    <!-- Login screen -->
     <color name="login_editText_border">#8e8e8e</color>
     <color name="login_editText_text">#cbcbcb</color>
     <color name="login_checkbox_unChecked_background">#cccccc</color>
@@ -24,7 +25,7 @@
     <color name="button_pressed_end">#99e7e7e7</color>
     <color name="loading">#0099D9</color>
     
-    <!-- Top -->
+    <!-- Top screen -->
     <color name="top_background_gray">#eeeeee</color>
     <color name="top_list_notification">#004f89</color>
     <color name="top_urgent_notification">#cc1919</color>
@@ -39,7 +40,16 @@
     <color name="top_dialog_announcement_detail_title_background">#cfe2fa</color>
     <color name="top_button_close">#004f89</color>
 
+    <!-- Payment screen -->
     <color name="payment_yen_unit">#555555</color>
     <color name="confirm_payment_prepayment_amount_exceeded">#cc1919</color>
+
+    <color name="history_header_frame">#cc1919</color>
+    <color name="history_item_status_applying">#004f89</color>
+    <color name="history_item_status_done">#888888</color>
+    <color name="history_view_monthly_payment_background">#ffad38</color>
+    <color name="history_reload_screen_background">#ffe8c8</color>
+    <color name="history_reload_screen_text">#004f89</color>
+
 
 </resources>

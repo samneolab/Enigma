@@ -88,7 +88,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     @Override
     protected HeaderDto getHeaderTypeDto() {
         HeaderDto headerDto = new HeaderDto();
-        headerDto.type = EniConstant.ToolbarType.DETAIL_NOT_DISPLAY_DRAWER;
+        headerDto.type = EniConstant.ToolbarType.DISPLAY_BACK_TITLE;
         headerDto.title = getResources().getString(R.string.payment_title);
         return headerDto;
     }
@@ -136,7 +136,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(CompletePaymentFragment.KEY_PAYMENT_REQUEST, paymentRequestResponse.data);
                     fragment.setArguments(bundle);
-                    addFragment(fragment, false);
+                    replaceFragment(fragment, false);
                 }
             }
         });

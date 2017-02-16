@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/blue_background"
     android:orientation="vertical"
-    tools:context="com.neolab.enigma.fragment.history.ThisMonthFragment">
+    tools:context="com.neolab.enigma.fragment.history.HistoryPaymentThisMonthFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/payment_frame_margin"
-        android:background="@drawable/top_money_pending_layout"
+        android:background="@drawable/top_amount_prepaid_available_sub_layout"
         android:orientation="vertical"
         android:padding="@dimen/payment_sub_frame_padding">
 
@@ -18,6 +18,7 @@
             android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/image_dsc"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
@@ -37,8 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="翌営業日申請で受付を完了しました。" />
+            android:layout_marginTop="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,17 +48,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginBottom="8dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/complete_payment_amount_salary_textView"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/login_edittext_height"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@drawable/payment_edittext_normal"
+                android:gravity="center_vertical"
                 android:textSize="@dimen/text_15sp" />
 
             <TextView
@@ -68,7 +69,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:text="@string/confirm_payment_yen"
-                android:textColor="@color/payment_yen_unit" />
+                android:textColor="@color/payment_yen_unit"
+                android:textSize="@dimen/text_15sp" />
         </LinearLayout>
     </LinearLayout>
 

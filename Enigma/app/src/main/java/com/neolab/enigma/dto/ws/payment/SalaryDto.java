@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author LongHV.
  */
-
 public class SalaryDto implements Parcelable {
 
     @SerializedName("upper_limit_rate")

@@ -3,6 +3,7 @@ package com.neolab.enigma.ws;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
 import com.neolab.enigma.ws.respone.FeeResponse;
+import com.neolab.enigma.ws.respone.HistoryThisMonthResponse;
 import com.neolab.enigma.ws.respone.LoginResponse;
 import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.PaymentRequestResponse;
@@ -98,6 +99,15 @@ public final class ApiRequest {
      */
     public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback){
         ApiClient.getService().paymentRequest(amountOfSalary, callback);
+    }
+
+    /**
+     * Get history payment salary of month
+     *
+     * @param callback Callback
+     */
+    public static void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback){
+        ApiClient.getService().getHistoryPaymentOfMonth(callback);
     }
 
 }

@@ -12,10 +12,10 @@ import com.neolab.enigma.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EveryMonthFragment extends Fragment {
+public class HistoryPaymentEveryMonthFragment extends Fragment {
 
 
-    public EveryMonthFragment() {
+    public HistoryPaymentEveryMonthFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class EveryMonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history_every_month, container, false);
+        return inflater.inflate(R.layout.fragment_history_payment_every_month, container, false);
     }
 
 }

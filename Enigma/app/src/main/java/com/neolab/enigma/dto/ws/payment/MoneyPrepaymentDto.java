@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author LongHV.
  */
-
 public class MoneyPrepaymentDto {
 
     @SerializedName("remain_payment")

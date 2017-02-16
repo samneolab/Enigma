@@ -44,7 +44,7 @@ public class AnnouncementListFragment extends Fragment {
 //    @Override
 //    protected HeaderDto getHeaderTypeDto() {
 //        HeaderDto headerDto = new HeaderDto();
-//        headerDto.type = EniConstant.ToolbarType.DETAIL_DISPLAY_DRAWER;
+//        headerDto.type = EniConstant.ToolbarType.DISPLAY_BACK_LOGO_DRAWER;
 //        return headerDto;
 //    }
 
