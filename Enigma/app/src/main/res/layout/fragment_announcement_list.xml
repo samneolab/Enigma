@@ -11,17 +11,7 @@
         android:layout_margin="@dimen/payment_frame_margin"
         android:foreground="@drawable/button_foreground">
 
-        <Button
-            android:id="@+id/payment_apply_for_prepayment_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/top_apply_for_prepayment_height"
-            android:layout_gravity="center"
-            android:background="@drawable/button_login"
-            android:enabled="true"
-            android:clickable="false"
-            android:gravity="center"
-            android:text="@string/top_apply_for_prepayment"
-            android:textColor="@color/white" />
+
     </FrameLayout>
 
 </FrameLayout>

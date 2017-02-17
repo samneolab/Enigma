@@ -10,8 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,6 +26,7 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
 import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.preference.EncryptionPreference;
@@ -121,10 +124,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         } else {
-            Fragment currentFragment = getVisibleFragment();
-            if (currentFragment instanceof CompletePaymentFragment) {
+            FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+            Fragment currentFragment = getVisibleFragment(fragmentManager);
+            if (currentFragment instanceof CompletePaymentFragment
+                    || currentFragment instanceof CompleteWithdrawPaymentFragment) {
                 // clear all fragment in stack
-                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                int count = fragmentManager.getBackStackEntryCount();
+                EniLogUtil.d(getClass(), "BackStackEntryCount: " + count);
+                if (count > 0) {
+                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fragmentManager.executePendingTransactions();
+                }
+                // add top fragment to layout
                 TopFragment topFragment = new TopFragment();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
@@ -142,8 +153,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      *
      * @return current fragment visible
      */
-    private Fragment getVisibleFragment() {
-        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+    private Fragment getVisibleFragment(FragmentManager fragmentManager) {
         List<Fragment> fragments = fragmentManager.getFragments();
         for (Fragment fragment : fragments) {
             if (fragment != null && fragment.isVisible())

@@ -1,6 +1,5 @@
 package com.neolab.enigma.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -23,7 +22,7 @@ import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.LoginResponse;
+import com.neolab.enigma.ws.respone.login.LoginResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;

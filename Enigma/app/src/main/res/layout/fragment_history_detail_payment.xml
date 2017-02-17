@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/payment_frame_margin"
-        android:background="@drawable/top_amount_prepaid_available_sub_layout"
+        android:background="@drawable/layout_white_background"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         android:paddingLeft="@dimen/payment_sub_frame_padding"
@@ -51,7 +51,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/payment_edittext_normal"
+                android:background="@drawable/edittext_payment_payment_normal"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/text_15sp" />
 
@@ -83,7 +83,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/payment_edittext_normal"
+                android:background="@drawable/edittext_payment_payment_normal"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/text_15sp" />
 
@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/history_payment_reload_screen_button"
+                android:background="@drawable/button_history_payment_reload_screen_button"
                 android:clickable="false"
                 android:gravity="center"
                 android:text="@string/back"
@@ -146,15 +146,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/payment_frame_margin"
+            android:clickable="false"
             android:foreground="@drawable/button_foreground">
 
             <Button
+                android:id="@+id/history_detail_withdraw_request_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/history_payment_view_monthly_history_button"
+                android:background="@drawable/button_history_payment_withdraw_payment"
                 android:clickable="false"
-                android:enabled="true"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="@string/detail_history_withdraw_request"
                 android:textColor="@color/white" />

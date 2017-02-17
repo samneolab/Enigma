@@ -1,4 +1,4 @@
-package com.neolab.enigma.dto.ws.History;
+package com.neolab.enigma.dto.ws.history;
 
 import com.google.gson.annotations.SerializedName;
 

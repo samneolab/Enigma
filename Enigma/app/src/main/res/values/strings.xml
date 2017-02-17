@@ -66,11 +66,23 @@
     <string name="history_date_request">申請日:</string>
     <string name="history_view_monthly_history">月次の履歴を見る</string>
     <string name="history_reload_screen">画面を再読み込み</string>
+    <string name="history_year">年</string>
+    <string name="history_month">月</string>
+    <string name="history_payment_every_month_title">月次の履歴</string>
 
     <!-- Detail history payment fragment -->
     <string name="detail_history_title">申請詳細</string>
     <string name="detail_history_please_check_content">申請内容をご確認ください。</string>
     <string name="detail_history_date_apply">申請日:</string>
     <string name="detail_history_withdraw_request">申請を取り下げる</string>
+    <string name="detail_history_i_will_do_processing">処理を実行致しますがよろしいですか。</string>
+
+    <!-- Complete withdraw payment fragment -->
+    <string name="complete_withdraw_payment_title">前払い申請完了</string>
+    <string name="complete_withdraw_payment_we_withdrew_the_prepayment">前払い申請を取り下げました。</string>
+
+    <!-- Dialog -->
+    <string name="cancel">キャンセル</string>
+    <string name="ok">OK</string>
 
 </resources>

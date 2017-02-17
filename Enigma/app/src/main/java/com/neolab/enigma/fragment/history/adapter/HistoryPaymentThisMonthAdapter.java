@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
-import com.neolab.enigma.dto.ws.History.SalaryRequestDto;
+import com.neolab.enigma.dto.ws.history.SalaryRequestDto;
 import com.neolab.enigma.util.EniUtil;
 
 import java.util.List;
@@ -33,14 +33,16 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
     /**
      * Constructor
      *
-     * @param context              Context
+     * @param context Context
      * @param salaryRequestDtoList salary request list
      */
     public HistoryPaymentThisMonthAdapter(Context context, List<SalaryRequestDto> salaryRequestDtoList, OnItemListViewListener onItemListViewListener) {
         mContext = context;
         mSalaryRequestDtoList = salaryRequestDtoList;
         mOnItemListViewListener = onItemListViewListener;
-        mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (mContext != null) {
+            mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
     }
 
     @Override
@@ -76,14 +78,14 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
         final SalaryRequestDto salaryRequestDto = (SalaryRequestDto) getItem(position);
         if (salaryRequestDto.status == EniConstant.HISTORY_SALARY_REQUEST_APPLYING) {
             viewHolder.itemFrameLayout.setEnabled(true);
-            viewHolder.statusPaymentTextView.setBackgroundResource(R.drawable.history_payment_applying_status);
+            viewHolder.statusPaymentTextView.setBackgroundResource(R.drawable.button_history_payment_applying_status);
             viewHolder.requestInformTextView.setTextColor(ContextCompat.getColor(mContext, R.color.text_primary));
             viewHolder.iconDetailImageView.setVisibility(View.VISIBLE);
             viewHolder.dateRequestTextView.setText(mContext.getString(R.string.history_date_request)
                     + EniConstant.LARGE_SPACE + salaryRequestDto.createDate);
         } else {
             viewHolder.itemFrameLayout.setEnabled(false);
-            viewHolder.statusPaymentTextView.setBackgroundResource(R.drawable.history_payment_done_status);
+            viewHolder.statusPaymentTextView.setBackgroundResource(R.drawable.button_history_payment_done_status);
             viewHolder.requestInformTextView.setTextColor(ContextCompat.getColor(mContext, R.color.history_item_status_done));
             viewHolder.iconDetailImageView.setVisibility(View.GONE);
             viewHolder.dateRequestTextView.setText(mContext.getString(R.string.history_date_request)

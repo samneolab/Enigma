@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,32 +22,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:clickable="false"
                 android:background="@drawable/button_history_payment_view_monthly_history"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="@string/history_view_monthly_history"
                 android:textColor="@color/white" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/history_payment_this_month_reload_screen_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/history_frame_margin"
-            android:layout_marginLeft="@dimen/history_frame_margin"
-            android:layout_marginRight="@dimen/history_frame_margin"
-            android:layout_marginStart="@dimen/history_frame_margin"
-            android:foreground="@drawable/button_foreground">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/top_apply_for_prepayment_height"
-                android:layout_gravity="center"
-                android:clickable="false"
-                android:background="@drawable/button_history_payment_reload_screen_button"
-                android:gravity="center"
-                android:text="@string/history_reload_screen"
-                android:textColor="@color/history_reload_screen_text" />
         </FrameLayout>
 
         <TextView
@@ -58,6 +38,5 @@
             android:includeFontPadding="false"
             android:text="@string/login_copyright"
             android:textSize="@dimen/text_10sp" />
-
     </LinearLayout>
 </FrameLayout>

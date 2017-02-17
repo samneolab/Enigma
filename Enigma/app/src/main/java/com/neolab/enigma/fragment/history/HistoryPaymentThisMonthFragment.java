@@ -13,7 +13,7 @@ import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
-import com.neolab.enigma.dto.ws.History.SalaryRequestDto;
+import com.neolab.enigma.dto.ws.history.SalaryRequestDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.history.adapter.HistoryPaymentThisMonthAdapter.OnItemListViewListener;
 import com.neolab.enigma.fragment.history.adapter.HistoryPaymentThisMonthAdapter;
@@ -23,7 +23,7 @@ import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.HistoryThisMonthResponse;
+import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Payment this month history
+ * History payment of this month
  *
  * @author LongHV
  */
@@ -66,7 +66,6 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
         mHistoryPaymentListView = findViewById(R.id.history_payment_this_month_listView);
         mHistoryPaymentListView.addHeaderView(headerView);
         mHistoryPaymentListView.addFooterView(footerView);
-
     }
 
     @Override
@@ -136,7 +135,7 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
                 EniLogUtil.d(getClass(), "[onItemListener] id:" + salaryRequestDto.id);
             }
             Bundle bundle = new Bundle();
-            bundle.putParcelable(DetailHistoryPaymentFragment.KEY_SALARY_REQUEST, salaryRequestDto);
+            bundle.putInt(DetailHistoryPaymentFragment.KEY_REQUEST_PAYMENT_ID, salaryRequestDto.id);
             DetailHistoryPaymentFragment detailHistoryPaymentFragment = new DetailHistoryPaymentFragment();
             detailHistoryPaymentFragment.setArguments(bundle);
             replaceFragment(detailHistoryPaymentFragment, true);

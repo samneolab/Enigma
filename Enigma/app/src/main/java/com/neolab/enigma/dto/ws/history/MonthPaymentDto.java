@@ -3,13 +3,15 @@ package com.neolab.enigma.dto.ws.history;
 import com.google.gson.annotations.Expose;
 
 /**
+ * Month request payment list
+ *
  * @author LongHV.
  */
-public class StatusRequestDto {
+public class MonthPaymentDto {
 
     @Expose
-    public int id;
+    public int year;
     @Expose
-    public String name;
+    public int month;
 
 }

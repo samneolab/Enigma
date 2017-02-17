@@ -14,53 +14,26 @@
         android:orientation="vertical"
         android:padding="@dimen/payment_sub_frame_padding">
 
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/image_dsc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/payment_fill_money_apply" />
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/complete_withdraw_payment_we_withdrew_the_prepayment"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_13sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/payment_amount" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/payment_money_payment_editText"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/login_edittext_height"
-                android:layout_weight="1"
-                android:background="@drawable/edittext_payment_payment_normal"
-                android:inputType="number"
-                android:maxLength="5"
-                android:maxLines="1"
-                android:textColor="@color/login_editText_text"
-                android:textSize="@dimen/text_15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:text="@string/payment_yen"
-                android:textColor="@color/payment_yen_unit"
-                android:textSize="@dimen/text_15sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/payment_prepayment_application_amount"
-            android:textSize="@dimen/text_12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,22 +44,20 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/payment_apply_for_prepayment_layout"
+            android:id="@+id/complete_withdraw_payment_top_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/payment_frame_margin"
             android:foreground="@drawable/button_foreground">
 
             <Button
-                android:id="@+id/payment_apply_for_prepayment_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/button_payment_apply"
+                android:background="@drawable/button_payment_complete_withdraw_payment_top"
                 android:clickable="false"
-                android:enabled="false"
                 android:gravity="center"
-                android:text="@string/payment_apply"
+                android:text="@string/item_top"
                 android:textColor="@color/white" />
         </FrameLayout>
 

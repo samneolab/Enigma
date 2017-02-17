@@ -2,11 +2,14 @@ package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
-import com.neolab.enigma.ws.respone.FeeResponse;
-import com.neolab.enigma.ws.respone.HistoryThisMonthResponse;
-import com.neolab.enigma.ws.respone.LoginResponse;
-import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
-import com.neolab.enigma.ws.respone.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
+import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
+import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
+import com.neolab.enigma.ws.respone.payment.FeeResponse;
+import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
+import com.neolab.enigma.ws.respone.login.LoginResponse;
+import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -36,10 +39,10 @@ public final class ApiRequest {
     /**
      * Login request
      *
-     * @param companyCode Company code
-     * @param employeeCode Employee code
+     * @param companyCode      Company code
+     * @param employeeCode     Employee code
      * @param employeePassword Employee password
-     * @param callback LoginResponse
+     * @param callback         LoginResponse
      */
     public static void login(String companyCode, String employeeCode, String employeePassword
             , ApiCallback<LoginResponse> callback) {
@@ -95,9 +98,9 @@ public final class ApiRequest {
      * Request prepayment salary
      *
      * @param amountOfSalary the salary has requested
-     * @param callback Callback
+     * @param callback       Callback
      */
-    public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback){
+    public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback) {
         ApiClient.getService().paymentRequest(amountOfSalary, callback);
     }
 
@@ -106,8 +109,37 @@ public final class ApiRequest {
      *
      * @param callback Callback
      */
-    public static void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback){
+    public static void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback) {
         ApiClient.getService().getHistoryPaymentOfMonth(callback);
+    }
+
+    /**
+     * Get information detail of payment
+     *
+     * @param id id of request payment
+     * @param callback DetailPaymentResponse
+     */
+    public static void getDetailPayment(int id, ApiCallback<DetailPaymentResponse> callback) {
+        ApiClient.getService().getDetailPayment(id, callback);
+    }
+
+    /**
+     * Cancel payment request
+     *
+     * @param id requestId
+     * @param callback CancelPaymentResponse
+     */
+    public static void cancelPaymentRequest(int id, ApiCallback<CancelPaymentResponse> callback){
+        ApiClient.getService().cancelPaymentRequest(id, callback);
+    }
+
+    /**
+     * Get month request payment list
+     *
+     * @param callback Callback
+     */
+    public static void getMonthRequestPaymentList(ApiCallback<MonthPaymentResponse> callback){
+        ApiClient.getService().getMonthRequestPaymentList(callback);
     }
 
 }

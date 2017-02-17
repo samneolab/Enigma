@@ -20,7 +20,7 @@ import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.FeeResponse;
+import com.neolab.enigma.ws.respone.payment.FeeResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -104,9 +104,9 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             if (hasFocus) {
-                v.setBackgroundResource(R.drawable.payment_edittext_focus);
+                v.setBackgroundResource(R.drawable.edittext_payment_payment_focus);
             } else {
-                v.setBackgroundResource(R.drawable.payment_edittext_normal);
+                v.setBackgroundResource(R.drawable.edittext_payment_payment_normal);
             }
         }
     };

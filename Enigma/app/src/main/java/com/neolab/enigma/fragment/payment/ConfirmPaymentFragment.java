@@ -2,6 +2,8 @@ package com.neolab.enigma.fragment.payment;
 
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,13 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.payment.SalaryDto;
 import com.neolab.enigma.fragment.BaseFragment;
+import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -136,7 +139,14 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(CompletePaymentFragment.KEY_PAYMENT_REQUEST, paymentRequestResponse.data);
                     fragment.setArguments(bundle);
-                    replaceFragment(fragment, false);
+
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);
+                    manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    manager.executePendingTransactions();
+                    transaction.replace(R.id.main_root_frameLayout, fragment);
+                    transaction.commit();
                 }
             }
         });

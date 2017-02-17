@@ -44,7 +44,7 @@
     <style name="Eni.Login.EditText.Text15sp" parent="@style/Eni.EditTextBase">
         <item name="android:textColor">@color/login_editText_text</item>
         <item name="android:textSize">@dimen/text_15sp</item>
-        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:background">@drawable/edittext_white_background</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

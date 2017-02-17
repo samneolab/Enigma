@@ -33,7 +33,7 @@
                     android:layout_marginRight="@dimen/top_frame_margin"
                     android:layout_marginStart="@dimen/top_frame_margin"
                     android:layout_marginTop="@dimen/top_frame_margin"
-                    android:background="@drawable/login_background"
+                    android:background="@drawable/layout_white_background"
                     android:foreground="@drawable/button_foreground"
                     android:paddingBottom="@dimen/top_frame_margin"
                     android:paddingEnd="@dimen/top_urgent_notification_padding_right"
@@ -41,7 +41,7 @@
                     android:paddingRight="@dimen/top_urgent_notification_padding_right"
                     android:paddingStart="@dimen/top_urgent_notification_padding_left"
                     android:paddingTop="@dimen/top_frame_margin"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/top_urgent_notification_textView"
@@ -276,7 +276,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="6dp"
-                        android:background="@drawable/top_amount_prepaid_available_sub_layout"
+                        android:background="@drawable/layout_white_background"
                         android:gravity="center_vertical"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp">
@@ -331,7 +331,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/top_money_pending_layout"
+                            android:background="@drawable/top_money_pending_background"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingLeft="6dp"
@@ -383,7 +383,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/top_apply_for_prepayment_height"
                         android:layout_gravity="center"
-                        android:background="@drawable/button_login"
+                        android:background="@drawable/button_top_top_apply_for_prepayment"
                         android:clickable="false"
                         android:gravity="center"
                         android:text="@string/top_apply_for_prepayment"

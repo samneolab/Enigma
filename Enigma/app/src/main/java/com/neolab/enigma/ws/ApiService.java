@@ -1,11 +1,14 @@
 package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
-import com.neolab.enigma.ws.respone.FeeResponse;
-import com.neolab.enigma.ws.respone.HistoryThisMonthResponse;
-import com.neolab.enigma.ws.respone.LoginResponse;
-import com.neolab.enigma.ws.respone.MoneyPrepaymentResponse;
-import com.neolab.enigma.ws.respone.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
+import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
+import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
+import com.neolab.enigma.ws.respone.payment.FeeResponse;
+import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
+import com.neolab.enigma.ws.respone.login.LoginResponse;
+import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -14,6 +17,7 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 /**
@@ -52,4 +56,13 @@ public interface ApiService {
 
     @GET("/payment-request")
     void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback);
+
+    @GET("/payment-request/{id}")
+    void getDetailPayment(@Path("id") int id, ApiCallback<DetailPaymentResponse> callback);
+
+    @PUT("/payment-requests/{id}/status/3")
+    void cancelPaymentRequest(@Path("id") int id, ApiCallback<CancelPaymentResponse> callback);
+
+    @GET("/payment-request/month")
+    void getMonthRequestPaymentList(ApiCallback<MonthPaymentResponse> callback);
 }

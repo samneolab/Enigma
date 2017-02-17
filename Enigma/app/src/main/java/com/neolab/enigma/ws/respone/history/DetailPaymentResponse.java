@@ -1,21 +1,22 @@
-package com.neolab.enigma.ws.respone;
+package com.neolab.enigma.ws.respone.history;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.neolab.enigma.dto.ws.payment.PaymentRequestDto;
+import com.neolab.enigma.dto.ws.payment.DetailPaymentDto;
 
 /**
- * Payment Request Response class
+ * Detail payment response class
  *
  * @author LongHV.
  */
-public class PaymentRequestResponse {
+public class DetailPaymentResponse {
 
     @SerializedName("status_code")
     public int statusCode;
     @Expose
     public String message;
     @Expose
-    public PaymentRequestDto data;
+    public DetailPaymentDto data;
+
 
 }

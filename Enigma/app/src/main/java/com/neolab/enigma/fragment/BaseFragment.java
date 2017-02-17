@@ -3,12 +3,14 @@ package com.neolab.enigma.fragment;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,32 +29,60 @@ import com.neolab.enigma.util.EniLogUtil;
 public abstract class BaseFragment extends Fragment {
 
     protected abstract void initData();
+
     protected abstract void findView();
+
     protected abstract void initEvent();
+
     protected abstract HeaderDto getHeaderTypeDto();
 
-    /** Control access */
+    public static class EniSemaphore {
+        public boolean lock;
+    }
+
+    /**
+     * Semaphore
+     */
+    private final EniSemaphore semaphoreSingleDialog = new EniSemaphore();
+
+    /**
+     * Control access
+     */
     private final Object mutex = new Object();
-    /** Loading progress */
+
+    /**
+     * Loading progress
+     */
     private ProgressDialog mProgressDialog;
-    /** show loading flag */
+    /**
+     * show loading flag
+     */
     private boolean isShowLoading;
-    /** Count request cancel loading */
+    /**
+     * Count request cancel loading
+     */
     protected int requestCancelLoadingCount = 0;
-    /** Count request show loading  */
+    /**
+     * Count request show loading
+     */
     private int mRequestShowLoadingCount = 0;
 
     /**
      * The view global
+     *
      * @must non-abstract subclass of onCreateView in return view;
      * @warn can not be created in subclasses
      */
     protected View view = null;
 
-    /** LayoutInflater */
+    /**
+     * LayoutInflater
+     */
     protected LayoutInflater inflater = null;
 
-    /** Add the layout of this Fragment view */
+    /**
+     * Add the layout of this Fragment view
+     */
     @Nullable
     protected ViewGroup container = null;
 
@@ -62,10 +92,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        onBaseFragmentListener = (OnBaseFragmentListener)activity;
-        if (BuildConfig.DEBUG){
-            EniLogUtil.d(getClass(), "onAttach");
-        }
+        onBaseFragmentListener = (OnBaseFragmentListener) activity;
     }
 
     @Nullable
@@ -79,6 +106,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (BuildConfig.DEBUG) {
+            EniLogUtil.d(getClass(), "onResume");
+        }
         onBaseFragmentListener.onHeaderListener(getHeaderTypeDto());
     }
 
@@ -99,9 +129,11 @@ public abstract class BaseFragment extends Fragment {
         return (V) view.findViewById(id);
     }
 
-    /** Find and get the control via id and setOnClickListener
+    /**
+     * Find and get the control via id and setOnClickListener
+     *
      * @param id id
-     * @param l OnClickListener
+     * @param l  OnClickListener
      * @return View
      */
     public <V extends View> V findViewById(int id, View.OnClickListener l) {
@@ -169,12 +201,74 @@ public abstract class BaseFragment extends Fragment {
     /**
      * Reset status loading dialog
      */
-    private void resetShowLoading(){
+    private void resetShowLoading() {
         isShowLoading = false;
         requestCancelLoadingCount = 0;
         mRequestShowLoadingCount = 0;
     }
 
+    /**
+     * Display dialog (OK / Cancel button)
+     *
+     * @param message         message
+     * @param okListener      OnClickListener
+     * @param dismissListener OnDismissListener
+     * @return AlertDialog.Builder
+     */
+    protected AlertDialog.Builder eniShowDialog(
+            final Context context,
+            final String message,
+            final DialogInterface.OnClickListener okListener,
+            final DialogInterface.OnDismissListener dismissListener) {
+
+        synchronized (semaphoreSingleDialog) {
+            // Semaphore object specified
+            if (semaphoreSingleDialog.lock) {
+                // processing
+                EniLogUtil.d(getClass(), "[eniShowDialog] lock");
+                return null;
+            }
+            semaphoreSingleDialog.lock = true;
+        }
+
+        if (getActivity().isFinishing()) {
+            // Do not process when activity is invalid
+            EniLogUtil.d(getClass(), "[eniShowDialog] activityAvailableFlag=FALSE");
+            synchronized (semaphoreSingleDialog) {
+                semaphoreSingleDialog.lock = false;
+            }
+            return null;
+        }
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        synchronized (semaphoreSingleDialog) {
+                            semaphoreSingleDialog.lock = false;
+                        }
+                        if (okListener != null) {
+                            okListener.onClick(dialog, which);
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        synchronized (semaphoreSingleDialog) {
+                            semaphoreSingleDialog.lock = false;
+                        }
+                    }
+                });
+        builder.show().setOnDismissListener(dismissListener);
+        return builder;
+    }
+
+    /**
+     * Wake up toolbar
+     */
     public interface OnBaseFragmentListener {
         void onHeaderListener(HeaderDto headerDto);
     }

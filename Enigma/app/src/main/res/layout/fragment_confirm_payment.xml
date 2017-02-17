@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/payment_frame_margin"
-        android:background="@drawable/top_amount_prepaid_available_sub_layout"
+        android:background="@drawable/layout_white_background"
         android:orientation="vertical"
         android:paddingBottom="30dp"
         android:paddingLeft="@dimen/payment_sub_frame_padding"
@@ -42,7 +42,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/payment_edittext_normal"
+                android:background="@drawable/edittext_payment_payment_normal"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/text_15sp" />
 
@@ -74,7 +74,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/payment_edittext_normal"
+                android:background="@drawable/edittext_payment_payment_normal"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/text_15sp" />
 
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/button_login"
+                android:background="@drawable/button_payment_confirm_payment_apply"
                 android:clickable="false"
                 android:enabled="true"
                 android:gravity="center"

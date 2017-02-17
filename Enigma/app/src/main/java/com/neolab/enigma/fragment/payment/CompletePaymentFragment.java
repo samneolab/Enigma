@@ -13,6 +13,7 @@ import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.payment.PaymentRequestDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
+import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
 
 /**

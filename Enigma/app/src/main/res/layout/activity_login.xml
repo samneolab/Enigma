@@ -37,7 +37,7 @@
                     android:id="@+id/login_user_information_linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/login_background"
+                    android:background="@drawable/layout_white_background"
                     android:orientation="vertical"
                     android:padding="@dimen/login_frame_inform_user_padding"
                     tools:ignore="UselessParent">

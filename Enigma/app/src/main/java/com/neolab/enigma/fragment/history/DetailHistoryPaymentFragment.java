@@ -1,8 +1,11 @@
 package com.neolab.enigma.fragment.history;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +14,34 @@ import android.widget.TextView;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
-import com.neolab.enigma.dto.ws.History.SalaryRequestDto;
+import com.neolab.enigma.dto.ws.payment.DetailPaymentDto;
 import com.neolab.enigma.fragment.BaseFragment;
+import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.ws.ApiCode;
+import com.neolab.enigma.ws.ApiRequest;
+import com.neolab.enigma.ws.core.ApiCallback;
+import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
+import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
+
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailHistoryPaymentFragment extends BaseFragment implements View.OnClickListener{
+public class DetailHistoryPaymentFragment extends BaseFragment implements View.OnClickListener {
 
-    public static final String KEY_SALARY_REQUEST = "salaryRequestDto";
+    public static final String KEY_REQUEST_PAYMENT_ID = "mRequestId";
 
     private TextView mDateRequestTextView;
     private TextView mSalaryRequestTextView;
     private TextView mFeeUsageSystemTextView;
     private View mBackLayout;
     private View mWithdrawRequestLayout;
-
-    private SalaryRequestDto mSalaryRequestDto;
+    private View mWithdrawRequestButton;
+    private int mRequestId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,13 +58,8 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
     protected void initData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mSalaryRequestDto = bundle.getParcelable(KEY_SALARY_REQUEST);
-            mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
-                    + EniConstant.SPACE + EniUtil.getDateRequestPaymentWithFormat(mSalaryRequestDto.appliedDate));
-            mSalaryRequestTextView.setText(EniUtil.convertMoneyFormat(mSalaryRequestDto.amountOfSalary));
-            // Calculate fee usage system
-            int feeUsageSystem = mSalaryRequestDto.total - mSalaryRequestDto.amountOfSalary;
-            mFeeUsageSystemTextView.setText(EniUtil.convertMoneyFormat(feeUsageSystem));
+            mRequestId = bundle.getInt(KEY_REQUEST_PAYMENT_ID);
+            getDetailPayment(mRequestId);
         }
     }
 
@@ -62,6 +70,7 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
         mFeeUsageSystemTextView = findViewById(R.id.history_detail_fee_usage_system_textView);
         mBackLayout = findViewById(R.id.history_detail_back_layout);
         mWithdrawRequestLayout = findViewById(R.id.history_detail_withdraw_request_layout);
+        mWithdrawRequestButton = findViewById(R.id.history_detail_withdraw_request_button);
 
     }
 
@@ -81,15 +90,84 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.history_detail_back_layout:
                 getActivity().onBackPressed();
                 break;
             case R.id.history_detail_withdraw_request_layout:
-
+                eniShowDialog(getActivity(), getString(R.string.detail_history_i_will_do_processing), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        cancelPaymentRequest();
+                    }
+                }, null);
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * The method is used to get detail of payment
+     *
+     * @param requestId mRequestId
+     */
+    private void getDetailPayment(int requestId) {
+        eniShowNowLoading(getActivity());
+        ApiRequest.getDetailPayment(requestId, new ApiCallback<DetailPaymentResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
+                mWithdrawRequestLayout.setClickable(false);
+                mWithdrawRequestButton.setEnabled(true);
+            }
+
+            @Override
+            public void success(DetailPaymentResponse detailPaymentResponse, Response response) {
+                eniCancelNowLoading();
+                mWithdrawRequestLayout.setClickable(true);
+                mWithdrawRequestButton.setEnabled(true);
+                if (detailPaymentResponse.statusCode != ApiCode.SUCCESS) {
+                    return;
+                }
+                if (detailPaymentResponse.data == null) {
+                    return;
+                }
+                DetailPaymentDto detailPaymentDto = detailPaymentResponse.data;
+                mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
+                        + EniConstant.SPACE + EniUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
+                mSalaryRequestTextView.setText(EniUtil.convertMoneyFormat(detailPaymentDto.amountOfSalary));
+                mFeeUsageSystemTextView.setText(EniUtil.convertMoneyFormat(detailPaymentDto.totalFee));
+            }
+        });
+    }
+
+    /**
+     * Call api to cancel payment that has requested
+     */
+    private void cancelPaymentRequest(){
+        ApiRequest.cancelPaymentRequest(mRequestId, new ApiCallback<CancelPaymentResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+
+            }
+
+            @Override
+            public void success(CancelPaymentResponse cancelPaymentResponse, Response response) {
+                EniLogUtil.d(getClass(), cancelPaymentResponse.message);
+                if (cancelPaymentResponse.statusCode != ApiCode.SUCCESS){
+                    return;
+                }
+                CompleteWithdrawPaymentFragment fragment = new CompleteWithdrawPaymentFragment();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);
+                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                manager.executePendingTransactions();
+                transaction.replace(R.id.main_root_frameLayout, fragment);
+                transaction.commit();
+//                replaceFragment(fragment, false);
+            }
+        });
     }
 }
