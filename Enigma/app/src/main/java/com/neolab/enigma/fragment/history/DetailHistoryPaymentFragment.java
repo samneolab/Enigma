@@ -162,8 +162,8 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);
-                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                manager.executePendingTransactions();
+//                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                manager.executePendingTransactions();
                 transaction.replace(R.id.main_root_frameLayout, fragment);
                 transaction.commit();
 //                replaceFragment(fragment, false);

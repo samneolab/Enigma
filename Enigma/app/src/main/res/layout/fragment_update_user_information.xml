@@ -1,0 +1,143 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical"
+    tools:context="com.neolab.enigma.fragment.user.UpdateUserInformationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_white_background"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingLeft="@dimen/payment_sub_frame_padding"
+        android:paddingRight="@dimen/payment_sub_frame_padding"
+        android:paddingTop="@dimen/payment_sub_frame_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/update_user_information_please_fill_contents" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/update_user_information_name" />
+
+        <TextView
+            android:id="@+id/update_user_information_name_textView"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text_16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/update_user_information_email_address" />
+
+        <EditText
+            android:id="@+id/update_user_information_email_editText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/edittext_payment_payment_normal"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@color/login_editText_text"
+            android:textSize="@dimen/text_15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/update_user_information_back_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_frame_margin"
+            android:layout_marginLeft="@dimen/history_frame_margin"
+            android:layout_marginRight="@dimen/history_frame_margin"
+            android:layout_marginStart="@dimen/history_frame_margin"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:background="@drawable/button_back"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/back"
+                android:textColor="@color/history_reload_screen_text" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/update_user_information_update_information_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_frame_margin"
+            android:layout_marginLeft="@dimen/history_frame_margin"
+            android:layout_marginRight="@dimen/history_frame_margin"
+            android:layout_marginStart="@dimen/history_frame_margin"
+            android:layout_marginTop="8dp"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:id="@+id/update_user_information_update_information_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:enabled="false"
+                android:background="@drawable/button_update_user_information_update"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/update_user_information_update"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/update_user_information_stop_service_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_frame_margin"
+            android:layout_marginLeft="@dimen/history_frame_margin"
+            android:layout_marginRight="@dimen/history_frame_margin"
+            android:layout_marginStart="@dimen/history_frame_margin"
+            android:layout_marginTop="8dp"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:background="@drawable/button_update_user_information_stop_service"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/update_user_information_stop_using_service"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="@dimen/payment_frame_margin"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
+    </LinearLayout>
+
+</FrameLayout>

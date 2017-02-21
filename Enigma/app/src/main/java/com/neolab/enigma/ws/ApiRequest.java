@@ -2,22 +2,25 @@ package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
-import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
-import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
-import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
-import com.neolab.enigma.ws.respone.payment.FeeResponse;
-import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
-import com.neolab.enigma.ws.respone.login.LoginResponse;
-import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
-import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
+import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
+import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
+import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
+import com.neolab.enigma.ws.respone.login.LoginResponse;
+import com.neolab.enigma.ws.respone.payment.FeeResponse;
+import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
+import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.user.UserInformationResponse;
+
+import java.util.Map;
 
 /**
  * Use to request data from server.
  *
- * @author LongHV3
+ * @author Pika
  */
 public final class ApiRequest {
 
@@ -63,8 +66,8 @@ public final class ApiRequest {
      *
      * @param callback Announcement list callback
      */
-    public static void getAnnouncementList(ApiCallback<AnnouncementResponse> callback) {
-        ApiClient.getService().getAnnouncementList(callback);
+    public static void getAnnouncementList(Map<String, String> params, ApiCallback<AnnouncementResponse> callback) {
+        ApiClient.getService().getAnnouncementList(params, callback);
     }
 
     /**
@@ -109,8 +112,14 @@ public final class ApiRequest {
      *
      * @param callback Callback
      */
-    public static void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback) {
-        ApiClient.getService().getHistoryPaymentOfMonth(callback);
+    public static void getHistoryRecentPaymentOfMonth(Map<String, Integer> value, ApiCallback<HistoryThisMonthResponse> callback) {
+        if (value.size() == 0) {
+            // Get recent history payment of this month
+            ApiClient.getService().getHistoryRecentPaymentOfMonth(callback);
+        } else {
+            // Get recent history payment of month with year and month
+            ApiClient.getService().getListHistoryPaymentOfMonth(value, callback);
+        }
     }
 
     /**
@@ -140,6 +149,15 @@ public final class ApiRequest {
      */
     public static void getMonthRequestPaymentList(ApiCallback<MonthPaymentResponse> callback){
         ApiClient.getService().getMonthRequestPaymentList(callback);
+    }
+
+    /**
+     * Get user information
+     *
+     * @param callback user information response
+     */
+    public static void getUserInformation(ApiCallback<UserInformationResponse> callback){
+        ApiClient.getService().getUserInformation(callback);
     }
 
 }

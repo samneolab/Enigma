@@ -85,4 +85,12 @@
     <string name="cancel">キャンセル</string>
     <string name="ok">OK</string>
 
+    <!-- Update user information fragment -->
+    <string name="update_user_information_title">利用者情報修正</string>
+    <string name="update_user_information_please_fill_contents">下記の内容をご記入ください。</string>
+    <string name="update_user_information_name">お名前</string>
+    <string name="update_user_information_email_address">メールアドレス</string>
+    <string name="update_user_information_update">修正する</string>
+    <string name="update_user_information_stop_using_service">サービスの利用を停止する</string>
+
 </resources>

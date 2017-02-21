@@ -51,5 +51,7 @@
     <color name="history_reload_screen_background">#ffe8c8</color>
     <color name="history_reload_screen_text">#004f89</color>
 
+    <!-- Update user information screen -->
+    <color name="update_user_information_stop_service">#cc1919</color>
 
 </resources>

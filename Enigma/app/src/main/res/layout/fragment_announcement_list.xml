@@ -1,16 +1,30 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.neolab.enigma.fragment.announcement.AnnouncementListFragment">
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/announcement_list_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
     <FrameLayout
-        android:id="@+id/test_layout"
+        android:id="@+id/announcement_list_sticky_footer"
         android:layout_width="match_parent"
+        android:layout_gravity="bottom"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/payment_frame_margin"
-        android:foreground="@drawable/button_foreground">
+        android:background="@color/blue_background">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="@dimen/payment_frame_margin"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
 
     </FrameLayout>
 

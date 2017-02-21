@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:visibility="invisible"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -43,7 +44,7 @@
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
                 android:clickable="false"
-                android:background="@drawable/button_history_payment_reload_screen_button"
+                android:background="@drawable/button_history_payment_reload_screen"
                 android:gravity="center"
                 android:text="@string/history_reload_screen"
                 android:textColor="@color/history_reload_screen_text" />

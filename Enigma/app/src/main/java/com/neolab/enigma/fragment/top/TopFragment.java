@@ -23,7 +23,9 @@ import com.neolab.enigma.fragment.history.HistoryPaymentThisMonthFragment;
 import com.neolab.enigma.fragment.payment.PaymentFragment;
 import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.StringUtil;
 import com.neolab.enigma.ws.ApiCode;
+import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
@@ -33,7 +35,9 @@ import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -44,6 +48,9 @@ import retrofit.client.Response;
  * @author LongHV
  */
 public class TopFragment extends BaseFragment implements View.OnClickListener {
+
+    private static final int PAGE = 1;
+    private static final int PER_PAGE = 3;
 
     private View mUrgentNotificationFrameLayout;
     private TextView mUrgentNotificationTextView;
@@ -74,6 +81,8 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
      * Announcement list
      */
     private List<AnnouncementDto> mAnnouncementDtoList;
+    /** Announcement parameters */
+    private Map<String, String> mAnnouncementParamMap;
 
     @Nullable
     @Override
@@ -111,6 +120,10 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initData() {
+        mAnnouncementParamMap = new HashMap<>();
+        mAnnouncementParamMap.put(ApiParameter.PAGE, String.valueOf(PAGE));
+        mAnnouncementParamMap.put(ApiParameter.PER_PAGE, String.valueOf(PER_PAGE));
+        mAnnouncementParamMap.put(ApiParameter.PUBLISH_TYPE, ApiParameter.OPEN);
         mApplyPrepaymentButton.setEnabled(false);
         mApplyPrepaymentLayout.setEnabled(false);
         mUrgentNotificationFrameLayout.setVisibility(View.GONE);
@@ -205,6 +218,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * Get detail announcement
+     *
+     * @param announcementDto AnnouncementDto
+     */
     private void getAnnouncementDetail(AnnouncementDto announcementDto) {
         eniShowNowLoading(getActivity());
         ApiRequest.getAnnouncementDetail(announcementDto.id, new ApiCallback<AnnouncementDetailResponse>() {
@@ -299,7 +317,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
      */
     private void getAnnouncementList() {
         eniShowNowLoading(getActivity());
-        ApiRequest.getAnnouncementList(new ApiCallback<AnnouncementResponse>() {
+        ApiRequest.getAnnouncementList(mAnnouncementParamMap, new ApiCallback<AnnouncementResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
@@ -334,7 +352,6 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         builder.setView(view);
         builder.setCancelable(false);
         final AlertDialog dialog = builder.create();
-//        dialog.getWindow().getAttributes().windowAnimations = R.style.top_dialog_announcement_animation;
         dialog.show();
 
         TextView titleTextView = (TextView) view.findViewById(R.id.top_announcement_detail_title_textView);

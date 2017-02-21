@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author LongHV.
@@ -19,6 +21,8 @@ public class EniUtil {
     private static final String YEAR = "年";
     private static final String MONTH = "月";
     private static final String DAY = "日";
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     /**
      * Convert date from format yyyy-MM-dd HH:mm:ss to yyyy-MM-dd or yyyy年MM月dd日
@@ -81,6 +85,17 @@ public class EniUtil {
      */
     public static String convertMoneyFormat(int money) {
         return String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(money));
+    }
+
+    /**
+     * The method is used to check validate email address
+     *
+     * @param emailStr email
+     * @return true if email address is validate, otherwise false
+     */
+    public static boolean isValidateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 
 }

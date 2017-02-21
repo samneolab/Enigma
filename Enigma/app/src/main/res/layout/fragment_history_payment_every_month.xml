@@ -5,21 +5,53 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ListView
+    <com.neolab.enigma.ui.EniListView
         android:id="@+id/history_payment_every_month_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:divider="@null"
         android:dividerHeight="0dp" />
 
     <FrameLayout
+        android:id="@+id/history_payment_every_month_sticky_footer_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
 
-        <include
-            android:id="@+id/history_payment_every_month_sticky_footer_view"
-            layout="@layout/history_payment_every_month_footer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_background"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/history_payment_this_month_view_history_recent_payment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/payment_frame_margin"
+                android:foreground="@drawable/button_foreground">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/top_apply_for_prepayment_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_history_payment_view_monthly_history"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/top_view_history_for_this_month"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="@dimen/payment_frame_margin"
+                android:includeFontPadding="false"
+                android:text="@string/login_copyright"
+                android:textSize="@dimen/text_10sp" />
+        </LinearLayout>
     </FrameLayout>
 </FrameLayout>

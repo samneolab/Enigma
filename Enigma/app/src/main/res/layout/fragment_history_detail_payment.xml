@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/button_history_payment_reload_screen_button"
+                android:background="@drawable/button_back"
                 android:clickable="false"
                 android:gravity="center"
                 android:text="@string/back"

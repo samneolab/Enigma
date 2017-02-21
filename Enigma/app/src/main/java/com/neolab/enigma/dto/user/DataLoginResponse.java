@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author LongHV.
  */
-
 public class DataLoginResponse {
 
     @Expose

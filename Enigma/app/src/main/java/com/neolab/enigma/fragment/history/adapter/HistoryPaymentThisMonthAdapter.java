@@ -76,6 +76,7 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final SalaryRequestDto salaryRequestDto = (SalaryRequestDto) getItem(position);
+        // Check request payment is applying
         if (salaryRequestDto.status == EniConstant.HISTORY_SALARY_REQUEST_APPLYING) {
             viewHolder.itemFrameLayout.setEnabled(true);
             viewHolder.statusPaymentTextView.setBackgroundResource(R.drawable.button_history_payment_applying_status);
@@ -91,6 +92,7 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
             viewHolder.dateRequestTextView.setText(mContext.getString(R.string.history_date_request)
                     + EniConstant.LARGE_SPACE + salaryRequestDto.appliedDate);
         }
+
         viewHolder.statusPaymentTextView.setText(salaryRequestDto.statusRequestDto.name);
         StringBuilder requestInform;
         requestInform = new StringBuilder();

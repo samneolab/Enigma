@@ -12,6 +12,9 @@ import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.user.UserInformationResponse;
+
+import java.util.Map;
 
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -19,6 +22,7 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
+import retrofit.http.QueryMap;
 
 /**
  * A interface uses to request API.
@@ -39,7 +43,7 @@ public interface ApiService {
     void getEmergencyAnnouncement(ApiCallback<EmergencyAnnouncementResponse> callback);
 
     @GET("/announcements?per_page=3&publish_type=open")
-    void getAnnouncementList(ApiCallback<AnnouncementResponse> callback);
+    void getAnnouncementList(@QueryMap Map<String, String> params, ApiCallback<AnnouncementResponse> callback);
 
     @GET("/payment-request/available-payment")
     void getMoneyAvailableForPrepayment(ApiCallback<MoneyPrepaymentResponse> callback);
@@ -55,7 +59,7 @@ public interface ApiService {
     void paymentRequest(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, ApiCallback<PaymentRequestResponse> callback);
 
     @GET("/payment-request")
-    void getHistoryPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback);
+    void getHistoryRecentPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback);
 
     @GET("/payment-request/{id}")
     void getDetailPayment(@Path("id") int id, ApiCallback<DetailPaymentResponse> callback);
@@ -65,4 +69,10 @@ public interface ApiService {
 
     @GET("/payment-request/month")
     void getMonthRequestPaymentList(ApiCallback<MonthPaymentResponse> callback);
+
+    @GET("/payment-request")
+    void getListHistoryPaymentOfMonth(@QueryMap Map<String, Integer> value, ApiCallback<HistoryThisMonthResponse> callback);
+
+    @GET("/employee")
+    void getUserInformation(ApiCallback<UserInformationResponse> callback);
 }

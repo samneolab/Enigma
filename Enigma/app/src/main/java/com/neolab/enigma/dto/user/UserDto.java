@@ -23,6 +23,8 @@ public class UserDto {
     public String name;
     @Expose
     public int status;
+    @SerializedName("is_getting_announcement")
+    public boolean isGettingAnnouncement;
     @SerializedName("company")
     public CompanyDto companyDto;
 

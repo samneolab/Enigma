@@ -10,10 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,6 +24,7 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.user.UpdateUserInformationFragment;
 import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
 import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
@@ -190,16 +189,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             if (BuildConfig.DEBUG) {
                 EniLogUtil.d(getClass(), "[OnItemClickListener] position:" + position);
             }
+            mDrawerLayout.closeDrawer(Gravity.RIGHT);
             switch (position) {
                 case EniConstant.MenuItem.TOP_ITEM:
+                    addFragment(new TopFragment(), false);
                     break;
                 case EniConstant.MenuItem.USER_INFORMATION:
+                    addFragment(new UpdateUserInformationFragment(), true);
                     break;
                 case EniConstant.MenuItem.LOGOUT:
                     logout();
                     break;
                 default:
-                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
                     break;
             }
         }

@@ -62,6 +62,9 @@ public class EniConstant {
     /** Large space */
     public static final String LARGE_SPACE = "  ";
 
+    /** Number announcement item per page*/
+    public static final int NUMBER_ANNOUNCEMENT_PER_PAGE = 15;
+
     public EniConstant(){
     }
 
