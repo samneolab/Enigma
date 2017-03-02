@@ -8,18 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.fragment.BaseFragment;
+import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
 import retrofit.RetrofitError;
@@ -30,7 +31,7 @@ import retrofit.client.Response;
  *
  * @author Pika
  */
-public class UpdateUserInformationFragment extends BaseFragment implements View.OnClickListener{
+public class UserUpdateInformationFragment extends BaseFragment implements View.OnClickListener{
 
     private TextView mNameTextView;
     private EditText mEmailAddressEditText;
@@ -40,11 +41,13 @@ public class UpdateUserInformationFragment extends BaseFragment implements View.
     private View mStopServiceLayout;
     private Button mUpdateInformationButton;
 
+    private boolean mIsGettingAnnouncement = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        setContentView(R.layout.fragment_update_user_information);
+        setContentView(R.layout.fragment_user_update_information);
         findView();
         initData();
         initEvent();
@@ -53,12 +56,12 @@ public class UpdateUserInformationFragment extends BaseFragment implements View.
 
     @Override
     protected void findView() {
-        mNameTextView = findViewById(R.id.update_user_information_name_textView);
-        mEmailAddressEditText = findViewById(R.id.update_user_information_email_editText);
-        mBackTopLayout = findViewById(R.id.update_user_information_back_layout);
-        mUpdateInformationLayout = findViewById(R.id.update_user_information_update_information_layout);
-        mUpdateInformationButton = findViewById(R.id.update_user_information_update_information_button);
-        mStopServiceLayout = findViewById(R.id.update_user_information_stop_service_layout);
+        mNameTextView = findViewById(R.id.user_update_information_name_textView);
+        mEmailAddressEditText = findViewById(R.id.user_update_information_email_editText);
+        mBackTopLayout = findViewById(R.id.user_update_information_back_layout);
+        mUpdateInformationLayout = findViewById(R.id.user_update_information_update_information_layout);
+        mUpdateInformationButton = findViewById(R.id.user_update_information_update_information_button);
+        mStopServiceLayout = findViewById(R.id.user_update_information_stop_service_layout);
     }
 
     @Override
@@ -86,9 +89,11 @@ public class UpdateUserInformationFragment extends BaseFragment implements View.
                         || userInformationResponse.data == null) {
                     return;
                 }
+                mIsGettingAnnouncement = userInformationResponse.data.isGettingAnnouncement;
                 mUpdateInformationLayout.setEnabled(true);
                 mUpdateInformationButton.setEnabled(true);
                 mNameTextView.setText(userInformationResponse.data.name);
+                mEmailAddressEditText.setEnabled(true);
                 mEmailAddressEditText.setText(userInformationResponse.data.email);
             }
         });
@@ -127,7 +132,7 @@ public class UpdateUserInformationFragment extends BaseFragment implements View.
     @Override
     protected HeaderDto getHeaderTypeDto() {
         HeaderDto headerDto = new HeaderDto();
-        headerDto.title = getString(R.string.update_user_information_title);
+        headerDto.title = getString(R.string.user_update_information_title);
         headerDto.type = EniConstant.ToolbarType.ONLY_TITLE;
         return headerDto;
     }
@@ -135,15 +140,43 @@ public class UpdateUserInformationFragment extends BaseFragment implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.update_user_information_back_layout:
+            case R.id.user_update_information_back_layout:
                 getActivity().onBackPressed();
                 break;
-            case R.id.update_user_information_update_information_layout:
+            case R.id.user_update_information_update_information_layout:
+                updateUserInformationApi();
                 break;
-            case R.id.update_user_information_stop_service_layout:
+            case R.id.user_update_information_stop_service_layout:
+                StopServiceFragment stopServiceFragment = new StopServiceFragment();
+                replaceFragment(stopServiceFragment, true);
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * Call api update user information
+     */
+    private void updateUserInformationApi() {
+        String email = mEmailAddressEditText.getText().toString().trim();
+        int isGettingAnnouncement = mIsGettingAnnouncement ? 1 : 0;
+        eniShowNowLoading(getActivity());
+        ApiRequest.updateUserInformation(email, isGettingAnnouncement, new ApiCallback<UserUpdateInforResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
+            }
+
+            @Override
+            public void success(UserUpdateInforResponse userUpdateInforResponse, Response response) {
+                eniCancelNowLoading();
+                if (userUpdateInforResponse.statusCode != ApiCode.SUCCESS){
+                    return;
+                }
+                TopFragment topFragment = new TopFragment();
+                replaceFragment(topFragment, false);
+            }
+        });
     }
 }

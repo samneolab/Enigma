@@ -3,7 +3,7 @@
 
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
+            <corners android:radius="3dp" />
             <gradient android:angle="270" android:endColor="@color/login_button_login_disable" android:startColor="@color/login_button_login_disable" />
         </shape>
     </item>

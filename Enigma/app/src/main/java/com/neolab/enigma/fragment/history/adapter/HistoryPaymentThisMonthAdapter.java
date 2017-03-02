@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.ws.history.SalaryRequestDto;
-import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.EniFormatUtil;
 
 import java.util.List;
 
@@ -97,14 +97,14 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
         StringBuilder requestInform;
         requestInform = new StringBuilder();
         requestInform.append(mContext.getResources().getString(R.string.top_yen_unit));
-        requestInform.append(EniUtil.convertMoneyFormat(salaryRequestDto.amountOfSalary));
+        requestInform.append(EniFormatUtil.convertMoneyFormat(salaryRequestDto.amountOfSalary));
         requestInform.append(EniConstant.SPACE);
         requestInform.append(EniConstant.PARENTHESIS_START);
         requestInform.append(mContext.getString(R.string.history_salary_deduction));
         requestInform.append(EniConstant.SPACE);
         requestInform.append(mContext.getResources().getString(R.string.top_yen_unit));
         requestInform.append(EniConstant.SPACE);
-        requestInform.append(EniUtil.convertMoneyFormat(salaryRequestDto.total));
+        requestInform.append(EniFormatUtil.convertMoneyFormat(salaryRequestDto.total));
         requestInform.append(EniConstant.PARENTHESIS_END);
         viewHolder.requestInformTextView.setText(requestInform.toString());
         viewHolder.dateRequestTextView.setText(mContext.getString(R.string.history_date_request)

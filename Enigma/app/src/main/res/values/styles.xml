@@ -83,7 +83,6 @@
         <item name="indicatorName">BallPulseIndicator</item>
     </style>
 
-
     <style name="top_dialog_announcement_animation">
         <item name="android:windowEnterAnimation">@anim/top_announcement_fade_in</item>
         <item name="android:windowExitAnimation">@anim/top_announcement_fade_out</item>

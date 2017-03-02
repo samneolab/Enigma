@@ -4,6 +4,6 @@
     <corners android:radius="3dp" />
     <gradient
         android:angle="270"
-        android:endColor="@color/update_user_information_stop_service"
-        android:startColor="@color/update_user_information_stop_service" />
+        android:endColor="@color/user_update_information_stop_service"
+        android:startColor="@color/user_update_information_stop_service" />
 </shape>

@@ -13,26 +13,25 @@ import android.widget.TextView;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
-import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
+import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.announcement.AnnouncementListFragment;
 import com.neolab.enigma.fragment.history.HistoryPaymentEveryMonthFragment;
 import com.neolab.enigma.fragment.history.HistoryPaymentThisMonthFragment;
 import com.neolab.enigma.fragment.payment.PaymentFragment;
+import com.neolab.enigma.util.EniFormatUtil;
 import com.neolab.enigma.util.EniLogUtil;
-import com.neolab.enigma.util.EniUtil;
-import com.neolab.enigma.util.StringUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -292,7 +291,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                     MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
                     if (moneyPrepaymentDto != null) {
                         mAmountPrepaymentAvailableTextView.setText(
-                                EniUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
+                                EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
                         if (moneyPrepaymentDto.remainPayment > 0) {
                             mApplyPrepaymentButton.setEnabled(true);
                             mApplyPrepaymentLayout.setEnabled(true);
@@ -302,7 +301,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                         }
                         if (moneyPrepaymentDto.amountOfSalary > 0) {
                             mMoneyPendingTextView.setText(
-                                    EniUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
+                                    EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
                         } else {
                             mMoneyPendingTextView.setText(EniConstant.EMPTY);
                         }
@@ -360,7 +359,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         FrameLayout closeTextView = (FrameLayout) view.findViewById(R.id.top_announcement_detail_close_layout);
         if (announcementDto != null) {
             titleTextView.setText(announcementDto.title);
-            startTimeTextView.setText(EniUtil.getDateAnnouncementWithFormat(announcementDto.startTime));
+            startTimeTextView.setText(EniFormatUtil.getDateAnnouncementWithFormat(announcementDto.startTime));
             contentTextView.setText(announcementDto.content);
         }
         closeTextView.setOnClickListener(new View.OnClickListener() {

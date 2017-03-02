@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue_background"
     android:orientation="vertical"
-    tools:context="com.neolab.enigma.fragment.user.UpdateUserInformationFragment">
+    tools:context="com.neolab.enigma.fragment.user.UserUpdateInformationFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,34 +21,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/update_user_information_please_fill_contents" />
+            android:layout_marginTop="16dp"
+            android:text="@string/user_update_information_please_fill_contents" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/update_user_information_name" />
+            android:text="@string/user_update_information_name" />
 
         <TextView
-            android:id="@+id/update_user_information_name_textView"
+            android:id="@+id/user_update_information_name_textView"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/update_user_information_email_address" />
+            android:text="@string/user_update_information_email_address" />
 
         <EditText
-            android:id="@+id/update_user_information_email_editText"
+            android:id="@+id/user_update_information_email_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edittext_height"
             android:background="@drawable/edittext_payment_payment_normal"
+            android:enabled="false"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@color/login_editText_text"
@@ -63,7 +65,7 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/update_user_information_back_layout"
+            android:id="@+id/user_update_information_back_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/history_frame_margin"
@@ -84,7 +86,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/update_user_information_update_information_layout"
+            android:id="@+id/user_update_information_update_information_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/history_frame_margin"
@@ -95,20 +97,20 @@
             android:foreground="@drawable/button_foreground">
 
             <Button
-                android:id="@+id/update_user_information_update_information_button"
+                android:id="@+id/user_update_information_update_information_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:enabled="false"
-                android:background="@drawable/button_update_user_information_update"
+                android:background="@drawable/button_user_update_information_update"
                 android:clickable="false"
+                android:enabled="false"
                 android:gravity="center"
-                android:text="@string/update_user_information_update"
+                android:text="@string/user_update_information_update"
                 android:textColor="@color/white" />
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/update_user_information_stop_service_layout"
+            android:id="@+id/user_update_information_stop_service_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/history_frame_margin"
@@ -122,10 +124,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/button_update_user_information_stop_service"
+                android:background="@drawable/button_user_update_information_stop_service"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="@string/update_user_information_stop_using_service"
+                android:text="@string/user_update_information_stop_using_service"
                 android:textColor="@color/white" />
         </FrameLayout>
 

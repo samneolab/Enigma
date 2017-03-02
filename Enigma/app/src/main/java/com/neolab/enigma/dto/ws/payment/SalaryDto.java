@@ -24,7 +24,7 @@ public class SalaryDto implements Parcelable {
     public long transferFee;
     @SerializedName("remain_payment")
     public long remainPayment;
-    @SerializedName("max_payment")
+    @SerializedName("max_payment_include_fee")
     public long maxPayment;
 
     protected SalaryDto(Parcel in) {

@@ -19,7 +19,7 @@ import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.announcement.adapter.AnnouncementListAdapter;
-import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.EniFormatUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
@@ -202,7 +202,7 @@ public class AnnouncementListFragment extends BaseFragment {
         FrameLayout closeTextView = (FrameLayout) view.findViewById(R.id.top_announcement_detail_close_layout);
         if (announcementDto != null) {
             titleTextView.setText(announcementDto.title);
-            startTimeTextView.setText(EniUtil.getDateAnnouncementWithFormat(announcementDto.startTime));
+            startTimeTextView.setText(EniFormatUtil.getDateAnnouncementWithFormat(announcementDto.startTime));
             contentTextView.setText(announcementDto.content);
         }
         closeTextView.setOnClickListener(new View.OnClickListener() {

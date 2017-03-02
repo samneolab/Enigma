@@ -19,8 +19,8 @@ import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.history.adapter.HistoryPaymentThisMonthAdapter.OnItemListViewListener;
 import com.neolab.enigma.fragment.history.adapter.HistoryPaymentThisMonthAdapter;
 import com.neolab.enigma.ui.EniListView;
+import com.neolab.enigma.util.EniFormatUtil;
 import com.neolab.enigma.util.EniLogUtil;
-import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
@@ -137,7 +137,7 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
                     mSalaryRequestDtoList = historyThisMonthResponse.data.salaryRequestDtoList;
                     HistoryPaymentThisMonthAdapter adapter = new HistoryPaymentThisMonthAdapter(getActivity(), mSalaryRequestDtoList, onItemListViewListener);
                     mHistoryPaymentListView.setAdapter(adapter);
-                    mTotalPaymentOfMonthTextView.setText(EniUtil.convertMoneyFormat(historyThisMonthResponse.data.totalPayment));
+                    mTotalPaymentOfMonthTextView.setText(EniFormatUtil.convertMoneyFormat(historyThisMonthResponse.data.totalPayment));
                 }
             }
         });

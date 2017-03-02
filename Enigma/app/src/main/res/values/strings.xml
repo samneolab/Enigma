@@ -85,12 +85,28 @@
     <string name="cancel">キャンセル</string>
     <string name="ok">OK</string>
 
-    <!-- Update user information fragment -->
-    <string name="update_user_information_title">利用者情報修正</string>
-    <string name="update_user_information_please_fill_contents">下記の内容をご記入ください。</string>
-    <string name="update_user_information_name">お名前</string>
-    <string name="update_user_information_email_address">メールアドレス</string>
-    <string name="update_user_information_update">修正する</string>
-    <string name="update_user_information_stop_using_service">サービスの利用を停止する</string>
+    <!-- User update information fragment -->
+    <string name="user_update_information_title">利用者情報修正</string>
+    <string name="user_update_information_please_fill_contents">下記の内容をご記入ください。</string>
+    <string name="user_update_information_name">お名前</string>
+    <string name="user_update_information_email_address">メールアドレス</string>
+    <string name="user_update_information_update">修正する</string>
+    <string name="user_update_information_stop_using_service">サービスの利用を停止する</string>
+
+    <!-- User stop using service -->
+    <string name="user_stop_service_title">サービス利用停止</string>
+    <string name="user_stop_service_we_will_stop_service">サービスの利用を停止します。</string>
+    <string name="user_stop_service_confirm_content_stop_service">下記の内容をお読みになり、次へお進みください。</string>
+    <string name="user_stop_service_contract">サービスの利用を停止すると、本サイトへのログインができなくなるため、
+        前払い申請を含む全ての機能が利用できなくなります。上記ご認識の上、サービスの利用を停止される方は「同意してサービ
+        スを停止する」にチェックをいれて「次へ」ボタンをクリックしてください。</string>
+    <string name="user_stop_service_agree_stop_service">同意してサービスを停止する</string>
+    <string name="user_stop_service_next">次へ</string>
+
+    <!-- User confirm stop service -->
+    <string name="user_confirm_stop_service_will_stop_service">サービスの利用を停止します。</string>
+    <string name="user_confirm_stop_service_are_you_sure">本当によろしいですか？</string>
+    <string name="user_confirm_stop_service_password">パスワード</string>
+    <string name="user_confirm_stop_service_stop_using">利用を停止する</string>
 
 </resources>

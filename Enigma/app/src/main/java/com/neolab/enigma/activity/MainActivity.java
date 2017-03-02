@@ -24,7 +24,7 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
-import com.neolab.enigma.fragment.user.UpdateUserInformationFragment;
+import com.neolab.enigma.fragment.user.UserUpdateInformationFragment;
 import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
 import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     addFragment(new TopFragment(), false);
                     break;
                 case EniConstant.MenuItem.USER_INFORMATION:
-                    addFragment(new UpdateUserInformationFragment(), true);
+                    addFragment(new UserUpdateInformationFragment(), true);
                     break;
                 case EniConstant.MenuItem.LOGOUT:
                     logout();

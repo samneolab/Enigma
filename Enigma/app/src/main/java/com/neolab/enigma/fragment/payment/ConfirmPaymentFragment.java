@@ -13,9 +13,10 @@ import android.widget.TextView;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
+import com.neolab.enigma.dto.ws.history.SalaryRequestDto;
 import com.neolab.enigma.dto.ws.payment.SalaryDto;
 import com.neolab.enigma.fragment.BaseFragment;
-import com.neolab.enigma.util.EniLogUtil;
+import com.neolab.enigma.util.EniFormatUtil;
 import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
@@ -69,8 +70,8 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         if (bundle != null) {
             mSalaryDto = bundle.getParcelable(KEY_FEE);
             mAmountSalaryPrepayment = Integer.parseInt(bundle.getString(KEY_AMOUNT_MONEY_PAYMENT)) * 1000;
-            mAmountSalaryPrepaymentTextView.setText(EniUtil.convertMoneyFormat(mAmountSalaryPrepayment));
-            mFeeUsageSystemTextView.setText(EniUtil.convertMoneyFormat(getFeeUsageSystem(mAmountSalaryPrepayment)));
+            mAmountSalaryPrepaymentTextView.setText(EniFormatUtil.convertMoneyFormat(mAmountSalaryPrepayment));
+            mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(EniUtil.getFeeUsageSystem(mSalaryDto, mAmountSalaryPrepayment)));
             if (mAmountSalaryPrepayment <= mSalaryDto.maxPayment) {
                 mPrepaymentAmountExceededTextView.setVisibility(View.GONE);
                 mApplyPaymentLayout.setVisibility(View.VISIBLE);
@@ -94,16 +95,6 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         headerDto.type = EniConstant.ToolbarType.DISPLAY_BACK_TITLE;
         headerDto.title = getResources().getString(R.string.payment_title);
         return headerDto;
-    }
-
-    /**
-     * Calculate the fee usage system
-     *
-     * @param salaryPayment the salary has payment
-     * @return fee usage system
-     */
-    private int getFeeUsageSystem(int salaryPayment) {
-        return (int) (((mSalaryDto.transactionFeeRate + mSalaryDto.transactionKickbackRate) * salaryPayment / 100) + mSalaryDto.transferFee);
     }
 
     @Override

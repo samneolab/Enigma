@@ -61,7 +61,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * Count request cancel loading
      */
-    protected int requestCancelLoadingCount = 0;
+    private int requestCancelLoadingCount = 0;
     /**
      * Count request show loading
      */
@@ -78,15 +78,15 @@ public abstract class BaseFragment extends Fragment {
     /**
      * LayoutInflater
      */
-    protected LayoutInflater inflater = null;
+    private LayoutInflater inflater = null;
 
     /**
      * Add the layout of this Fragment view
      */
     @Nullable
-    protected ViewGroup container = null;
+    private ViewGroup container = null;
 
-    protected OnBaseFragmentListener onBaseFragmentListener;
+    private OnBaseFragmentListener onBaseFragmentListener;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -116,11 +116,11 @@ public abstract class BaseFragment extends Fragment {
         setContentView(inflater.inflate(layoutResID, container, false));
     }
 
-    public void setContentView(View v) {
+    private void setContentView(View v) {
         setContentView(v, null);
     }
 
-    public void setContentView(View v, ViewGroup.LayoutParams params) {
+    private void setContentView(View v, ViewGroup.LayoutParams params) {
         view = v;
     }
 
@@ -196,6 +196,15 @@ public abstract class BaseFragment extends Fragment {
             }
         }
         return false;
+    }
+
+    /**
+     * popping the fragment back stack or finishing the activity.
+     */
+    protected void onBackPressed(){
+        if (getActivity() != null) {
+            getActivity().onBackPressed();
+        }
     }
 
     /**

@@ -13,8 +13,7 @@ import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.payment.PaymentRequestDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
-import com.neolab.enigma.util.EniLogUtil;
-import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.EniFormatUtil;
 
 /**
  * @author LongHV
@@ -50,7 +49,7 @@ public class CompletePaymentFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             PaymentRequestDto paymentRequestDto = bundle.getParcelable(KEY_PAYMENT_REQUEST);
-            mAmountSalaryPayment.setText(EniUtil.convertMoneyFormat(paymentRequestDto.total));
+            mAmountSalaryPayment.setText(EniFormatUtil.convertMoneyFormat(paymentRequestDto.total));
             mTitleTextView.setText(paymentRequestDto.completeMessage);
         }
     }

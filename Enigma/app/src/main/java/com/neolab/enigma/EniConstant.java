@@ -1,13 +1,14 @@
 package com.neolab.enigma;
 
 /**
+ * Define constant
+ *
  * @author LongHV.
  */
-
 public class EniConstant {
 
     /***************************************
-     * Login minimum and maximum character
+     * Login minimum and maximum character *
      ***************************************/
     public static final int MAX_LENGTH_FOR_COMPANY_CODE = 255;
     public static final int MIN_LENGTH_FOR_COMPANY_CODE = 1;
@@ -15,8 +16,6 @@ public class EniConstant {
     public static final int MIN_LENGTH_FOR_EMPLOYEE_CODE = 1;
     public static final int MAX_LENGTH_FOR_PASSWORD_CODE = 255;
     public static final int MIN_LENGTH_FOR_PASSWORD_CODE = 6;
-
-    public static final String EMPTY = "";
 
     /**
      * User status after login
@@ -45,6 +44,9 @@ public class EniConstant {
         public static final int ONLY_TITLE = 5;
     }
 
+    /**
+     * Menu Item
+     */
     public static final class MenuItem {
         public static final int TOP_ITEM = 1;
         public static final int USER_INFORMATION = 2;
@@ -61,6 +63,8 @@ public class EniConstant {
     public static final String SPACE = " ";
     /** Large space */
     public static final String LARGE_SPACE = "  ";
+    /** Empty */
+    public static final String EMPTY = "";
 
     /** Number announcement item per page*/
     public static final int NUMBER_ANNOUNCEMENT_PER_PAGE = 15;

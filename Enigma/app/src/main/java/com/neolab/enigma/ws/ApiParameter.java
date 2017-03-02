@@ -15,6 +15,14 @@ public final class ApiParameter {
     public static final String EMPLOYEE_PASSWORD = "employee_password";
     public static final String AMOUNT_OF_SALARY = "amount_of_salary";
 
+    /***************************************
+     * User information Parameter
+     ***************************************/
+    public static final String NAME = "name";
+    public static final String EMAIL = "email";
+    public static final String IS_GETTING_ANNOUNCEMENT = "is_getting_announcement";
+    public static final String PASSWORD = "password";
+
     public static final String YEAR_REQUEST_PAYMENT = "year";
     public static final String MONTH_REQUEST_PAYMENT = "month";
 

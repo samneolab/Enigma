@@ -13,6 +13,7 @@ import com.neolab.enigma.ws.respone.login.LoginResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
 import java.util.Map;
@@ -158,6 +159,17 @@ public final class ApiRequest {
      */
     public static void getUserInformation(ApiCallback<UserInformationResponse> callback){
         ApiClient.getService().getUserInformation(callback);
+    }
+
+    /**
+     * Update user information
+     *
+     * @param email email
+     * @param isGettingAnnouncement set value that get from get user information api
+     * @param callback user information response
+     */
+    public static void updateUserInformation(String email, int isGettingAnnouncement, ApiCallback<UserUpdateInforResponse> callback){
+        ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, callback);
     }
 
 }

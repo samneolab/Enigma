@@ -131,6 +131,9 @@ public class HistoryPaymentEveryMonthFragment extends BaseFragment implements Vi
         mMonthPaymentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    return;
+                }
                 HistoryPaymentThisMonthFragment fragment = new HistoryPaymentThisMonthFragment();
                 MonthPaymentDto monthPaymentDto = mMonthPaymentDtoList.get(position -1);
                 Bundle bundle = new Bundle();

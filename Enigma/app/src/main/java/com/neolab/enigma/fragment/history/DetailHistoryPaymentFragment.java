@@ -16,6 +16,7 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.payment.DetailPaymentDto;
 import com.neolab.enigma.fragment.BaseFragment;
+import com.neolab.enigma.util.EniFormatUtil;
 import com.neolab.enigma.util.EniLogUtil;
 import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiCode;
@@ -135,9 +136,9 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
                 }
                 DetailPaymentDto detailPaymentDto = detailPaymentResponse.data;
                 mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
-                        + EniConstant.SPACE + EniUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
-                mSalaryRequestTextView.setText(EniUtil.convertMoneyFormat(detailPaymentDto.amountOfSalary));
-                mFeeUsageSystemTextView.setText(EniUtil.convertMoneyFormat(detailPaymentDto.totalFee));
+                        + EniConstant.SPACE + EniFormatUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
+                mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.amountOfSalary));
+                mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.totalFee));
             }
         });
     }
