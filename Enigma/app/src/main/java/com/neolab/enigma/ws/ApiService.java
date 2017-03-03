@@ -12,6 +12,7 @@ import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.user.StopServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
@@ -82,7 +83,7 @@ public interface ApiService {
     void updateUserInformation(@Field(ApiParameter.EMAIL) String email, @Field(ApiParameter.IS_GETTING_ANNOUNCEMENT) int isGettingAnnouncement,
                                ApiCallback<UserUpdateInforResponse> callback);
 
-    @POST("/employee/stop-service")
     @FormUrlEncoded
-    void stopUsingService(@Field(ApiParameter.PASSWORD) String password, ApiCallback<UserUpdateInforResponse> callback);
+    @POST("/employee/stop-service")
+    void stopUsingService(@Field(ApiParameter.PASSWORD) String password, ApiCallback<StopServiceResponse> callback);
 }

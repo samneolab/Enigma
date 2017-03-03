@@ -15,13 +15,13 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
-import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
-import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
+import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -113,7 +113,7 @@ public class UserUpdateInformationFragment extends BaseFragment implements View.
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (EniUtil.isValidateEmail(mEmailAddressEditText.getText().toString())){
+                if (EniValidateUtil.isValidateEmail(mEmailAddressEditText.getText().toString())){
                     mUpdateInformationLayout.setEnabled(true);
                     mUpdateInformationButton.setEnabled(true);
                 } else {

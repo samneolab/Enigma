@@ -13,6 +13,7 @@ import com.neolab.enigma.ws.respone.login.LoginResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.user.StopServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
@@ -171,5 +172,16 @@ public final class ApiRequest {
     public static void updateUserInformation(String email, int isGettingAnnouncement, ApiCallback<UserUpdateInforResponse> callback){
         ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, callback);
     }
+
+    /**
+     * Stop using service api
+     *
+     * @param password email
+     * @param callback stop using service response
+     */
+    public static void stopUsingService(String password, ApiCallback<StopServiceResponse> callback){
+        ApiClient.getService().stopUsingService(password, callback);
+    }
+
 
 }

@@ -18,6 +18,8 @@ import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.user.UserDto;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniEncryptionUtil;
+import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
@@ -78,8 +80,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EncryptionPreference encryptionPreference = new EncryptionPreference(getApplicationContext());
-        if (encryptionPreference.isLogin()) {
+        if (!EniEncryptionUtil.isLogin(this)) {
             finish();
             startActivity(MainActivity.class);
         }
@@ -151,7 +152,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             String companyCode = mCompanyCodeEditText.getText().toString();
             String employeeCode = mEmployeeCodeEditText.getText().toString();
             String employeePassword = mEmployeePasswordEditText.getText().toString();
-            if (isValidUserInfor(companyCode, employeeCode, employeePassword)) {
+            if (EniValidateUtil.isValidUserInfor(companyCode, employeeCode, employeePassword)) {
                 mLoginButton.setEnabled(true);
             } else {
                 mLoginButton.setEnabled(false);
@@ -172,24 +173,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         String employeeCode = mEmployeeCodeEditText.getText().toString();
         String employeePassword = mEmployeePasswordEditText.getText().toString();
 
-        if (isValidUserInfor(companyCode, employeeCode, employeePassword)) {
+        if (EniValidateUtil.isValidUserInfor(companyCode, employeeCode, employeePassword)) {
             eniShowLoading();
             doHttpRequestLogin(companyCode, employeeCode, employeePassword);
         }
-    }
-
-    /**
-     * Validate user information to enable login button
-     *
-     * @param companyCode      Company code
-     * @param employeeCode     Employee code
-     * @param employeePassword Employee password
-     * @return true if user information is valid, otherwise false
-     */
-    private boolean isValidUserInfor(String companyCode, String employeeCode, String employeePassword) {
-        return ((companyCode.length() >= EniConstant.MIN_LENGTH_FOR_COMPANY_CODE && companyCode.length() <= EniConstant.MAX_LENGTH_FOR_COMPANY_CODE)
-                && (employeeCode.length() >= EniConstant.MIN_LENGTH_FOR_EMPLOYEE_CODE && employeeCode.length() <= EniConstant.MAX_LENGTH_FOR_EMPLOYEE_CODE)
-                && (employeePassword.length() >= EniConstant.MIN_LENGTH_FOR_PASSWORD_CODE && employeePassword.length() <= EniConstant.MAX_LENGTH_FOR_PASSWORD_CODE));
     }
 
     /**

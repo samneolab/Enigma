@@ -1,7 +1,9 @@
 package com.neolab.enigma.ws.core;
 
 import com.neolab.enigma.BuildConfig;
+import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniLogUtil;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;

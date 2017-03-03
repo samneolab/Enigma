@@ -2,7 +2,6 @@ package com.neolab.enigma.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,11 +23,12 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.user.CompleteStopServiceFragment;
 import com.neolab.enigma.fragment.user.UserUpdateInformationFragment;
 import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
 import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
-import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniLogUtil;
 
 import java.util.ArrayList;
@@ -142,6 +142,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 transaction.replace(R.id.main_root_frameLayout, topFragment);
                 transaction.commit();
                 return;
+            } else if (currentFragment instanceof CompleteStopServiceFragment) {
+                finish();
+                startActivity(LoginActivity.class);
             }
             super.onBackPressed();
         }
@@ -207,18 +210,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     };
 
     /**
-     * The method is used to logout application
+     * The method is used to resetDataForLogout application
      */
     private void logout() {
-        EncryptionPreference encryptionPreference = new EncryptionPreference(getApplicationContext());
-        encryptionPreference.token = null;
-        encryptionPreference.userId = null;
-        encryptionPreference.isUserLogin = false;
-        encryptionPreference.write();
+        EniEncryptionUtil.resetDataForLogout(this);
         finish();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.animation_slide_bottom_to_up, 0);
+        startActivity(LoginActivity.class);
     }
 
     /**

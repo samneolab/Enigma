@@ -13,30 +13,6 @@ import java.util.regex.Pattern;
  */
 public class EniUtil {
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    /**
-     * The method is used to check validate email address
-     *
-     * @param emailStr email
-     * @return true if email address is validate, otherwise false
-     */
-    public static boolean isValidateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
-    }
-
-    /**
-     * Validate user information to enable login button
-     *
-     * @param employeePassword Employee password
-     * @return true if user information is valid, otherwise false
-     */
-    public static boolean isValidPassword(String employeePassword) {
-        return ((employeePassword.length() >= EniConstant.MIN_LENGTH_FOR_PASSWORD_CODE && employeePassword.length() <= EniConstant.MAX_LENGTH_FOR_PASSWORD_CODE));
-    }
-
     /**
      * Calculate the fee usage system
      *

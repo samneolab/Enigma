@@ -109,4 +109,10 @@
     <string name="user_confirm_stop_service_password">パスワード</string>
     <string name="user_confirm_stop_service_stop_using">利用を停止する</string>
 
+    <!-- User complete stop using service -->
+    <string name="user_complete_stop_service_thank_using">ご利用ありがとうございました。</string>
+    <string name="user_complete_stop_service_stopped_service">サービスの利用を停止し、</string>
+    <string name="user_complete_stop_service_logged_out">ログアウトしました。</string>
+    <string name="user_complete_stop_service_go_login_screen">ログイン画面へ</string>
+
 </resources>

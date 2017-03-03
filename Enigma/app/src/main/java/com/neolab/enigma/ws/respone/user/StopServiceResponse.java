@@ -14,4 +14,5 @@ public class StopServiceResponse {
     public int statusCode;
     @Expose
     public String message;
+
 }

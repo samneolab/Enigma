@@ -34,6 +34,7 @@ public final class ApiClient {
     private static final String TAG = ApiClient.class.getSimpleName();
     private static final String HEADER_UA = "User-Agent";
     private static final String HEADER_AUTH = "Authorization";
+    private static final String HEADER_LANGUAGE = "language";
     private static final String AUTH_PREFIX = "Bearer ";
     private static final int TIMEOUT_CONNECTION = 5;
 
@@ -57,6 +58,7 @@ public final class ApiClient {
             if (!TextUtils.isEmpty(accessToken)) {
                 request.addHeader(HEADER_AUTH, AUTH_PREFIX + accessToken);
             }
+            request.addHeader(HEADER_LANGUAGE, "ja");
         }
     };
 

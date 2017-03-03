@@ -16,8 +16,16 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.util.EniDialogUtil;
-import com.neolab.enigma.util.EniLogUtil;
-import com.neolab.enigma.util.EniUtil;
+import com.neolab.enigma.util.EniValidateUtil;
+import com.neolab.enigma.ws.ApiCode;
+import com.neolab.enigma.ws.ApiRequest;
+import com.neolab.enigma.ws.core.ApiCallback;
+import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
+import com.neolab.enigma.ws.respone.user.StopServiceResponse;
+
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Confirm stop service fragment
@@ -28,8 +36,8 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
 
     private EditText mPasswordEditText;
     private View mBackLayout;
-    private View mStopUsingServiewlayout;
-    private Button mStopUsingServiewButton;
+    private View mStopUsingServiceLayout;
+    private Button mStopUsingServiceButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,21 +54,21 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
     protected void findView() {
         mPasswordEditText = findViewById(R.id.user_confirm_stop_service_password_editText);
         mBackLayout = findViewById(R.id.user_confirm_stop_service_back_frameLayout);
-        mStopUsingServiewlayout = findViewById(R.id.user_confirm_stop_service_stop_using_frameLayout);
-        mStopUsingServiewButton = findViewById(R.id.user_confirm_stop_service_stop_using_button);
+        mStopUsingServiceLayout = findViewById(R.id.user_confirm_stop_service_stop_using_frameLayout);
+        mStopUsingServiceButton = findViewById(R.id.user_confirm_stop_service_stop_using_button);
 
     }
 
     @Override
     protected void initData() {
-        mStopUsingServiewlayout.setEnabled(false);
+        mStopUsingServiceLayout.setEnabled(false);
     }
 
     @Override
     protected void initEvent() {
         mBackLayout.setOnClickListener(this);
-        mStopUsingServiewlayout.setOnClickListener(this);
-        mPasswordEditText.addTextChangedListener(userInformationTextWatcher);
+        mStopUsingServiceLayout.setOnClickListener(this);
+        mPasswordEditText.addTextChangedListener(verifyPasswordTextWatcher);
     }
 
     @Override
@@ -78,17 +86,45 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
                 onBackPressed();
                 break;
             case R.id.user_confirm_stop_service_stop_using_frameLayout:
-                EniDialogUtil.showAlertDialog(getFragmentManager(), this, "abccssdd", getClass().getName());
+                String password = mPasswordEditText.getText().toString().trim();
+                if (EniValidateUtil.isValidPassword(password)) {
+                    stopUsingServiceApi(password);
+                }
                 break;
         }
     }
 
+    /**
+     * The method is used to call api stop using service
+     */
+    private void stopUsingServiceApi(String password) {
+        eniShowNowLoading(getActivity());
+        ApiRequest.stopUsingService(password, new ApiCallback<StopServiceResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), body.message, getClass().getName());
+                eniCancelNowLoading();
+            }
+
+            @Override
+            public void success(StopServiceResponse stopServiceResponse, Response response) {
+                eniCancelNowLoading();
+                if (stopServiceResponse.statusCode != ApiCode.SUCCESS){
+                    EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), "Error", getClass().getName());
+                    return;
+                }
+                CompleteStopServiceFragment topFragment = new CompleteStopServiceFragment();
+                replaceFragment(topFragment, false);
+            }
+        });
+    }
 
 
     /**
      * Enable stop using service button when the text is changed
      */
-    private TextWatcher userInformationTextWatcher = new TextWatcher() {
+    private final TextWatcher verifyPasswordTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -97,12 +133,12 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             String password = mPasswordEditText.getText().toString().trim();
-            if (EniUtil.isValidPassword(password)) {
-                mStopUsingServiewlayout.setEnabled(true);
-                mStopUsingServiewButton.setEnabled(true);
+            if (EniValidateUtil.isValidPassword(password)) {
+                mStopUsingServiceLayout.setEnabled(true);
+                mStopUsingServiceButton.setEnabled(true);
             } else {
-                mStopUsingServiewlayout.setEnabled(false);
-                mStopUsingServiewButton.setEnabled(false);
+                mStopUsingServiceLayout.setEnabled(false);
+                mStopUsingServiceButton.setEnabled(false);
             }
         }
 
