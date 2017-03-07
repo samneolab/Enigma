@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="base_url">https://api-pay-dev.enigma.bz</string>
+    <string name="term_and_condition_url">https://www.google.com.vn/</string>
 </resources>

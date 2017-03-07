@@ -2,6 +2,7 @@ package com.neolab.enigma.util;
 
 import android.content.Context;
 
+import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.preference.EncryptionPreference;
 
 /**
@@ -18,9 +19,10 @@ public class EniEncryptionUtil {
      */
     public static void resetDataForLogout(final Context context){
         final EncryptionPreference pref = new EncryptionPreference(context.getApplicationContext());
-        pref.token = "";
-        pref.userId = "";
+        pref.token = EniConstant.TOKEN_DEFAULT;
+        pref.userId = EniConstant.USER_ID_DEFAULT;
         pref.isUserLogin = false;
+        pref.loginStatusCode = EniConstant.USER_STATUS_DEFAULT;
         pref.write();
     }
 

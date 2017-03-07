@@ -2,7 +2,6 @@ package com.neolab.enigma.fragment.user;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +85,7 @@ public class StopServiceFragment extends BaseFragment implements View.OnClickLis
                 onBackPressed();
                 break;
             case R.id.user_stop_service_next_frameLayout:
-                ConfirmStopServiceFragment fragment = new ConfirmStopServiceFragment();
+                StopServiceDetailFragment fragment = new StopServiceDetailFragment();
                 replaceFragment(fragment, true);
                 break;
             default:

@@ -30,9 +30,16 @@ import com.neolab.enigma.fragment.payment.CompletePaymentFragment;
 import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniLogUtil;
+import com.neolab.enigma.ws.ApiRequest;
+import com.neolab.enigma.ws.core.ApiCallback;
+import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.user.UserLogoutResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * MainActivity
@@ -41,17 +48,11 @@ import java.util.List;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener, OnBaseFragmentListener {
 
-    /**
-     * Drawer layout
-     */
+    /** Drawer layout */
     private DrawerLayout mDrawerLayout;
-    /**
-     * ListView include menu item
-     */
+    /** ListView include menu item */
     private ListView mDrawerListView;
-    /**
-     * Toolbar
-     */
+    /** Toolbar */
     private Toolbar mToolbar;
     private View mBackTextView;
     private View mLogoImageView;
@@ -143,8 +144,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 transaction.commit();
                 return;
             } else if (currentFragment instanceof CompleteStopServiceFragment) {
-                finish();
-                startActivity(LoginActivity.class);
+                logout();
             }
             super.onBackPressed();
         }
@@ -210,12 +210,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     };
 
     /**
-     * The method is used to resetDataForLogout application
+     * Call api to logout
      */
-    private void logout() {
-        EniEncryptionUtil.resetDataForLogout(this);
+    public void logout() {
+        eniShowLoading();
+        ApiRequest.logout(new ApiCallback<UserLogoutResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
+                resetData();
+            }
+
+            @Override
+            public void success(UserLogoutResponse userLogoutResponse, Response response) {
+                eniCancelNowLoading();
+                resetData();
+            }
+        });
+
+    }
+
+    /**
+     * Reset data of user
+     */
+    private void resetData() {
+        EniEncryptionUtil.resetDataForLogout(getApplicationContext());
         finish();
-        startActivity(LoginActivity.class);
+        startActivity(LoginActivity.class, R.anim.animation_fade_in_left_to_right, R.anim.animation_fade_out_left_to_right);
     }
 
     /**

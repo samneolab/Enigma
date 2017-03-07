@@ -31,6 +31,10 @@ public final class ApiParameter {
     public static final String PUBLISH_TYPE = "publish_type";
     public static final String OPEN = "open";
 
+    public static final String AGREE = "agree";
+    public static final String CURRENT_PASSWORD = "current_password";
+    public static final String PASSWORD_CONFIRM = "password_confirmation";
+
     private ApiParameter() {
     }
 

@@ -1,5 +1,6 @@
 package com.neolab.enigma.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -16,14 +17,21 @@ import android.widget.TextView;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
+import com.neolab.enigma.activity.user.AccountConfirmationActivity;
+import com.neolab.enigma.activity.user.AccountPendingActivity;
+import com.neolab.enigma.activity.user.TermServiceActivity;
+import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.user.UserDto;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
+import com.neolab.enigma.ws.respone.login.LoginErrorResponse;
 import com.neolab.enigma.ws.respone.login.LoginResponse;
 
 import retrofit.RetrofitError;
@@ -36,51 +44,35 @@ import retrofit.client.Response;
  */
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
-    /**
-     * Title toolbar textView
-     */
+    /** Title toolbar textView */
     private TextView mTitleTextView;
 
-    /**
-     * Company code editText
-     */
+    /** Company code editText */
     private EditText mCompanyCodeEditText;
 
-    /**
-     * Employee code editText
-     */
+    /** Employee code editText */
     private EditText mEmployeeCodeEditText;
 
-    /**
-     * Employee password editText
-     */
+    /** Employee password editText */
     private EditText mEmployeePasswordEditText;
 
-    /**
-     * Show password checkbox
-     */
+    /** Show password checkbox */
     private CheckBox mShowPasswordCheckBox;
 
-    /**
-     * Reset password via email layout
-     */
+    /** Reset password via email layout */
     private RelativeLayout mResetPasswordViaEmailLayout;
 
-    /**
-     * Reset password via phone layout
-     */
+    /** Reset password via phone layout */
     private RelativeLayout mResetPasswordViaPhoneLayout;
 
-    /**
-     * Login Button
-     */
+    /** Login Button */
     private Button mLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if (!EniEncryptionUtil.isLogin(this)) {
+        if (EniEncryptionUtil.isLogin(this)) {
             finish();
             startActivity(MainActivity.class);
         }
@@ -119,7 +111,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * The method is used to find the views that was identified in layout
      */
     private void findView() {
-        mTitleTextView = (TextView) findViewById(R.id.login_title_textView);
+        mTitleTextView = (TextView) findViewById(R.id.title_textView);
         mCompanyCodeEditText = (EditText) findViewById(R.id.login_company_code_editText);
         mEmployeeCodeEditText = (EditText) findViewById(R.id.login_employee_code_editText);
         mEmployeePasswordEditText = (EditText) findViewById(R.id.login_password_editText);
@@ -174,7 +166,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         String employeePassword = mEmployeePasswordEditText.getText().toString();
 
         if (EniValidateUtil.isValidUserInfor(companyCode, employeeCode, employeePassword)) {
-            eniShowLoading();
             doHttpRequestLogin(companyCode, employeeCode, employeePassword);
         }
     }
@@ -187,31 +178,92 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * @param employeePassword Employee password
      */
     private void doHttpRequestLogin(String companyCode, String employeeCode, String employeePassword) {
+        eniShowLoading();
         ApiRequest.login(companyCode, employeeCode, employeePassword, new ApiCallback<LoginResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service or account don't approve
+                if (body.code == ApiCode.USER_STOPPED_SERVICE_OR_ACCOUNT_UNAPPROVE) {
+                    LoginErrorResponse errorResponse = (LoginErrorResponse) retrofitError.getBodyAs(LoginErrorResponse.class);
+                    transferScreen(errorResponse.loginStateResponse.status);
+                } else {
+                    EniDialogUtil.showAlertDialog(getSupportFragmentManager(), null,  body.message, getClass().getName());
+                }
             }
 
             @Override
             public void success(LoginResponse loginResponse, Response response) {
                 eniCancelNowLoading();
-                if (loginResponse.statusCode == ApiCode.SUCCESS) {
-                    // Save token and user information
-                    UserDto userDto = loginResponse.data.userDto;
-                    EncryptionPreference encryptionPreference = new EncryptionPreference(getApplicationContext());
-                    encryptionPreference.token = loginResponse.data.token;
-                    encryptionPreference.userId = String.valueOf(userDto.id);
-                    encryptionPreference.isUserLogin = true;
-                    encryptionPreference.write();
-
-                    if (userDto.status == EniConstant.UserStatus.NORMAL) {
-                        finish();
-                        startActivity(MainActivity.class);
-                    }
+                if (loginResponse == null) {
+                    return;
                 }
+                UserDto userDto = loginResponse.data.userDto;
+                // Save token and user information
+                EncryptionPreference encryptionPreference = new EncryptionPreference(getApplicationContext());
+                encryptionPreference.token = loginResponse.data.token;
+                encryptionPreference.userId = String.valueOf(userDto.id);
+                encryptionPreference.isUserLogin = true;
+                encryptionPreference.loginStatusCode = userDto.status;
+                encryptionPreference.write();
+                transferScreen(userDto.status, userDto.name);
             }
         });
+    }
 
+    /**
+     * Transfer to new screen corresponding
+     *
+     * @param status account state
+     */
+    private void transferScreen(final int status) {
+        switch (status) {
+            case EniConstant.UserStatus.CREATE_ACCOUNT:
+                finish();
+                startActivity(AccountPendingActivity.class);
+                break;
+            case EniConstant.UserStatus.STOP_SERVICE:
+                finish();
+                startActivity(UserStoppedServiceActivity.class);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Transfer to new screen corresponding
+     *
+     * @param status Account state
+     * @param name Name of user
+     */
+    private void transferScreen(final int status, final String name) {
+        Intent intent;
+        switch (status) {
+            case EniConstant.UserStatus.APPROVED:
+                intent = new Intent(LoginActivity.this, TermServiceActivity.class);
+                intent.putExtra(EniConstant.NAME_KEY, name);
+                finish();
+                startActivity(intent);
+                overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+                break;
+            case EniConstant.UserStatus.AGREED_TERM_AND_CONDITION:
+                intent = new Intent(LoginActivity.this, AccountConfirmationActivity.class);
+                intent.putExtra(EniConstant.NAME_KEY, name);
+                finish();
+                startActivity(intent);
+                overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+                break;
+            case EniConstant.UserStatus.MEMBER:
+                finish();
+                startActivity(MainActivity.class);
+                break;
+            default:
+                break;
+        }
     }
 }

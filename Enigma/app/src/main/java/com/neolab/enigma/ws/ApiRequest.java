@@ -14,6 +14,9 @@ import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
+import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
+import com.neolab.enigma.ws.respone.user.UserChangePasswordResponse;
+import com.neolab.enigma.ws.respone.user.UserLogoutResponse;
 import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
@@ -183,5 +186,38 @@ public final class ApiRequest {
         ApiClient.getService().stopUsingService(password, callback);
     }
 
+
+    /**
+     * Agree with terms and conditions to use service
+     *
+     * @param agree 1 is agree, 0 isn't agree
+     * @param callback Callback
+     */
+    public static void agreeUsingService(final int agree, final ApiCallback<UserAgreeTermResponse> callback){
+        ApiClient.getService().agreeUsingService(agree, callback);
+    }
+
+    /**
+     * Confirm account information before using service
+     *
+     * @param email email
+     * @param password password
+     * @param passwordConfirm password confirm
+     * @param name name
+     * @param callback Callback
+     */
+    public static void confirmAccountInformation(final String email, final String password,
+                                                 final String passwordConfirm, final String name,final ApiCallback<UserChangePasswordResponse> callback){
+        ApiClient.getService().confirmAccountInformation(email, password, passwordConfirm, name, callback);
+    }
+
+    /**
+     * Logout
+     *
+     * @param callback callback
+     */
+    public static void logout(ApiCallback<UserLogoutResponse> callback) {
+        ApiClient.getService().logout(callback);
+    }
 
 }

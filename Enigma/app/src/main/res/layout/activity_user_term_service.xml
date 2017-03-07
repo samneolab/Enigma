@@ -1,75 +1,79 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_background"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:background="@drawable/layout_white_background"
-        android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:paddingLeft="@dimen/payment_sub_frame_padding"
-        android:paddingRight="@dimen/payment_sub_frame_padding"
-        android:paddingTop="@dimen/payment_sub_frame_padding">
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="140dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/login_logo_margin_top"
-            android:contentDescription="@string/image_dsc"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_15sp"
-            android:text="@string/user_confirm_stop_service_will_stop_service" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/text_12sp"
-            android:text="@string/user_confirm_stop_service_are_you_sure" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/user_confirm_stop_service_password" />
-
-        <EditText
-            android:id="@+id/user_confirm_stop_service_password_editText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/login_edittext_height"
-            android:background="@drawable/edittext_payment_payment_normal"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:hint="@string/user_confirm_stop_service_password"
-            android:textColor="@color/login_editText_text"
-            android:textSize="@dimen/text_15sp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_white_background"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="@dimen/payment_sub_frame_padding"
+            android:paddingRight="@dimen/payment_sub_frame_padding"
+            android:paddingTop="@dimen/payment_sub_frame_padding">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="@string/user_term_service_title_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/user_term_service_title_2" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/textview_white_background">
+
+                <WebView
+                    android:id="@+id/user_term_service_term_using_webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/user_term_service_agree_term_using_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:checked="false"
+            android:text="@string/user_term_service_i_agree_with_term"
+            android:theme="@style/Eni.Login.CheckBox.ShowPassword" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/login_frame_inform_user_margin_bottom"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/user_confirm_stop_service_back_frameLayout"
+            android:id="@+id/user_term_service_back_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/history_frame_margin"
@@ -90,7 +94,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/user_confirm_stop_service_stop_using_frameLayout"
+            android:id="@+id/user_term_service_agree_term_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/history_frame_margin"
@@ -101,15 +105,15 @@
             android:foreground="@drawable/button_foreground">
 
             <Button
-                android:id="@+id/user_confirm_stop_service_stop_using_button"
+                android:id="@+id/user_term_service_agree_term_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:enabled="false"
                 android:background="@drawable/button_user_update_information_update"
                 android:clickable="false"
+                android:enabled="false"
                 android:gravity="center"
-                android:text="@string/user_confirm_stop_service_stop_using"
+                android:text="@string/user_term_service_agree_using"
                 android:textColor="@color/white" />
         </FrameLayout>
 
@@ -117,11 +121,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="4dp"
             android:layout_marginTop="@dimen/payment_frame_margin"
             android:includeFontPadding="false"
             android:text="@string/login_copyright"
             android:textSize="@dimen/text_10sp" />
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

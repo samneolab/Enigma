@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Description
+ * Validate Utility
  *
  * @author Pika.
  */
@@ -28,6 +28,19 @@ public class EniValidateUtil {
         return ((companyCode.length() >= EniConstant.MIN_LENGTH_FOR_COMPANY_CODE && companyCode.length() <= EniConstant.MAX_LENGTH_FOR_COMPANY_CODE)
                 && (employeeCode.length() >= EniConstant.MIN_LENGTH_FOR_EMPLOYEE_CODE && employeeCode.length() <= EniConstant.MAX_LENGTH_FOR_EMPLOYEE_CODE)
                 && (employeePassword.length() >= EniConstant.MIN_LENGTH_FOR_PASSWORD_CODE && employeePassword.length() <= EniConstant.MAX_LENGTH_FOR_PASSWORD_CODE));
+    }
+
+    /**
+     * Validate user password to enable start using service button
+     *
+     * @param password     Password
+     * @param passwordConfirm Password confirm
+     * @return true if password that user input is valid, otherwise false
+     */
+    public static boolean isValidUserPassword(String password, String passwordConfirm) {
+        return ((password.length() >= EniConstant.MIN_LENGTH_FOR_PASSWORD_CODE && password.length() <= EniConstant.MAX_LENGTH_FOR_PASSWORD_CODE)
+                && (passwordConfirm.length() >= EniConstant.MIN_LENGTH_FOR_PASSWORD_CODE && passwordConfirm.length() <= EniConstant.MAX_LENGTH_FOR_PASSWORD_CODE)
+                && password.equals(passwordConfirm));
     }
 
     /**

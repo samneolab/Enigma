@@ -2,6 +2,7 @@ package com.neolab.enigma.ws.respone;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.neolab.enigma.ws.respone.login.LoginErrorResponse;
 
 import java.lang.reflect.Type;
 

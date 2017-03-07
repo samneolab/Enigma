@@ -13,6 +13,9 @@ import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
+import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
+import com.neolab.enigma.ws.respone.user.UserChangePasswordResponse;
+import com.neolab.enigma.ws.respone.user.UserLogoutResponse;
 import com.neolab.enigma.ws.respone.user.UserUpdateInforResponse;
 import com.neolab.enigma.ws.respone.user.UserInformationResponse;
 
@@ -86,4 +89,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/employee/stop-service")
     void stopUsingService(@Field(ApiParameter.PASSWORD) String password, ApiCallback<StopServiceResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/employee/agree")
+    void agreeUsingService(@Field(ApiParameter.AGREE) int agree, ApiCallback<UserAgreeTermResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/employee/confirm")
+    void confirmAccountInformation(@Field(ApiParameter.EMAIL) String email, @Field(ApiParameter.PASSWORD) String password,
+                                   @Field(ApiParameter.PASSWORD_CONFIRM) String passwordConfirm, @Field(ApiParameter.NAME) String name,
+                                   ApiCallback<UserChangePasswordResponse> callback);
+
+    @GET("/logout")
+    void logout(ApiCallback<UserLogoutResponse> callback);
 }

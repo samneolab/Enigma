@@ -3,6 +3,7 @@ package com.neolab.enigma.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.util.StringUtil;
 
 /**
@@ -20,6 +21,8 @@ public class EncryptionPreference extends BasePreference {
     private static final String KEY_USER_ID = "userId";
     /** Check user login flag key */
     private static final String KEY_IS_USER_LOGIN = "isUserLogin";
+    /** Login state key */
+    private static final String KEY_LOGIN_STATUS = "loginStatusCode";
 
     /** Access token */
     public String token;
@@ -27,6 +30,8 @@ public class EncryptionPreference extends BasePreference {
     public String userId;
     /** Check user login flag */
     public boolean isUserLogin;
+    /** Login status */
+    public int loginStatusCode;
 
     /**
      * Constructor
@@ -48,13 +53,15 @@ public class EncryptionPreference extends BasePreference {
     protected void setData(SharedPreferences.Editor editor) {
         editor.putString(KEY_TOKEN, token);
         editor.putString(KEY_USER_ID, userId);
+        editor.putInt(KEY_LOGIN_STATUS, loginStatusCode);
         editor.putBoolean(KEY_IS_USER_LOGIN, isUserLogin);
     }
 
     @Override
     protected void getData(SharedPreferences preferences) {
-        token = preferences.getString(KEY_TOKEN, null);
-        userId = preferences.getString(KEY_USER_ID, null);
+        token = preferences.getString(KEY_TOKEN, EniConstant.TOKEN_DEFAULT);
+        userId = preferences.getString(KEY_USER_ID, EniConstant.USER_ID_DEFAULT);
+        loginStatusCode = preferences.getInt(KEY_LOGIN_STATUS, EniConstant.USER_STATUS_DEFAULT);
         isUserLogin = preferences.getBoolean(KEY_IS_USER_LOGIN, false);
     }
 
@@ -64,7 +71,8 @@ public class EncryptionPreference extends BasePreference {
      * @return true if user login, otherwise false
      */
     public boolean isLogin() {
-        if (StringUtil.isNotBlank(userId) && StringUtil.isNotBlank(token)) {
+        if (StringUtil.isNotBlank(userId) && StringUtil.isNotBlank(token)
+                && loginStatusCode == EniConstant.UserStatus.MEMBER) {
             return true;
         }
         return false;

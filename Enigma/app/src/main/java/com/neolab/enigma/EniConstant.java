@@ -20,18 +20,19 @@ public class EniConstant {
     /**
      * User status after login
      */
-    public static class UserStatus {
+    public static final class UserStatus {
+        public static final int NONE_MEMBER = 0;
         public static final int CREATE_ACCOUNT = 1;
-        public static final int FIRST_LOGIN = 2;
-        public static final int AGREE_TERM_AND_CONDITION = 3;
-        public static final int NORMAL = 4;
+        public static final int APPROVED = 2;
+        public static final int AGREED_TERM_AND_CONDITION = 3;
+        public static final int MEMBER = 4;
         public static final int STOP_SERVICE = 5;
     }
 
     /**
      * The class manage display item on toolbar
      */
-    public static class ToolbarType {
+    public static final class ToolbarType {
         /** Visible only logo and drawer menu */
         public static final int HOME = 1;
         /** Visible only back button, logo and drawer menu */
@@ -68,6 +69,16 @@ public class EniConstant {
 
     /** Number announcement item per page*/
     public static final int NUMBER_ANNOUNCEMENT_PER_PAGE = 15;
+
+    /** name of user that registered key */
+    public static final String NAME_KEY = "user_name";
+
+    /** User agree with terms and conditions number */
+    public static final int USER_AGREE_WITH_TERM_NUMBER = 1;
+
+    public static final String TOKEN_DEFAULT = EMPTY;
+    public static final String USER_ID_DEFAULT = EMPTY;
+    public static final int USER_STATUS_DEFAULT = UserStatus.NONE_MEMBER;
 
     public EniConstant(){
     }

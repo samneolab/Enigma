@@ -32,7 +32,7 @@ import retrofit.client.Response;
  *
  * @author Pika
  */
-public class ConfirmStopServiceFragment extends BaseFragment implements View.OnClickListener, DialogInterface.OnClickListener{
+public class StopServiceDetailFragment extends BaseFragment implements View.OnClickListener, DialogInterface.OnClickListener{
 
     private EditText mPasswordEditText;
     private View mBackLayout;
@@ -43,7 +43,7 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        setContentView(R.layout.fragment_user_confirm_stop_service);
+        setContentView(R.layout.fragment_user_stop_service_detail);
         findView();
         initData();
         initEvent();
@@ -52,10 +52,10 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
 
     @Override
     protected void findView() {
-        mPasswordEditText = findViewById(R.id.user_confirm_stop_service_password_editText);
-        mBackLayout = findViewById(R.id.user_confirm_stop_service_back_frameLayout);
-        mStopUsingServiceLayout = findViewById(R.id.user_confirm_stop_service_stop_using_frameLayout);
-        mStopUsingServiceButton = findViewById(R.id.user_confirm_stop_service_stop_using_button);
+        mPasswordEditText = findViewById(R.id.user_stop_service_detail_password_editText);
+        mBackLayout = findViewById(R.id.user_stop_service_detail_back_frameLayout);
+        mStopUsingServiceLayout = findViewById(R.id.user_stop_service_detail_stop_using_frameLayout);
+        mStopUsingServiceButton = findViewById(R.id.user_stop_service_detail_stop_using_button);
 
     }
 
@@ -82,10 +82,10 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.user_confirm_stop_service_back_frameLayout:
+            case R.id.user_stop_service_detail_back_frameLayout:
                 onBackPressed();
                 break;
-            case R.id.user_confirm_stop_service_stop_using_frameLayout:
+            case R.id.user_stop_service_detail_stop_using_frameLayout:
                 String password = mPasswordEditText.getText().toString().trim();
                 if (EniValidateUtil.isValidPassword(password)) {
                     stopUsingServiceApi(password);
@@ -110,8 +110,7 @@ public class ConfirmStopServiceFragment extends BaseFragment implements View.OnC
             @Override
             public void success(StopServiceResponse stopServiceResponse, Response response) {
                 eniCancelNowLoading();
-                if (stopServiceResponse.statusCode != ApiCode.SUCCESS){
-                    EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), "Error", getClass().getName());
+                if (stopServiceResponse == null){
                     return;
                 }
                 CompleteStopServiceFragment topFragment = new CompleteStopServiceFragment();
