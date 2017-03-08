@@ -128,13 +128,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             Fragment currentFragment = getVisibleFragment(fragmentManager);
             if (currentFragment instanceof CompletePaymentFragment
                     || currentFragment instanceof CompleteWithdrawPaymentFragment) {
-                // clear all fragment in stack
-                int count = fragmentManager.getBackStackEntryCount();
-                EniLogUtil.d(getClass(), "BackStackEntryCount: " + count);
-                if (count > 0) {
-                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    fragmentManager.executePendingTransactions();
-                }
                 // add top fragment to layout
                 TopFragment topFragment = new TopFragment();
                 FragmentManager manager = getSupportFragmentManager();
@@ -142,11 +135,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, 0);
                 transaction.replace(R.id.main_root_frameLayout, topFragment);
                 transaction.commit();
-                return;
             } else if (currentFragment instanceof CompleteStopServiceFragment) {
                 logout();
+            } else if (currentFragment instanceof TopFragment) {
+                finish();
+            } else {
+                super.onBackPressed();
             }
-            super.onBackPressed();
         }
     }
 
