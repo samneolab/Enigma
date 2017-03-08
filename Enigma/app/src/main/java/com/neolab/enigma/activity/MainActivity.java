@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
@@ -213,6 +214,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                if (apiError == null) {
+                    return;
+                }
+                Toast.makeText(MainActivity.this, apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
                 resetData();
             }
 

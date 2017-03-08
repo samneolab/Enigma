@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
@@ -124,6 +125,7 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

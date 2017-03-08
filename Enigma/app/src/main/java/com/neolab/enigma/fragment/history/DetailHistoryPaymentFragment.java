@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
@@ -119,6 +120,7 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
                 mWithdrawRequestLayout.setClickable(false);
                 mWithdrawRequestButton.setEnabled(true);
             }
@@ -147,14 +149,17 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
      * Call api to cancel payment that has requested
      */
     private void cancelPaymentRequest(){
+        eniShowNowLoading(getActivity());
         ApiRequest.cancelPaymentRequest(mRequestId, new ApiCallback<CancelPaymentResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
-
+                eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void success(CancelPaymentResponse cancelPaymentResponse, Response response) {
+                eniCancelNowLoading();
                 EniLogUtil.d(getClass(), cancelPaymentResponse.message);
                 if (cancelPaymentResponse.statusCode != ApiCode.SUCCESS){
                     return;

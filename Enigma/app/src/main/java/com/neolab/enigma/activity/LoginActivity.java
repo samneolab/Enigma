@@ -225,7 +225,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     /**
-     * Transfer to new screen corresponding
+     * Transfer to new screen corresponding when account has invalid
      *
      * @param status account state
      */
@@ -245,7 +245,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     /**
-     * Transfer to new screen corresponding
+     * Transfer to new screen corresponding when account has valid
      *
      * @param status Account state
      * @param name Name of user

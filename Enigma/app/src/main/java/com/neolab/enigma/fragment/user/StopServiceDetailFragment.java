@@ -102,9 +102,12 @@ public class StopServiceDetailFragment extends BaseFragment implements View.OnCl
         ApiRequest.stopUsingService(password, new ApiCallback<StopServiceResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
+                if (retrofitError == null) {
+                    return;
+                }
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), body.message, getClass().getName());
-                eniCancelNowLoading();
             }
 
             @Override

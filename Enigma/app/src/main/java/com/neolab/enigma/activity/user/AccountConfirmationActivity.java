@@ -169,7 +169,10 @@ public class AccountConfirmationActivity extends BaseActivity implements View.On
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getApplicationContext(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                if (apiError == null) {
+                    return;
+                }
+                Toast.makeText(AccountConfirmationActivity.this, apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -192,8 +195,11 @@ public class AccountConfirmationActivity extends BaseActivity implements View.On
         ApiRequest.confirmAccountInformation(email, password, passwordConfirm, name, new ApiCallback<UserChangePasswordResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
-                Toast.makeText(getApplicationContext(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
                 eniCancelNowLoading();
+                if (apiError == null) {
+                    return;
+                }
+                Toast.makeText(AccountConfirmationActivity.this, apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

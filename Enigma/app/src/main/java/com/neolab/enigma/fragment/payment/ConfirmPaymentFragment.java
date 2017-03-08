@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
@@ -117,6 +118,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -130,14 +132,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(CompletePaymentFragment.KEY_PAYMENT_REQUEST, paymentRequestResponse.data);
                     fragment.setArguments(bundle);
-
-                    FragmentManager manager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);
-//                    manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                    manager.executePendingTransactions();
-                    transaction.replace(R.id.main_root_frameLayout, fragment);
-                    transaction.commit();
+                    replaceFragment(fragment, false);
                 }
             }
         });

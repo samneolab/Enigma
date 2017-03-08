@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
@@ -228,6 +229,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -255,6 +257,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 if (BuildConfig.DEBUG) {
                     EniLogUtil.d(getClass(), "[getEmergencyAnnouncement] " + apiError.getError());
                 }
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -282,6 +285,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -323,6 +327,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 if (BuildConfig.DEBUG) {
                     EniLogUtil.d(getClass(), "[failure]getAnnouncementList " + apiError.getError());
                 }
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

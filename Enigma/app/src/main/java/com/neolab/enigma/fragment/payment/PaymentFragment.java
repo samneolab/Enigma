@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
@@ -65,10 +66,11 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
         ApiRequest.getMaxMoneyPrepayment(new ApiCallback<FeeResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
                 if (BuildConfig.DEBUG) {
                     EniLogUtil.d(getClass(), "[failure ] RetrofitError kind:" + apiError.getError());
                 }
-                eniCancelNowLoading();
+                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
