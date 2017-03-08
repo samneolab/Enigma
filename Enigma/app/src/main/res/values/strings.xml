@@ -133,6 +133,7 @@
     <string name="user_term_service_i_agree_with_term">利用規約に同意する</string>
     <string name="user_term_service_agree_using">ご利用開始</string>
 
+    <!-- User confirmation account-->
     <string name="user_account_confirmation_title">利用者情報</string>
     <string name="user_account_confirmation_information">下記の内容をご記入ください。</string>
     <string name="user_account_confirmation_name">お名前</string>
@@ -142,9 +143,36 @@
     <string name="user_account_confirmation_show_password">パスワードを表示する</string>
     <string name="user_account_confirmation_start_using">利用を開始する</string>
 
+    <!-- User complete register -->
     <string name="user_register_complete_title">登録完了</string>
     <string name="user_register_complete_thank_for_register">ご登録ありがとうございました。</string>
     <string name="user_register_complete_user_information_has_completed">利用者情報の登録が完了しました。</string>
     <string name="user_register_complete_please_login">下記よりログインしてご利用ください。</string>
+
+    <!-- User reset password via email activity -->
+    <string name="user_reset_password_via_email_title">パスワードを忘れた方</string>
+    <string name="user_reset_password_via_email_register_your_email">メールアドレスを登録済みの方は、</string>
+    <string name="user_reset_password_via_email_update_user_info_title">下記の内容をご記入ください。</string>
+    <string name="user_reset_password_via_email_send">送信する</string>
+
+    <!-- User reset password via email complete activity -->
+    <string name="user_reset_password_via_email_complete_title">パスワードを忘れた方</string>
+    <string name="user_reset_password_via_email_complete_sent">送信しました。</string>
+    <string name="user_reset_password_via_email_complete_sent_to_email">ご入力いただきましたメールアドレス宛に送信しました。</string>
+    <string name="user_reset_password_via_email_complete_please_check">ご確認よろしくお願いいたします。</string>
+
+    <!-- User reset password via phone number activity -->
+    <string name="user_reset_password_via_phone_title">パスワードを忘れた方</string>
+    <string name="user_reset_password_via_phone_dont_register_email">メールアドレスをご登録されていない方は、</string>
+    <string name="user_reset_password_via_phone_fill_content">下記の内容をご記入ください。</string>
+    <string name="user_reset_password_via_phone_name">お名前</string>
+    <string name="user_reset_password_via_phone_name_hint">氏名</string>
+    <string name="user_reset_password_via_phone_phone_number">電話番号</string>
+
+    <!-- User reset password via phone number complete activity -->
+    <string name="user_reset_password_via_phone_complete_title">送信完了</string>
+    <string name="user_reset_password_via_phone_complete_send">送信しました。</string>
+    <string name="user_reset_password_via_phone_complete_check_content">ご入力いただきました内容をご確認ください。</string>
+    <string name="user_reset_password_via_phone_complete_go_login">ログイン画面へ</string>
 
 </resources>

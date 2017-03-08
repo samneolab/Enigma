@@ -31,6 +31,16 @@ public class EniValidateUtil {
     }
 
     /**
+     * Validate user information to enable login button
+     *
+     * @param userInfor      User information
+     * @return true if user information is valid, otherwise false
+     */
+    public static boolean isValidUserInfor(String userInfor) {
+        return ((userInfor.length() >= EniConstant.MIN_LENGTH_FOR_COMPANY_CODE && userInfor.length() <= EniConstant.MAX_LENGTH_FOR_COMPANY_CODE));
+    }
+
+    /**
      * Validate user password to enable start using service button
      *
      * @param password     Password

@@ -12,6 +12,8 @@ public final class ApiParameter {
      ***************************************/
     public static final String COMPANY_CODE = "company_code";
     public static final String EMPLOYEE_CODE = "employee_code";
+    public static final String EMPLOYEE_NAME = "employee_name";
+    public static final String EMPLOYEE_PHONE = "employee_phone";
     public static final String EMPLOYEE_PASSWORD = "employee_password";
     public static final String AMOUNT_OF_SALARY = "amount_of_salary";
 

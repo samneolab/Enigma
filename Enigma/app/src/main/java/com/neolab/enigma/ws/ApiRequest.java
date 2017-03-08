@@ -2,6 +2,7 @@ package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiClient;
+import com.neolab.enigma.ws.respone.ApiResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -218,6 +219,30 @@ public final class ApiRequest {
      */
     public static void logout(ApiCallback<UserLogoutResponse> callback) {
         ApiClient.getService().logout(callback);
+    }
+
+    /**
+     * Reset password via email
+     *
+     * @param email Email
+     * @param companyCode company Code
+     * @param callback Callback
+     */
+    public static void resetPasswordViaMail(String email, String companyCode, ApiCallback<ApiResponse> callback) {
+        ApiClient.getService().resetPasswordViaMail(email, companyCode, callback);
+    }
+
+    /**
+     * Reset password via phone number
+     *
+     * @param companyCode Company code
+     * @param employeeCode Employee code
+     * @param employeeName Employee name
+     * @param phoneNumber Phone Number
+     * @param callback Callback
+     */
+    public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, int phoneNumber, ApiCallback<ApiResponse> callback) {
+        ApiClient.getService().resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber, callback);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.neolab.enigma.ws;
 
 import com.neolab.enigma.ws.core.ApiCallback;
+import com.neolab.enigma.ws.respone.ApiResponse;
 import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
 import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
 import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
@@ -35,7 +36,6 @@ import retrofit.http.QueryMap;
  * @author LongHV3
  */
 public interface ApiService {
-
 
     @FormUrlEncoded
     @POST("/authenticate")
@@ -102,4 +102,16 @@ public interface ApiService {
 
     @GET("/logout")
     void logout(ApiCallback<UserLogoutResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/password/email")
+    void resetPasswordViaMail(@Field(ApiParameter.EMAIL) String email, @Field(ApiParameter.COMPANY_CODE) String companyCode,
+                                   ApiCallback<ApiResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/password/forgot")
+    void resetPasswordViaPhone(@Field(ApiParameter.COMPANY_CODE) String companyCode, @Field(ApiParameter.EMPLOYEE_CODE) String employeeCode,
+                               @Field(ApiParameter.EMPLOYEE_NAME) String employeeName, @Field(ApiParameter.EMPLOYEE_PHONE) int phoneNumber,
+                                ApiCallback<ApiResponse> callback);
+
 }

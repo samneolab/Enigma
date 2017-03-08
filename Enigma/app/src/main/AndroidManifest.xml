@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/EniTheme.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden">
         <activity
             android:name=".activity.LoginActivity"
@@ -41,19 +41,42 @@
             android:name=".activity.user.AccountPendingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/EniTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.user.TermServiceActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/EniTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.user.AccountConfirmationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/EniTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.user.RegisterCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.user.ResetPasswordViaEmailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.user.ResetPasswordViaEmailCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.user.ResetPasswordViaPhoneActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.user.ResetPasswordViaPhoneCompleteActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />

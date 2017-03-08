@@ -19,6 +19,8 @@ import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.activity.user.AccountConfirmationActivity;
 import com.neolab.enigma.activity.user.AccountPendingActivity;
+import com.neolab.enigma.activity.user.ResetPasswordViaEmailActivity;
+import com.neolab.enigma.activity.user.ResetPasswordViaPhoneActivity;
 import com.neolab.enigma.activity.user.TermServiceActivity;
 import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.user.UserDto;
@@ -46,25 +48,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     /** Title toolbar textView */
     private TextView mTitleTextView;
-
     /** Company code editText */
     private EditText mCompanyCodeEditText;
-
     /** Employee code editText */
     private EditText mEmployeeCodeEditText;
-
     /** Employee password editText */
     private EditText mEmployeePasswordEditText;
-
     /** Show password checkbox */
     private CheckBox mShowPasswordCheckBox;
-
     /** Reset password via email layout */
     private RelativeLayout mResetPasswordViaEmailLayout;
-
     /** Reset password via phone layout */
     private RelativeLayout mResetPasswordViaPhoneLayout;
-
     /** Login Button */
     private Button mLoginButton;
 
@@ -80,6 +75,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         setSupportActionBar(myToolbar);
         findView();
         initData();
+        initEvent();
     }
 
     /**
@@ -87,10 +83,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      */
     private void initData() {
         mTitleTextView.setText(getString(R.string.login));
-        mResetPasswordViaEmailLayout.setOnClickListener(this);
-        mResetPasswordViaPhoneLayout.setOnClickListener(this);
-        mLoginButton.setOnClickListener(this);
-
         mCompanyCodeEditText.addTextChangedListener(userInformationTextWatcher);
         mEmployeeCodeEditText.addTextChangedListener(userInformationTextWatcher);
         mEmployeePasswordEditText.addTextChangedListener(userInformationTextWatcher);
@@ -121,11 +113,28 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         mLoginButton = (Button) findViewById(R.id.login_button);
     }
 
+    /**
+     * Init event listener
+     */
+    private void initEvent() {
+        mResetPasswordViaEmailLayout.setOnClickListener(this);
+        mResetPasswordViaPhoneLayout.setOnClickListener(this);
+        mLoginButton.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
                 loginButtonClick();
+                break;
+            case R.id.login_reset_password_via_email_relativeLayout:
+                finish();
+                startActivity(ResetPasswordViaEmailActivity.class);
+                break;
+            case R.id.login_reset_password_via_phone_relativeLayout:
+                finish();
+                startActivity(ResetPasswordViaPhoneActivity.class);
                 break;
         }
     }
@@ -259,6 +268,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
                 break;
             case EniConstant.UserStatus.MEMBER:
+            case EniConstant.UserStatus.STOP_SERVICE:
                 finish();
                 startActivity(MainActivity.class);
                 break;
