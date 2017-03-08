@@ -16,13 +16,13 @@
         android:paddingTop="@dimen/payment_sub_frame_padding">
 
         <ImageView
-            android:layout_width="140dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/login_logo_margin_top"
             android:contentDescription="@string/image_dsc"
             android:scaleType="fitCenter"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_small" />
 
 
         <TextView

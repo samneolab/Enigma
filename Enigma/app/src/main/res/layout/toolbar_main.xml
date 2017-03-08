@@ -44,11 +44,11 @@
 
                 <ImageView
                     android:id="@+id/toolbar_logo_imageView"
-                    android:layout_width="112dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/image_dsc"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/logo_small" />
 
                 <TextView
                     android:id="@+id/toolbar_title_textView"
