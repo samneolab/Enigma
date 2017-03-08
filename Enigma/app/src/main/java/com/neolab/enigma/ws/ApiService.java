@@ -14,6 +14,7 @@ import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
+import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
 import com.neolab.enigma.ws.respone.user.UserChangePasswordResponse;
 import com.neolab.enigma.ws.respone.user.UserLogoutResponse;
@@ -113,5 +114,8 @@ public interface ApiService {
     void resetPasswordViaPhone(@Field(ApiParameter.COMPANY_CODE) String companyCode, @Field(ApiParameter.EMPLOYEE_CODE) String employeeCode,
                                @Field(ApiParameter.EMPLOYEE_NAME) String employeeName, @Field(ApiParameter.EMPLOYEE_PHONE) int phoneNumber,
                                 ApiCallback<ApiResponse> callback);
+
+    @GET("/employee/agree")
+    void getTermAndCondition(ApiCallback<TermUsingServiceResponse> callback);
 
 }

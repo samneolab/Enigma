@@ -15,6 +15,7 @@ import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
+import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
 import com.neolab.enigma.ws.respone.user.UserChangePasswordResponse;
 import com.neolab.enigma.ws.respone.user.UserLogoutResponse;
@@ -243,6 +244,15 @@ public final class ApiRequest {
      */
     public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, int phoneNumber, ApiCallback<ApiResponse> callback) {
         ApiClient.getService().resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber, callback);
+    }
+
+    /**
+     * Terms and condition using service
+     *
+     * @param callback Callback
+     */
+    public static void getTermAndCondition(ApiCallback<TermUsingServiceResponse> callback) {
+        ApiClient.getService().getTermAndCondition(callback);
     }
 
 }
