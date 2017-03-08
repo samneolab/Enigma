@@ -37,19 +37,19 @@
                     android:id="@+id/login_user_information_linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/login_background"
+                    android:background="@drawable/layout_white_background"
                     android:orientation="vertical"
                     android:padding="@dimen/login_frame_inform_user_padding"
                     tools:ignore="UselessParent">
 
                     <ImageView
-                        android:layout_width="140dp"
-                        android:layout_height="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/login_logo_margin_top"
                         android:contentDescription="@string/image_dsc"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/logo" />
+                        android:src="@drawable/logo_small" />
 
                     <TextView
                         style="@style/Eni.Login.TextView12sp"
@@ -63,6 +63,8 @@
                     <EditText
                         android:id="@+id/login_company_code_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/login_id_hint"
                         android:inputType="text" />
 
                     <TextView
@@ -72,6 +74,8 @@
                     <EditText
                         android:id="@+id/login_employee_code_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/login_id_hint"
                         android:inputType="text" />
 
                     <TextView
@@ -81,6 +85,8 @@
                     <EditText
                         android:id="@+id/login_password_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/login_text_and_number_hint"
                         android:inputType="textPassword" />
 
                     <CheckBox
@@ -104,14 +110,21 @@
                     android:gravity="bottom"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/login_button"
+                    <FrameLayout
+                        android:id="@+id/login_frameLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@drawable/button_login"
-                        android:enabled="false"
-                        android:text="@string/login"
-                        android:textColor="@color/white" />
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/login_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/top_apply_for_prepayment_height"
+                            android:background="@drawable/button_login"
+                            android:enabled="true"
+                            android:text="@string/login"
+                            android:textColor="@color/white" />
+
+                    </FrameLayout>
 
                     <RelativeLayout
                         android:id="@+id/login_reset_password_via_email_relativeLayout"
@@ -207,7 +220,7 @@
                         android:layout_marginTop="@dimen/login_text_margin_top"
                         android:includeFontPadding="false"
                         android:text="@string/login_copyright"
-                        android:textSize="@dimen/text_13sp" />
+                        android:textSize="@dimen/text_10sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>

@@ -7,6 +7,8 @@ import com.neolab.enigma.BuildConfig;
 
 /**
  * Utility for log output.
+ *
+ * @author Pika
  */
 public final class EniLogUtil {
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="base_url">http://api-employee.enigma.bla-one.net</string>
+    <string name="base_url">https://api-pay-dev.enigma.bz</string>
+    <string name="term_and_condition_url">https://mobile-pay-dev.enigma.bz/terms-and-conditions.html</string>
 </resources>

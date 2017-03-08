@@ -1,21 +1,17 @@
-package com.neolab.enigma.ws.respone;
+package com.neolab.enigma.ws.respone.announcement;
 
 import com.google.gson.annotations.SerializedName;
-import com.neolab.enigma.dto.user.DataLoginResponse;
-
 
 /**
- * Login response.
- *
- * @author LongHV
+ * @author LongHV.
  */
-public class LoginResponse {
+public class AnnouncementResponse {
 
     @SerializedName("status_code")
     public int statusCode;
     @SerializedName("message")
     public String message;
     @SerializedName("data")
-    public DataLoginResponse data;
+    public DataAnnouncementResponse data;
 
 }

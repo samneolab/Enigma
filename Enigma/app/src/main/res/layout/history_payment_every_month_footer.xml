@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:visibility="invisible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/blue_background"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/history_payment_this_month_view_monthly_history_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/payment_frame_margin"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:background="@drawable/button_history_payment_view_monthly_history"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/history_view_monthly_history"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
+    </LinearLayout>
+</FrameLayout>

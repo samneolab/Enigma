@@ -1,5 +1,6 @@
 package com.neolab.enigma.ws.core;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -33,9 +34,11 @@ public final class ApiClient {
     private static final String TAG = ApiClient.class.getSimpleName();
     private static final String HEADER_UA = "User-Agent";
     private static final String HEADER_AUTH = "Authorization";
+    private static final String HEADER_LANGUAGE = "language";
     private static final String AUTH_PREFIX = "Bearer ";
-    private static final int TIMEOUT_CONNECTION = 10000;
+    private static final int TIMEOUT_CONNECTION = 5;
 
+    @SuppressLint("StaticFieldLeak")
     private static ApiClient sInstance;
     private Context context;
     private ApiService service;
@@ -55,6 +58,7 @@ public final class ApiClient {
             if (!TextUtils.isEmpty(accessToken)) {
                 request.addHeader(HEADER_AUTH, AUTH_PREFIX + accessToken);
             }
+            request.addHeader(HEADER_LANGUAGE, "ja");
         }
     };
 
@@ -89,7 +93,9 @@ public final class ApiClient {
 
         // init OkHttpClient
         OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setConnectTimeout(TIMEOUT_CONNECTION, TimeUnit.MILLISECONDS);
+        okHttpClient.setConnectTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
+        okHttpClient.setWriteTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
 
         // RestAdapter
         RestAdapter restAdapter = new RestAdapter.Builder()

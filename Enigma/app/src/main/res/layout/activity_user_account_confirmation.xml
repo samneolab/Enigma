@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        tools:ignore="InefficientWeight">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ScrollViewSize">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/login_frame_inform_user_margin_bottom"
+                android:layout_marginEnd="@dimen/login_frame_inform_user_margin"
+                android:layout_marginLeft="@dimen/login_frame_inform_user_margin"
+                android:layout_marginRight="@dimen/login_frame_inform_user_margin"
+                android:layout_marginStart="@dimen/login_frame_inform_user_margin"
+                android:layout_marginTop="@dimen/login_frame_inform_user_margin"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layout_white_background"
+                    android:orientation="vertical"
+                    android:padding="@dimen/login_frame_inform_user_padding"
+                    tools:ignore="UselessParent">
+
+                    <TextView
+                        style="@style/Eni.Login.TextView12sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/user_account_confirmation_information" />
+
+                    <TextView
+                        style="@style/Eni.Login.TextView12sp"
+                        android:text="@string/user_account_confirmation_name" />
+
+                    <TextView
+                        android:id="@+id/user_account_confirmation_name_textView"
+                        style="@style/Eni.Login.TextView12sp"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        style="@style/Eni.Login.TextView12sp"
+                        android:text="@string/user_account_confirmation_email" />
+
+                    <EditText
+                        android:id="@+id/user_account_confirmation_email_editText"
+                        style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/user_account_confirmation_email"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="TextFields" />
+
+                    <TextView
+                        style="@style/Eni.Login.TextView12sp"
+                        android:text="@string/user_account_confirmation_password" />
+
+                    <EditText
+                        android:id="@+id/user_account_confirmation_password_editText"
+                        style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/user_account_confirmation_password"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        style="@style/Eni.Login.TextView12sp"
+                        android:text="@string/user_account_confirmation_password_confirm" />
+
+                    <EditText
+                        android:id="@+id/user_account_confirmation_confirm_editText"
+                        style="@style/Eni.Login.EditText.Text15sp"
+                        android:layout_height="@dimen/login_edittext_height"
+                        android:hint="@string/user_account_confirmation_password_confirm"
+                        android:inputType="textPassword" />
+
+                    <CheckBox
+                        android:id="@+id/user_account_confirmation_show_password_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/login_text_margin_top"
+                        android:checked="false"
+                        android:text="@string/user_account_confirmation_show_password"
+                        android:theme="@style/Eni.Login.CheckBox.ShowPassword" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/login_login_button_margin_top"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/user_account_confirmation_back_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/history_frame_margin"
+                            android:layout_marginLeft="@dimen/history_frame_margin"
+                            android:layout_marginRight="@dimen/history_frame_margin"
+                            android:layout_marginStart="@dimen/history_frame_margin"
+                            android:foreground="@drawable/button_foreground">
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                                android:layout_gravity="center"
+                                android:background="@drawable/button_back"
+                                android:clickable="false"
+                                android:gravity="center"
+                                android:text="@string/back"
+                                android:textColor="@color/history_reload_screen_text" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/user_account_confirmation_start_using_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/history_frame_margin"
+                            android:layout_marginLeft="@dimen/history_frame_margin"
+                            android:layout_marginRight="@dimen/history_frame_margin"
+                            android:layout_marginStart="@dimen/history_frame_margin"
+                            android:layout_marginTop="8dp"
+                            android:foreground="@drawable/button_foreground">
+
+                            <Button
+                                android:id="@+id/user_account_confirmation_start_using_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                                android:layout_gravity="center"
+                                android:background="@drawable/button_user_update_information_update"
+                                android:clickable="false"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:text="@string/user_term_service_agree_using"
+                                android:textColor="@color/white" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/payment_frame_margin"
+                            android:includeFontPadding="false"
+                            android:text="@string/login_copyright"
+                            android:textSize="@dimen/text_10sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+</LinearLayout>

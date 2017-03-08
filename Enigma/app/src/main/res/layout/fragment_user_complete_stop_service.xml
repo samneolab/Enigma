@@ -1,0 +1,96 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_white_background"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/payment_sub_frame_padding"
+        android:paddingRight="@dimen/payment_sub_frame_padding"
+        android:paddingTop="@dimen/payment_sub_frame_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/login_logo_margin_top"
+            android:contentDescription="@string/image_dsc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_small" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_15sp"
+            android:text="@string/user_complete_stop_service_thank_using" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/text_12sp"
+            android:text="@string/user_complete_stop_service_stopped_service" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/text_12sp"
+            android:text="@string/user_complete_stop_service_logged_out" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/user_complete_stop_service_go_login_screen_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_frame_margin"
+            android:layout_marginLeft="@dimen/history_frame_margin"
+            android:layout_marginRight="@dimen/history_frame_margin"
+            android:layout_marginStart="@dimen/history_frame_margin"
+            android:layout_marginTop="8dp"
+            android:foreground="@drawable/button_foreground">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_apply_for_prepayment_height"
+                android:layout_gravity="center"
+                android:enabled="true"
+                android:background="@drawable/button_user_update_information_update"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/user_complete_stop_service_go_login_screen"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="@dimen/payment_frame_margin"
+            android:includeFontPadding="false"
+            android:text="@string/login_copyright"
+            android:textSize="@dimen/text_10sp" />
+    </LinearLayout>
+
+</FrameLayout>

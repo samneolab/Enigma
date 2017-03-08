@@ -44,7 +44,7 @@
     <style name="Eni.Login.EditText.Text15sp" parent="@style/Eni.EditTextBase">
         <item name="android:textColor">@color/login_editText_text</item>
         <item name="android:textSize">@dimen/text_15sp</item>
-        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:background">@drawable/edittext_white_background</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -83,4 +83,8 @@
         <item name="indicatorName">BallPulseIndicator</item>
     </style>
 
+    <style name="top_dialog_announcement_animation">
+        <item name="android:windowEnterAnimation">@anim/top_announcement_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/top_announcement_fade_out</item>
+    </style>
 </resources>
