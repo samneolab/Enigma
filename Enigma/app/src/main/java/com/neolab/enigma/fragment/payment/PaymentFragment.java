@@ -125,7 +125,9 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
             if (mSalaryDto == null) {
                 return;
             }
-            if (mMoneyPrepaymentEditText.getText().toString().length() > 0 && mSalaryDto.maxPayment > 0) {
+            if (mMoneyPrepaymentEditText.getText().toString().length() > 0
+                    && mSalaryDto.maxPayment > 0
+                    && Integer.parseInt(mMoneyPrepaymentEditText.getText().toString().trim()) > 0) {
                 mApplyPrepaymentLayout.setEnabled(true);
                 mApplyPrepaymentButton.setEnabled(true);
             } else {
