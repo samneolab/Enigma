@@ -102,23 +102,8 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initEvent() {
         mApplyPrepaymentLayout.setOnClickListener(this);
-        mMoneyPrepaymentEditText.setOnFocusChangeListener(moneyPrepaymentChangeListener);
         mMoneyPrepaymentEditText.addTextChangedListener(moneyPaymentTextWatcher);
     }
-
-    /**
-     * Handle event focus edittext
-     */
-    private View.OnFocusChangeListener moneyPrepaymentChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (hasFocus) {
-                v.setBackgroundResource(R.drawable.edittext_payment_payment_focus);
-            } else {
-                v.setBackgroundResource(R.drawable.edittext_payment_payment_normal);
-            }
-        }
-    };
 
     /**
      * Enable apply prepayment button when the text is changed

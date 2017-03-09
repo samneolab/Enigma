@@ -45,7 +45,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/user_update_information_email_address" />
 
-        <EditText
+        <com.neolab.enigma.ui.EniEditText
             android:id="@+id/user_update_information_email_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edittext_height"

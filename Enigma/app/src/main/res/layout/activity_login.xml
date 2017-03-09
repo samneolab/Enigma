@@ -60,7 +60,7 @@
                         style="@style/Eni.Login.TextView12sp"
                         android:text="@string/login_company_id" />
 
-                    <EditText
+                    <com.neolab.enigma.ui.EniEditText
                         android:id="@+id/login_company_code_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
                         android:layout_height="@dimen/login_edittext_height"
@@ -71,7 +71,7 @@
                         style="@style/Eni.Login.TextView12sp"
                         android:text="@string/login_employee_id" />
 
-                    <EditText
+                    <com.neolab.enigma.ui.EniEditText
                         android:id="@+id/login_employee_code_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
                         android:layout_height="@dimen/login_edittext_height"
@@ -82,7 +82,7 @@
                         style="@style/Eni.Login.TextView12sp"
                         android:text="@string/login_password" />
 
-                    <EditText
+                    <com.neolab.enigma.ui.EniEditText
                         android:id="@+id/login_password_editText"
                         style="@style/Eni.Login.EditText.Text15sp"
                         android:layout_height="@dimen/login_edittext_height"
@@ -113,105 +113,120 @@
                     <FrameLayout
                         android:id="@+id/login_frameLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:foreground="@drawable/button_foreground">
 
                         <Button
                             android:id="@+id/login_button"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/top_apply_for_prepayment_height"
                             android:background="@drawable/button_login"
-                            android:enabled="true"
+                            android:clickable="false"
+                            android:enabled="false"
                             android:text="@string/login"
                             android:textColor="@color/white" />
 
                     </FrameLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/login_reset_password_via_email_relativeLayout"
+                    <FrameLayout
+                        android:id="@+id/login_reset_password_via_email_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/login_text_margin_top">
+                        android:layout_marginTop="@dimen/login_text_margin_top"
+                        android:foreground="@drawable/button_foreground">
 
-                        <LinearLayout
-                            android:id="@+id/login_reset_password_via_email_linearLayout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:orientation="vertical"
-                            tools:ignore="RelativeOverlap">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                            <TextView
+                            <LinearLayout
+                                android:id="@+id/login_reset_password_via_email_linearLayout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@string/login_forgot_password"
-                                android:textColor="@color/login_textView_reset_password_via_mail"
-                                android:textSize="@dimen/text_13sp" />
+                                android:layout_centerHorizontal="true"
+                                android:orientation="vertical"
+                                tools:ignore="RelativeOverlap">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/login_forgot_password"
+                                    android:textColor="@color/login_textView_reset_password_via_mail"
+                                    android:textSize="@dimen/text_13sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/login_reset_password_via_email"
+                                    android:textColor="@color/login_textView_reset_password_via_mail"
+                                    android:textSize="@dimen/text_9sp" />
+                            </LinearLayout>
+
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@string/login_reset_password_via_email"
-                                android:textColor="@color/login_textView_reset_password_via_mail"
-                                android:textSize="@dimen/text_9sp" />
-                        </LinearLayout>
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
+                                android:layout_marginRight="@dimen/login_forgot_password_margin_right"
+                                android:layout_toLeftOf="@id/login_reset_password_via_email_linearLayout"
+                                android:layout_toStartOf="@id/login_reset_password_via_email_linearLayout"
+                                android:contentDescription="@string/image_dsc"
+                                android:src="@drawable/ic_lock_red" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
-                            android:layout_marginRight="@dimen/login_forgot_password_margin_right"
-                            android:layout_toLeftOf="@id/login_reset_password_via_email_linearLayout"
-                            android:layout_toStartOf="@id/login_reset_password_via_email_linearLayout"
-                            android:contentDescription="@string/image_dsc"
-                            android:src="@drawable/ic_lock_red" />
+                        </RelativeLayout>
+                    </FrameLayout>
 
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/login_reset_password_via_phone_relativeLayout"
+                    <FrameLayout
+                        android:id="@+id/login_reset_password_via_phone_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/login_text_margin_top">
+                        android:layout_marginTop="@dimen/login_text_margin_top"
+                        android:foreground="@drawable/button_foreground">
 
-                        <LinearLayout
-                            android:id="@+id/login_reset_password_via_phone_linearLayout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:orientation="vertical"
-                            tools:ignore="RelativeOverlap">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                            <TextView
+                            <LinearLayout
+                                android:id="@+id/login_reset_password_via_phone_linearLayout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@string/login_forgot_password"
-                                android:textColor="@color/login_textView_reset_password_via_phone"
-                                android:textSize="@dimen/text_13sp" />
+                                android:layout_centerHorizontal="true"
+                                android:orientation="vertical"
+                                tools:ignore="RelativeOverlap">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/login_forgot_password"
+                                    android:textColor="@color/login_textView_reset_password_via_phone"
+                                    android:textSize="@dimen/text_13sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/login_reset_password_via_phone"
+                                    android:textColor="@color/login_textView_reset_password_via_phone"
+                                    android:textSize="@dimen/text_9sp" />
+                            </LinearLayout>
+
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@string/login_reset_password_via_phone"
-                                android:textColor="@color/login_textView_reset_password_via_phone"
-                                android:textSize="@dimen/text_9sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
-                            android:layout_marginRight="@dimen/login_forgot_password_margin_right"
-                            android:layout_toLeftOf="@id/login_reset_password_via_phone_linearLayout"
-                            android:layout_toStartOf="@id/login_reset_password_via_phone_linearLayout"
-                            android:contentDescription="@string/image_dsc"
-                            android:src="@drawable/ic_lock_blue" />
-                    </RelativeLayout>
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="@dimen/login_forgot_password_margin_right"
+                                android:layout_marginRight="@dimen/login_forgot_password_margin_right"
+                                android:layout_toLeftOf="@id/login_reset_password_via_phone_linearLayout"
+                                android:layout_toStartOf="@id/login_reset_password_via_phone_linearLayout"
+                                android:contentDescription="@string/image_dsc"
+                                android:src="@drawable/ic_lock_blue" />
+                        </RelativeLayout>
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"

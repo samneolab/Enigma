@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.neolab.enigma.R;
 import com.neolab.enigma.activity.BaseActivity;
 import com.neolab.enigma.activity.LoginActivity;
+import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiRequest;
@@ -47,10 +48,10 @@ public class ResetPasswordViaPhoneActivity extends BaseActivity implements View.
     }
 
     private void findView() {
-        mCompanyIdEditText = (EditText) findViewById(R.id.user_reset_password_via_phone_companyId_editText);
-        mEmployeeIdEditText = (EditText) findViewById(R.id.user_reset_password_via_phone_employeeId_editText);
-        mEmployeeNameEditText = (EditText) findViewById(R.id.user_reset_password_via_phone_name_editText);
-        mPhoneNumberEditText = (EditText) findViewById(R.id.user_reset_password_via_phone_phone_number_editText);
+        mCompanyIdEditText = (EniEditText) findViewById(R.id.user_reset_password_via_phone_companyId_editText);
+        mEmployeeIdEditText = (EniEditText) findViewById(R.id.user_reset_password_via_phone_employeeId_editText);
+        mEmployeeNameEditText = (EniEditText) findViewById(R.id.user_reset_password_via_phone_name_editText);
+        mPhoneNumberEditText = (EniEditText) findViewById(R.id.user_reset_password_via_phone_phone_number_editText);
         mSendButton = (Button) findViewById(R.id.user_reset_password_via_phone_send_button);
         mSendView = findViewById(R.id.user_reset_password_via_phone_send_layout);
         mBackView = findViewById(R.id.toolbar_back_textView);

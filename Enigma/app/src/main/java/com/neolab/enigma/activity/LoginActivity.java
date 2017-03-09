@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.neolab.enigma.EniConstant;
@@ -25,6 +24,7 @@ import com.neolab.enigma.activity.user.TermServiceActivity;
 import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.user.UserDto;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniValidateUtil;
@@ -57,11 +57,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     /** Show password checkbox */
     private CheckBox mShowPasswordCheckBox;
     /** Reset password via email layout */
-    private RelativeLayout mResetPasswordViaEmailLayout;
+    private View mResetPasswordViaEmailLayout;
     /** Reset password via phone layout */
-    private RelativeLayout mResetPasswordViaPhoneLayout;
+    private View mResetPasswordViaPhoneLayout;
     /** Login Button */
     private Button mLoginButton;
+    /** Login View */
+    private View mLoginView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +106,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      */
     private void findView() {
         mTitleTextView = (TextView) findViewById(R.id.title_textView);
-        mCompanyCodeEditText = (EditText) findViewById(R.id.login_company_code_editText);
-        mEmployeeCodeEditText = (EditText) findViewById(R.id.login_employee_code_editText);
-        mEmployeePasswordEditText = (EditText) findViewById(R.id.login_password_editText);
+        mCompanyCodeEditText = (EniEditText) findViewById(R.id.login_company_code_editText);
+        mEmployeeCodeEditText = (EniEditText) findViewById(R.id.login_employee_code_editText);
+        mEmployeePasswordEditText = (EniEditText) findViewById(R.id.login_password_editText);
         mShowPasswordCheckBox = (CheckBox) findViewById(R.id.login_show_password_checkBox);
-        mResetPasswordViaEmailLayout = (RelativeLayout) findViewById(R.id.login_reset_password_via_email_relativeLayout);
-        mResetPasswordViaPhoneLayout = (RelativeLayout) findViewById(R.id.login_reset_password_via_phone_relativeLayout);
+        mResetPasswordViaEmailLayout = findViewById(R.id.login_reset_password_via_email_layout);
+        mResetPasswordViaPhoneLayout = findViewById(R.id.login_reset_password_via_phone_layout);
         mLoginButton = (Button) findViewById(R.id.login_button);
+        mLoginView = findViewById(R.id.login_frameLayout);
     }
 
     /**
@@ -119,20 +122,20 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private void initEvent() {
         mResetPasswordViaEmailLayout.setOnClickListener(this);
         mResetPasswordViaPhoneLayout.setOnClickListener(this);
-        mLoginButton.setOnClickListener(this);
+        mLoginView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login_button:
+            case R.id.login_frameLayout:
                 loginButtonClick();
                 break;
-            case R.id.login_reset_password_via_email_relativeLayout:
+            case R.id.login_reset_password_via_email_layout:
                 finish();
                 startActivity(ResetPasswordViaEmailActivity.class);
                 break;
-            case R.id.login_reset_password_via_phone_relativeLayout:
+            case R.id.login_reset_password_via_phone_layout:
                 finish();
                 startActivity(ResetPasswordViaPhoneActivity.class);
                 break;
@@ -155,8 +158,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             String employeePassword = mEmployeePasswordEditText.getText().toString();
             if (EniValidateUtil.isValidUserInfor(companyCode, employeeCode, employeePassword)) {
                 mLoginButton.setEnabled(true);
+                mLoginView.setEnabled(true);
             } else {
                 mLoginButton.setEnabled(false);
+                mLoginView.setEnabled(false);
             }
         }
 
