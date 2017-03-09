@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +19,10 @@ import android.view.Window;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
+import com.neolab.enigma.activity.BaseActivity;
+import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.HeaderDto;
+import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniLogUtil;
 
 /**
@@ -161,6 +165,16 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
+     * Navigate to stop service screen
+     */
+    protected void goStopServiceScreen(){
+        EniEncryptionUtil.resetDataForLogout(getActivity());
+        getActivity().finish();
+        startActivity(new Intent(getActivity(), UserStoppedServiceActivity.class));
+        getActivity().overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+    }
+
+    /**
      * Show dialog loading when call api
      *
      * @param context Context
@@ -170,12 +184,14 @@ public abstract class BaseFragment extends Fragment {
         if (!isShowLoading) {
             isShowLoading = true;
             synchronized (mutex) {
-                mProgressDialog = new ProgressDialog(context);
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                mProgressDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                mProgressDialog.show();
-                mProgressDialog.setContentView(R.layout.loading);
+                if (!getActivity().isFinishing()) {
+                    mProgressDialog = new ProgressDialog(context);
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    mProgressDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    mProgressDialog.show();
+                    mProgressDialog.setContentView(R.layout.loading);
+                }
             }
         }
     }
@@ -191,7 +207,9 @@ public abstract class BaseFragment extends Fragment {
                 if (mProgressDialog == null) {
                     return true;
                 }
-                mProgressDialog.dismiss();
+                if (!getActivity().isFinishing()) {
+                    mProgressDialog.dismiss();
+                }
                 return true;
             }
         }

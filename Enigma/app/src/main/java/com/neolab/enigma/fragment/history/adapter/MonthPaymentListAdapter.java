@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.ws.history.MonthPaymentDto;
+import com.neolab.enigma.util.EniLanguageUtil;
+import com.neolab.enigma.util.EniUtil;
 
 import java.util.List;
 
@@ -59,8 +61,18 @@ public class MonthPaymentListAdapter extends BaseAdapter {
         }
 
         MonthPaymentDto monthPaymentDto = (MonthPaymentDto) getItem(position);
-        viewHolder.dateApplyTextView.setText(monthPaymentDto.year + mContext.getString(R.string.history_year)
-                + monthPaymentDto.month + mContext.getString(R.string.history_month));
+        StringBuilder builder = new StringBuilder();
+        if (EniLanguageUtil.isJapanLanguage()) {
+            builder.append(monthPaymentDto.year);
+            builder.append(mContext.getString(R.string.history_year));
+            builder.append(monthPaymentDto.month);
+            builder.append(mContext.getString(R.string.history_month));
+        } else {
+            builder.append(monthPaymentDto.month);
+            builder.append(EniConstant.SLASH);
+            builder.append(monthPaymentDto.year);
+        }
+        viewHolder.dateApplyTextView.setText(builder.toString());
         return convertView;
     }
 

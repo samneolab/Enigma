@@ -26,6 +26,7 @@ import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 
@@ -172,7 +173,16 @@ public class AnnouncementListFragment extends BaseFragment {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

@@ -27,6 +27,7 @@ import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
 
 import java.util.ArrayList;
@@ -125,7 +126,16 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -205,8 +215,11 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
         if (mDateRequestParamMap.size() == 0){
             headerDto.title = getResources().getString(R.string.history_payment_this_month_title);
         } else {
-            headerDto.title = mYearRequestPayment + getActivity().getString(R.string.history_year)
-                    + mMonthRequestPayment + getActivity().getString(R.string.history_month);
+            StringBuilder builder = new StringBuilder();
+            builder.append(mMonthRequestPayment);
+            builder.append(EniConstant.SLASH);
+            builder.append(mYearRequestPayment);
+            headerDto.title = builder.toString();
         }
         headerDto.type = EniConstant.ToolbarType.DISPLAY_BACK_TITLE_DRAWER;
         return headerDto;

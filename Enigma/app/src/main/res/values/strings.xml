@@ -1,178 +1,177 @@
 <resources>
     <string name="app_name">Enigma</string>
-    <string name="back">戻る</string>
+    <string name="back">Back</string>
     <string name="image_dsc" />
 
     <!--login-->
-    <string name="login">ログイン</string>
-    <string name="login_title">ログイン情報を入力してください。</string>
-    <string name="login_company_id">企業ID（企業コード）</string>
-    <string name="login_employee_id">ID（従業員コード）</string>
-    <string name="login_password">パスワード</string>
-    <string name="login_show_password">パスワードを表示する</string>
-    <string name="login_forgot_password">パスワードを忘れた方はこちら</string>
-    <string name="login_reset_password_via_email">（メールアドレスを登録済みの方）</string>
-    <string name="login_reset_password_via_phone">（メールアドレスを登録されていない方）</string>
+    <string name="login">Login</string>
+    <string name="login_title">Please enter login information.</string>
+    <string name="login_company_id">Company ID</string>
+    <string name="login_employee_id">Employee ID</string>
+    <string name="login_password">Password</string>
+    <string name="login_show_password">Show password</string>
+    <string name="login_forgot_password">If you forgot your password, click here</string>
+    <string name="login_reset_password_via_email">(Person who registered mail address)</string>
+    <string name="login_reset_password_via_phone">(If you do not have a registered e-mail address)</string>
     <string name="login_copyright">© 2017 enigma Co.,LTD</string>
     <string name="login_id_hint">ID</string>
-    <string name="login_text_and_number_hint">半角英数字</string>
+    <string name="login_text_and_number_hint">Text And Number</string>
 
     <!-- Drawer menu item-->
-    <string name="item_top">トップへ</string>
-    <string name="item_update_profile">利用者情報</string>
-    <string name="item_logout">ログアウト</string>
+    <string name="item_top">Top</string>
+    <string name="item_update_profile">User information</string>
+    <string name="item_logout">Logout</string>
 
     <!-- Top Fragment -->
-    <string name="top_notification">お知らせ</string>
-    <string name="top_past_notification_list"><u>過去のお知らせ一覧</u></string>
-    <string name="top_urgent_notification">緊急性の高いニュースを表示します</string>
-    <string name="top_amount_prepaid_available">現在の前払い可能金額</string>
+    <string name="top_notification">Notification</string>
+    <string name="top_past_notification_list"><u>Past Announcement List</u></string>
+    <string name="top_amount_prepaid_available">Current prepayable amount</string>
     <string name="top_yen_unit">￥</string>
-    <string name="top_amount_including_system_usage_fee">システム利用料を含む金額です</string>
-    <string name="top_applying">申請中</string>
-    <string name="top_apply_for_prepayment">前払い申請をする</string>
-    <string name="top_view_history_for_this_month">今月の履歴を見る</string>
-    <string name="top_view_history_every_month">月次の履歴を見る</string>
-    <string name="top_reload_screen">画面を再読み込み</string>
+    <string name="top_amount_including_system_usage_fee">Amount including system usage fee</string>
+    <string name="top_applying">Applying</string>
+    <string name="top_apply_for_prepayment">Apply for prepayment</string>
+    <string name="top_view_history_for_this_month">View history of this month</string>
+    <string name="top_view_history_every_month">View monthly history</string>
+    <string name="top_reload_screen">Reload</string>
     <string name="top_close">X</string>
-    <string name="top_there_is_no_notification">お知らせはありません。</string>
+    <string name="top_there_is_no_notification">Announcement is blank</string>
 
     <!-- Payment Fragment -->
-    <string name="payment_title">前払い申請</string>
-    <string name="payment_fill_money_apply">申請する金額をご記入ください。</string>
-    <string name="payment_amount">申請金額</string>
-    <string name="payment_yen">,000円</string>
-    <string name="payment_prepayment_application_amount">＊前払い申請金額は1,000円単位となります。</string>
-    <string name="payment_apply">申請する</string>
+    <string name="payment_title">Prepay application</string>
+    <string name="payment_fill_money_apply">Please fill in the amount to apply.</string>
+    <string name="payment_amount">Application amount</string>
+    <string name="payment_yen">,000yen</string>
+    <string name="payment_prepayment_application_amount">＊Prepaid application amount is in units of 1,000 yen.</string>
+    <string name="payment_apply">Apply</string>
 
     <!-- Confirm Payment Fragment -->
-    <string name="confirm_payment_confirm_apply_prepayment">この内容で申請しますか？</string>
-    <string name="confirm_payment_please_check_information">下記の内容についてご確認ください。</string>
-    <string name="confirm_payment_amount">申請金額</string>
-    <string name="confirm_payment_fee_usage_system">システム利用料</string>
-    <string name="confirm_payment_yen">円</string>
-    <string name="confirm_payment_apply">申請する</string>
-    <string name="confirm_payment_prepayment_amount_exceeded">前払い可能金額を超過しています。</string>
+    <string name="confirm_payment_confirm_apply_prepayment">Are you sure for applying?</string>
+    <string name="confirm_payment_please_check_information">Please check this content.</string>
+    <string name="confirm_payment_amount">Application amount</string>
+    <string name="confirm_payment_fee_usage_system">System usage fee</string>
+    <string name="confirm_payment_yen">yen</string>
+    <string name="confirm_payment_apply">Apply</string>
+    <string name="confirm_payment_prepayment_amount_exceeded">The amount of prepayable fee is exceeded.</string>
 
     <!-- Complete payment fragment -->
-    <string name="complete_payment_application_was_accepted">申請を受け付けました。</string>
-    <string name="complete_payment_reduce_next_salary">次回給与控除額</string>
+    <string name="complete_payment_application_was_accepted">Application for acceptance has been completed</string>
+    <string name="complete_payment_reduce_next_salary">Next salary deduction</string>
 
     <!-- History fragment-->
-    <string name="history_payment_this_month_title">今月の履歴</string>
-    <string name="history_total_salary_deduction">給与控除額合計</string>
-    <string name="history_salary_deduction">給与控除額</string>
-    <string name="history_date_request">申請日:</string>
-    <string name="history_view_monthly_history">月次の履歴を見る</string>
-    <string name="history_reload_screen">画面を再読み込み</string>
+    <string name="history_payment_this_month_title">History of this month</string>
+    <string name="history_total_salary_deduction">Total salary deduction</string>
+    <string name="history_salary_deduction">Salary deduction</string>
+    <string name="history_date_request">Application date:</string>
+    <string name="history_view_monthly_history">View monthly history</string>
+    <string name="history_reload_screen">Reload</string>
     <string name="history_year">年</string>
     <string name="history_month">月</string>
-    <string name="history_payment_every_month_title">月次の履歴</string>
+    <string name="history_payment_every_month_title">Monthly history</string>
 
     <!-- Detail history payment fragment -->
-    <string name="detail_history_title">申請詳細</string>
-    <string name="detail_history_please_check_content">申請内容をご確認ください。</string>
-    <string name="detail_history_date_apply">申請日:</string>
-    <string name="detail_history_withdraw_request">申請を取り下げる</string>
-    <string name="detail_history_i_will_do_processing">処理を実行致しますがよろしいですか。</string>
+    <string name="detail_history_title">Application details</string>
+    <string name="detail_history_please_check_content">Please check the application content</string>
+    <string name="detail_history_date_apply">Application date:</string>
+    <string name="detail_history_withdraw_request">Withdrawal application</string>
+    <string name="detail_history_i_will_do_processing">Process will be excecuted.</string>
 
     <!-- Complete withdraw payment fragment -->
-    <string name="complete_withdraw_payment_title">前払い申請完了</string>
-    <string name="complete_withdraw_payment_we_withdrew_the_prepayment">前払い申請を取り下げました。</string>
+    <string name="complete_withdraw_payment_title">Prepayment application complete</string>
+    <string name="complete_withdraw_payment_we_withdrew_the_prepayment">The prepayment application was withdrawn.</string>
 
     <!-- Dialog -->
-    <string name="cancel">キャンセル</string>
+    <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
 
     <!-- User update information fragment -->
-    <string name="user_update_information_title">利用者情報修正</string>
-    <string name="user_update_information_please_fill_contents">下記の内容をご記入ください。</string>
-    <string name="user_update_information_name">お名前</string>
-    <string name="user_update_information_email_address">メールアドレス</string>
-    <string name="user_update_information_update">修正する</string>
-    <string name="user_update_information_stop_using_service">サービスの利用を停止する</string>
+    <string name="user_update_information_title">Edit user information</string>
+    <string name="user_update_information_please_fill_contents">Please fill in the following contents.</string>
+    <string name="user_update_information_name">Name</string>
+    <string name="user_update_information_email_address">Email address</string>
+    <string name="user_update_information_update">Edit</string>
+    <string name="user_update_information_stop_using_service">Stop using service</string>
 
     <!-- User stop using service -->
-    <string name="user_stop_service_title">サービス利用停止</string>
-    <string name="user_stop_service_we_will_stop_service">サービスの利用を停止します。</string>
-    <string name="user_stop_service_confirm_content_stop_service">下記の内容をお読みになり、次へお進みください。</string>
+    <string name="user_stop_service_title">Stop using service</string>
+    <string name="user_stop_service_we_will_stop_service">We will stop your service.</string>
+    <string name="user_stop_service_confirm_content_stop_service">Please read the following contents and proceed to the next.</string>
     <string name="user_stop_service_contract">サービスの利用を停止すると、本サイトへのログインができなくなるため、
         前払い申請を含む全ての機能が利用できなくなります。上記ご認識の上、サービスの利用を停止される方は「同意してサービ
         スを停止する」にチェックをいれて「次へ」ボタンをクリックしてください。</string>
-    <string name="user_stop_service_agree_stop_service">同意してサービスを停止する</string>
-    <string name="user_stop_service_next">次へ</string>
+    <string name="user_stop_service_agree_stop_service">Agree to stop service</string>
+    <string name="user_stop_service_next">Next</string>
 
     <!-- User stop service detail-->
-    <string name="user_stop_service_detail_will_stop_service">サービスの利用を停止します。</string>
-    <string name="user_stop_service_detail_are_you_sure">本当によろしいですか？</string>
-    <string name="user_stop_service_detail_password">パスワード</string>
-    <string name="user_stop_service_detail_stop_using">利用を停止する</string>
+    <string name="user_stop_service_detail_will_stop_service">We will stop your service.</string>
+    <string name="user_stop_service_detail_are_you_sure">Are you sure?</string>
+    <string name="user_stop_service_detail_password">Password</string>
+    <string name="user_stop_service_detail_stop_using">Stop using</string>
 
     <!-- User complete stop using service -->
-    <string name="user_complete_stop_service_thank_using">ご利用ありがとうございました。</string>
-    <string name="user_complete_stop_service_stopped_service">サービスの利用を停止し、</string>
-    <string name="user_complete_stop_service_logged_out">ログアウトしました。</string>
-    <string name="user_complete_stop_service_go_login_screen">ログイン画面へ</string>
+    <string name="user_complete_stop_service_thank_using">Thank you for using</string>
+    <string name="user_complete_stop_service_stopped_service">Stop using the service,</string>
+    <string name="user_complete_stop_service_logged_out">You have logged out</string>
+    <string name="user_complete_stop_service_go_login_screen">To the login screen</string>
 
     <!-- User stopped service activity -->
-    <string name="user_stopped_service_title">停止したサービス</string>
-    <string name="user_stopped_service_login_error">ログインエラー</string>
-    <string name="user_stopped_service_no_register">アカウントの登録がありません。</string>
-    <string name="user_stopped_service_please_confirm_setting">勤務先での設定が完了しているかご確認ください。</string>
+    <string name="user_stopped_service_title">Stoped service</string>
+    <string name="user_stopped_service_login_error">Login error</string>
+    <string name="user_stopped_service_no_register">This account has not been registered yet.</string>
+    <string name="user_stopped_service_please_confirm_setting">Please confirm whether setting at your workplace is completed.</string>
 
     <!-- Account pending activity -->
-    <string name="user_account_pending_title">承認待ち</string>
-    <string name="user_account_pending_notice">お知らせ</string>
-    <string name="user_account_pending_dont_permission_service">サービスを使用する権限がありません。</string>
+    <string name="user_account_pending_title">Waiting for approval</string>
+    <string name="user_account_pending_notice">Notification</string>
+    <string name="user_account_pending_dont_permission_service">You do not have permission to use the service.</string>
 
     <!-- User term service activity -->
-    <string name="user_term_service_title">利用規約</string>
-    <string name="user_term_service_title_1">ご利用いただくにあたり下記の内容を。</string>
-    <string name="user_term_service_title_2">ご確認いただき、ご利用開始を押下ください。</string>
-    <string name="user_term_service_content">ご確認いただき、ご利用開始を押下ください。</string>
-    <string name="user_term_service_i_agree_with_term">利用規約に同意する</string>
-    <string name="user_term_service_agree_using">ご利用開始</string>
+    <string name="user_term_service_title">Terms of service</string>
+    <string name="user_term_service_title_1">In order to use the following contents.</string>
+    <string name="user_term_service_title_2">Please confirm and press start of use.</string>
+    <string name="user_term_service_content">Please confirm and press start of use.</string>
+    <string name="user_term_service_i_agree_with_term">I agree with the Terms &amp; Conditions.</string>
+    <string name="user_term_service_agree_using">Start using</string>
 
     <!-- User confirmation account-->
-    <string name="user_account_confirmation_title">利用者情報</string>
-    <string name="user_account_confirmation_information">下記の内容をご記入ください。</string>
-    <string name="user_account_confirmation_name">お名前</string>
-    <string name="user_account_confirmation_email">メールアドレス</string>
-    <string name="user_account_confirmation_password">パスワード</string>
-    <string name="user_account_confirmation_password_confirm">パスワード（再入力）</string>
-    <string name="user_account_confirmation_show_password">パスワードを表示する</string>
-    <string name="user_account_confirmation_start_using">利用を開始する</string>
+    <string name="user_account_confirmation_title">User information</string>
+    <string name="user_account_confirmation_information">Please fill in the following contents.</string>
+    <string name="user_account_confirmation_name">Name</string>
+    <string name="user_account_confirmation_email">Email address</string>
+    <string name="user_account_confirmation_password">Password</string>
+    <string name="user_account_confirmation_password_confirm">Password confirmation</string>
+    <string name="user_account_confirmation_show_password">Show password</string>
+    <string name="user_account_confirmation_start_using">Start using</string>
 
     <!-- User complete register -->
-    <string name="user_register_complete_title">登録完了</string>
-    <string name="user_register_complete_thank_for_register">ご登録ありがとうございました。</string>
-    <string name="user_register_complete_user_information_has_completed">利用者情報の登録が完了しました。</string>
-    <string name="user_register_complete_please_login">下記よりログインしてご利用ください。</string>
+    <string name="user_register_complete_title">Registration completion</string>
+    <string name="user_register_complete_thank_for_register">Thank you for registering.</string>
+    <string name="user_register_complete_user_information_has_completed">Registration of user information has been completed.</string>
+    <string name="user_register_complete_please_login">Please log in from below and use.</string>
 
     <!-- User reset password via email activity -->
-    <string name="user_reset_password_via_email_title">パスワードを忘れた方</string>
-    <string name="user_reset_password_via_email_register_your_email">メールアドレスを登録済みの方は、</string>
-    <string name="user_reset_password_via_email_update_user_info_title">下記の内容をご記入ください。</string>
-    <string name="user_reset_password_via_email_send">送信する</string>
+    <string name="user_reset_password_via_email_title">For those who have forgotten their password</string>
+    <string name="user_reset_password_via_email_register_your_email">If you are registering an email address</string>
+    <string name="user_reset_password_via_email_update_user_info_title">Please fill in the following contents.</string>
+    <string name="user_reset_password_via_email_send">Send</string>
 
     <!-- User reset password via email complete activity -->
-    <string name="user_reset_password_via_email_complete_title">パスワードを忘れた方</string>
-    <string name="user_reset_password_via_email_complete_sent">送信しました。</string>
-    <string name="user_reset_password_via_email_complete_sent_to_email">ご入力いただきましたメールアドレス宛に送信しました。</string>
-    <string name="user_reset_password_via_email_complete_please_check">ご確認よろしくお願いいたします。</string>
+    <string name="user_reset_password_via_email_complete_title">For those who have forgotten their password</string>
+    <string name="user_reset_password_via_email_complete_sent">Sent</string>
+    <string name="user_reset_password_via_email_complete_sent_to_email">Sent to the email address you entered.</string>
+    <string name="user_reset_password_via_email_complete_please_check">Thank you in advance.</string>
 
     <!-- User reset password via phone number activity -->
-    <string name="user_reset_password_via_phone_title">パスワードを忘れた方</string>
-    <string name="user_reset_password_via_phone_dont_register_email">メールアドレスをご登録されていない方は、</string>
-    <string name="user_reset_password_via_phone_fill_content">下記の内容をご記入ください。</string>
-    <string name="user_reset_password_via_phone_name">お名前</string>
-    <string name="user_reset_password_via_phone_name_hint">氏名</string>
-    <string name="user_reset_password_via_phone_phone_number">電話番号</string>
+    <string name="user_reset_password_via_phone_title">For those who have forgotten their password</string>
+    <string name="user_reset_password_via_phone_dont_register_email">If you do not have an email address registered</string>
+    <string name="user_reset_password_via_phone_fill_content">Please fill in the following contents.</string>
+    <string name="user_reset_password_via_phone_name">Name</string>
+    <string name="user_reset_password_via_phone_name_hint">Name</string>
+    <string name="user_reset_password_via_phone_phone_number">Phone number</string>
 
     <!-- User reset password via phone number complete activity -->
-    <string name="user_reset_password_via_phone_complete_title">送信完了</string>
-    <string name="user_reset_password_via_phone_complete_send">送信しました。</string>
-    <string name="user_reset_password_via_phone_complete_check_content">ご入力いただきました内容をご確認ください。</string>
-    <string name="user_reset_password_via_phone_complete_go_login">ログイン画面へ</string>
+    <string name="user_reset_password_via_phone_complete_title">Sent completely</string>
+    <string name="user_reset_password_via_phone_complete_send">Sent</string>
+    <string name="user_reset_password_via_phone_complete_check_content">Please check the contents you entered.</string>
+    <string name="user_reset_password_via_phone_complete_go_login">To the login screen</string>
 
 </resources>

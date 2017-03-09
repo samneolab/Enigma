@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
+import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
@@ -29,9 +30,11 @@ import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.login.LoginErrorResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 
 import java.util.ArrayList;
@@ -229,7 +232,16 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -254,10 +266,19 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
                 mUrgentNotificationFrameLayout.setVisibility(View.GONE);
-                if (BuildConfig.DEBUG) {
-                    EniLogUtil.d(getClass(), "[getEmergencyAnnouncement] " + apiError.getError());
+                if (getActivity().isFinishing()) {
+                    return;
                 }
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -285,7 +306,19 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                if (getActivity().isFinishing()) {
+                    return;
+                }
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -324,10 +357,19 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                if (BuildConfig.DEBUG) {
-                    EniLogUtil.d(getClass(), "[failure]getAnnouncementList " + apiError.getError());
+                if (getActivity().isFinishing()) {
+                    return;
                 }
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

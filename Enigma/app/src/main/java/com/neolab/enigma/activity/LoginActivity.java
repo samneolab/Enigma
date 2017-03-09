@@ -197,7 +197,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     return;
                 }
                 // User stopped service or account don't approve
-                if (body.code == ApiCode.USER_STOPPED_SERVICE_OR_ACCOUNT_UNAPPROVE) {
+                if (body.code == ApiCode.ACCOUNT_UNAPPROVE || body.code == ApiCode.USER_STOPPED_SERVICE) {
                     LoginErrorResponse errorResponse = (LoginErrorResponse) retrofitError.getBodyAs(LoginErrorResponse.class);
                     transferScreen(errorResponse.loginStateResponse.status);
                 } else {

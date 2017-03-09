@@ -90,7 +90,7 @@ public class TermServiceActivity extends BaseActivity implements View.OnClickLis
                 if (termUsingServiceResponse == null) {
                     return;
                 }
-                String youtContentStr = String.valueOf(Html
+                String termAndCondition = String.valueOf(Html
                         .fromHtml("<![CDATA[<body>"
                                 + termUsingServiceResponse.data.pageContent
                                 + "</body>]]>"));
@@ -101,7 +101,7 @@ public class TermServiceActivity extends BaseActivity implements View.OnClickLis
                     webSettings.setAllowFileAccessFromFileURLs(true);
                     webSettings.setAllowUniversalAccessFromFileURLs(true);
                 }
-                mTermAndConditionWebView.loadData(youtContentStr, "text/html; charset=UTF-8", null);
+                mTermAndConditionWebView.loadData(termAndCondition, "text/html; charset=UTF-8", null);
             }
         });
     }

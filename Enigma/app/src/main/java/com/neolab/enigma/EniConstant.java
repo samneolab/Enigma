@@ -66,6 +66,8 @@ public class EniConstant {
     public static final String LARGE_SPACE = "  ";
     /** Empty */
     public static final String EMPTY = "";
+    /** Slash */
+    public static final String SLASH = "/";
 
     /** Number announcement item per page*/
     public static final int NUMBER_ANNOUNCEMENT_PER_PAGE = 15;
@@ -76,6 +78,7 @@ public class EniConstant {
     /** User agree with terms and conditions number */
     public static final int USER_AGREE_WITH_TERM_NUMBER = 1;
 
+    /** Default data share preference */
     public static final String TOKEN_DEFAULT = EMPTY;
     public static final String USER_ID_DEFAULT = EMPTY;
     public static final int USER_STATUS_DEFAULT = UserStatus.NONE_MEMBER;

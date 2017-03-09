@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
@@ -106,8 +107,17 @@ public class StopServiceDetailFragment extends BaseFragment implements View.OnCl
                 if (retrofitError == null) {
                     return;
                 }
+
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
-                EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), body.message, getClass().getName());
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen();
+                } else {
+                    EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), body.message, getClass().getName());
+                }
             }
 
             @Override

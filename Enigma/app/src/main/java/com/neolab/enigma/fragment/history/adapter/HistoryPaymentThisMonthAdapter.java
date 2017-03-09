@@ -96,16 +96,16 @@ public class HistoryPaymentThisMonthAdapter extends BaseAdapter {
         viewHolder.statusPaymentTextView.setText(salaryRequestDto.statusRequestDto.name);
         StringBuilder requestInform;
         requestInform = new StringBuilder();
-        requestInform.append(mContext.getResources().getString(R.string.top_yen_unit));
-        requestInform.append(EniFormatUtil.convertMoneyFormat(salaryRequestDto.amountOfSalary));
-        requestInform.append(EniConstant.SPACE);
-        requestInform.append(EniConstant.PARENTHESIS_START);
-        requestInform.append(mContext.getString(R.string.history_salary_deduction));
-        requestInform.append(EniConstant.SPACE);
+//        requestInform.append(mContext.getResources().getString(R.string.top_yen_unit));
+//        requestInform.append(EniFormatUtil.convertMoneyFormat(salaryRequestDto.amountOfSalary));
+//        requestInform.append(EniConstant.SPACE);
+//        requestInform.append(EniConstant.PARENTHESIS_START);
+//        requestInform.append(mContext.getString(R.string.history_salary_deduction));
+//        requestInform.append(EniConstant.SPACE);
         requestInform.append(mContext.getResources().getString(R.string.top_yen_unit));
         requestInform.append(EniConstant.SPACE);
         requestInform.append(EniFormatUtil.convertMoneyFormat(salaryRequestDto.total));
-        requestInform.append(EniConstant.PARENTHESIS_END);
+//        requestInform.append(EniConstant.PARENTHESIS_END);
         viewHolder.requestInformTextView.setText(requestInform.toString());
         viewHolder.dateRequestTextView.setText(mContext.getString(R.string.history_date_request)
                 + EniConstant.LARGE_SPACE + salaryRequestDto.appliedDate);

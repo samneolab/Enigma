@@ -12,7 +12,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniLanguageUtil;
 import com.neolab.enigma.util.EniLogUtil;
+import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiService;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -58,7 +60,7 @@ public final class ApiClient {
             if (!TextUtils.isEmpty(accessToken)) {
                 request.addHeader(HEADER_AUTH, AUTH_PREFIX + accessToken);
             }
-            request.addHeader(HEADER_LANGUAGE, "ja");
+            request.addHeader(HEADER_LANGUAGE, EniLanguageUtil.getPrefixDeviceLanguage());
         }
     };
 

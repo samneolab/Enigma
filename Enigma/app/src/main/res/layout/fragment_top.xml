@@ -51,7 +51,6 @@
                         android:drawableLeft="@drawable/ic_urgent"
                         android:drawablePadding="@dimen/top_urgent_notification_padding_right"
                         android:drawableStart="@drawable/ic_urgent"
-                        android:text="@string/top_urgent_notification"
                         android:textColor="@color/top_urgent_notification" />
 
                     <ImageView
@@ -315,7 +314,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -324,9 +323,12 @@
                             android:background="@drawable/top_pending_text"
                             android:paddingBottom="6dp"
                             android:paddingLeft="8dp"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
                             android:paddingRight="8dp"
                             android:paddingTop="6dp"
                             android:text="@string/top_applying"
+                            android:textSize="@dimen/text_12sp"
                             android:textColor="@color/white" />
 
                         <LinearLayout

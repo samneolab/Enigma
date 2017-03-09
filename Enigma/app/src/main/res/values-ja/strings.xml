@@ -4,8 +4,8 @@
     <string name="image_dsc" />
 
     <!--login-->
-    <string name="login">Login</string>
-    <string name="login_title">Please enter login information.</string>
+    <string name="login">ログイン</string>
+    <string name="login_title">ログイン情報を入力してください。</string>
     <string name="login_company_id">企業ID（企業コード）</string>
     <string name="login_employee_id">ID（従業員コード）</string>
     <string name="login_password">パスワード</string>
@@ -25,10 +25,9 @@
     <!-- Top Fragment -->
     <string name="top_notification">お知らせ</string>
     <string name="top_past_notification_list"><u>過去のお知らせ一覧</u></string>
-    <string name="top_urgent_notification">緊急性の高いニュースを表示します</string>
     <string name="top_amount_prepaid_available">現在の前払い可能金額</string>
     <string name="top_yen_unit">￥</string>
-    <string name="top_amount_including_system_usage_fee">システム利用料を含む金額です</string>
+    <string name="top_amount_including_system_usage_fee">内システム利用料を含む金額です</string>
     <string name="top_applying">申請中</string>
     <string name="top_apply_for_prepayment">前払い申請をする</string>
     <string name="top_view_history_for_this_month">今月の履歴を見る</string>
