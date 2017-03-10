@@ -71,10 +71,8 @@ public class EncryptionPreference extends BasePreference {
      * @return true if user login, otherwise false
      */
     public boolean isLogin() {
-        if (StringUtil.isNotBlank(userId) && StringUtil.isNotBlank(token)
-                && loginStatusCode == EniConstant.UserStatus.MEMBER) {
-            return true;
-        }
-        return false;
+        return (StringUtil.isNotBlank(userId)
+                && StringUtil.isNotBlank(token)
+                && loginStatusCode == EniConstant.UserStatus.MEMBER);
     }
 }

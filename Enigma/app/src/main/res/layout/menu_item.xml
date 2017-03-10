@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/drawer_item_padding_top"
+    android:paddingBottom="12dp"
     android:paddingEnd="@dimen/drawer_item_padding_left"
     android:paddingLeft="@dimen/drawer_item_padding_left"
     android:paddingRight="@dimen/drawer_item_padding_left"
     android:paddingStart="@dimen/drawer_item_padding_left"
-    android:paddingTop="@dimen/drawer_item_padding_top">
+    android:paddingTop="12dp">
 
     <ImageView
         android:id="@+id/drawer_item_icon_imageView"
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/drawer_item_title_margin_left"
+        android:textSize="@dimen/text_15sp"
         android:layout_marginStart="@dimen/drawer_item_title_margin_left"
         android:layout_weight="1"
         android:maxLines="1"

@@ -149,7 +149,7 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
                 DetailPaymentDto detailPaymentDto = detailPaymentResponse.data;
                 mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
                         + EniConstant.SPACE + EniFormatUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
-                mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.amountOfSalary));
+                mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.total));
                 mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.totalFee));
             }
         });

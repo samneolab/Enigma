@@ -51,8 +51,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     /** Drawer layout */
     private DrawerLayout mDrawerLayout;
-    /** ListView include menu item */
-    private ListView mDrawerListView;
     /** Toolbar */
     private Toolbar mToolbar;
     private View mBackTextView;
@@ -90,13 +88,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initDrawer() {
         mMenuDrawerImageView = findViewById(R.id.toolbar_menu_drawer_imageView);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerListView = (ListView) findViewById(R.id.drawer_listView);
+        /* ListView include menu item */
+        ListView drawerListView = (ListView) findViewById(R.id.drawer_listView);
         final LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = inflater.inflate(R.layout.nav_header_main, null, false);
         DrawerAdapter adapter = new DrawerAdapter(this, getMenuItemDto());
-        mDrawerListView.addHeaderView(headerView, null, true);
-        mDrawerListView.setAdapter(adapter);
-        mDrawerListView.setOnItemClickListener(onItemClickListener);
+        drawerListView.addHeaderView(headerView, null, true);
+        drawerListView.setAdapter(adapter);
+        drawerListView.setOnItemClickListener(onItemClickListener);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @SuppressLint("RtlHardcoded")

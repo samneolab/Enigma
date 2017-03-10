@@ -90,6 +90,7 @@
     <string name="user_update_information_email_address">メールアドレス</string>
     <string name="user_update_information_update">修正する</string>
     <string name="user_update_information_stop_using_service">サービスの利用を停止する</string>
+    <string name="user_update_information_current_password">現在のパスワード</string>
 
     <!-- User stop using service -->
     <string name="user_stop_service_title">サービス利用停止</string>

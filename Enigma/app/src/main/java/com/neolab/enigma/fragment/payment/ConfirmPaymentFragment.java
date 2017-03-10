@@ -43,7 +43,6 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     private View mPrepaymentAmountExceededTextView;
     private FrameLayout mApplyPaymentLayout;
 
-    private SalaryDto mSalaryDto;
     private int mAmountSalaryPrepayment;
 
     @Override
@@ -70,11 +69,11 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     protected void initData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mSalaryDto = bundle.getParcelable(KEY_FEE);
+            SalaryDto salaryDto = bundle.getParcelable(KEY_FEE);
             mAmountSalaryPrepayment = Integer.parseInt(bundle.getString(KEY_AMOUNT_MONEY_PAYMENT)) * 1000;
             mAmountSalaryPrepaymentTextView.setText(EniFormatUtil.convertMoneyFormat(mAmountSalaryPrepayment));
-            mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(EniUtil.getFeeUsageSystem(mSalaryDto, mAmountSalaryPrepayment)));
-            if (mAmountSalaryPrepayment <= mSalaryDto.maxPayment) {
+            mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(EniUtil.getFeeUsageSystem(salaryDto, mAmountSalaryPrepayment)));
+            if (mAmountSalaryPrepayment <= salaryDto.maxPayment) {
                 mPrepaymentAmountExceededTextView.setVisibility(View.GONE);
                 mApplyPaymentLayout.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(getResources().getString(R.string.confirm_payment_confirm_apply_prepayment));

@@ -14,10 +14,7 @@ public class StringUtil {
      * @return true if data is blank, otherwise false
      */
     public static boolean isBlank(String message) {
-        if (message == null || message.isEmpty()) {
-            return true;
-        }
-        return false;
+        return (message == null || message.isEmpty());
     }
 
     /**
@@ -27,9 +24,6 @@ public class StringUtil {
      * @return true if data is blank, otherwise false
      */
     public static boolean isNotBlank(String message) {
-        if (message != null && !message.isEmpty()) {
-            return true;
-        }
-        return false;
+        return (message != null && !message.isEmpty());
     }
 }

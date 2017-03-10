@@ -25,6 +25,8 @@ import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static android.text.Html.fromHtml;
+
 /**
  * Display term and condition using service
  *
@@ -90,12 +92,11 @@ public class TermServiceActivity extends BaseActivity implements View.OnClickLis
                 if (termUsingServiceResponse == null) {
                     return;
                 }
-                String termAndCondition = String.valueOf(Html
-                        .fromHtml("<![CDATA[<body>"
+                String termAndCondition = String.valueOf(
+                        fromHtml("<![CDATA[<body>"
                                 + termUsingServiceResponse.data.pageContent
                                 + "</body>]]>"));
                 WebSettings webSettings = mTermAndConditionWebView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
                 webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
                 if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     webSettings.setAllowFileAccessFromFileURLs(true);

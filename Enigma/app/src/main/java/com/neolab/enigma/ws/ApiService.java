@@ -85,7 +85,7 @@ public interface ApiService {
     @PUT("/employee")
     @FormUrlEncoded
     void updateUserInformation(@Field(ApiParameter.EMAIL) String email, @Field(ApiParameter.IS_GETTING_ANNOUNCEMENT) int isGettingAnnouncement,
-                               ApiCallback<UserUpdateInforResponse> callback);
+                               @Field(ApiParameter.CURRENT_PASSWORD) String currentPassword, ApiCallback<UserUpdateInforResponse> callback);
 
     @FormUrlEncoded
     @POST("/employee/stop-service")

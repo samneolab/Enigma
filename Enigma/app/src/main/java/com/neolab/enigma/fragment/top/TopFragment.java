@@ -266,8 +266,10 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
                 mUrgentNotificationFrameLayout.setVisibility(View.GONE);
-                if (getActivity().isFinishing()) {
-                    return;
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
                 }
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 if (body == null) {
@@ -306,8 +308,10 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                if (getActivity().isFinishing()) {
-                    return;
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
                 }
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 if (body == null) {
@@ -357,8 +361,10 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                if (getActivity().isFinishing()) {
-                    return;
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
                 }
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 if (body == null) {

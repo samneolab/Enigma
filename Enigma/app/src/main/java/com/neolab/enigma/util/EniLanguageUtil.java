@@ -31,9 +31,6 @@ public class EniLanguageUtil {
      * @return true if language is Japan, otherwise false
      */
     public static boolean isJapanLanguage(){
-        if (Locale.getDefault().getDisplayLanguage().equals(JAPAN_LANGUAGE)){
-            return true;
-        }
-        return false;
+        return Locale.getDefault().getDisplayLanguage().equals(JAPAN_LANGUAGE);
     }
 }

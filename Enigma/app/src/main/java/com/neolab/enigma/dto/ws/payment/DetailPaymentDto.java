@@ -22,7 +22,7 @@ public class DetailPaymentDto {
     @SerializedName("total_fee")
     public int totalFee;
     @Expose
-    public long total;
+    public int total;
     @Expose
     public int status;
     @Expose

@@ -17,6 +17,7 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.fragment.BaseFragment;
 import com.neolab.enigma.util.EniDialogUtil;
+import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
@@ -126,6 +127,7 @@ public class StopServiceDetailFragment extends BaseFragment implements View.OnCl
                 if (stopServiceResponse == null){
                     return;
                 }
+                EniEncryptionUtil.resetDataForLogout(getActivity());
                 CompleteStopServiceFragment topFragment = new CompleteStopServiceFragment();
                 replaceFragment(topFragment, false);
             }

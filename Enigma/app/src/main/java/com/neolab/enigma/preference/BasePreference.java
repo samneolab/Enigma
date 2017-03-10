@@ -39,7 +39,7 @@ public abstract class BasePreference {
     /**
      * Initial
      */
-    protected synchronized void init() {
+    synchronized void init() {
         preference = context.getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE);
         editor = preference.edit();
         getData(preference);

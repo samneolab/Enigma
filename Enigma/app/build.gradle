@@ -11,10 +11,64 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+                def signFile = file("../app/keystore.properties")
+                def signingProps = new Properties()
+                signingProps.load(new FileInputStream(signFile))
+
+                storeFile file("../keystore/neo-enigma-release.jks")
+                storePassword signingProps['storePassword']
+                keyAlias signingProps['keyAlias']
+                keyPassword signingProps['keyPassword']
+        }
+        debug {
+//            storeFile file("../keystore/debug.jks")
+        }
+    }
+
+    defaultPublishConfig "debug"
     buildTypes {
+        debug.initWith(buildTypes.debug)
+        vndebug.initWith(buildTypes.debug)
+
         release {
             minifyEnabled false
+            debuggable=false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //noinspection GroovyAssignabilityCheck
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            applicationVariants.all { variant ->
+                appendVersionNameVersionCode(variant, defaultConfig)
+            }
+            //noinspection GroovyAssignabilityCheck
+            signingConfig signingConfigs.debug
+        }
+    }
+    lintOptions {
+        abortOnError false
+        lintConfig file('lint.xml')
+    }
+}
+
+@SuppressWarnings("GroovyAssignabilityCheck")
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    variant.outputs.each { output ->
+        if (variant.buildType.name == android.buildTypes.debug.name) {
+            if (output.zipAlign) {
+                def file = output.outputFile
+                output.outputFile = new File(file.parentFile, variant.buildType.name + "_" + defaultConfig.applicationId + "_v" + defaultConfig.versionName + "." + defaultConfig.versionCode + ".apk")
+            }
+        } else if (variant.buildType.name == android.buildTypes.release.name) {
+            if (output.zipAlign) {
+                def file = output.outputFile
+                output.outputFile = new File(file.parentFile, variant.buildType.name + "_" + defaultConfig.applicationId + "_v" + defaultConfig.versionName + "." + defaultConfig.versionCode + ".apk")
+            }
         }
     }
 }
@@ -24,7 +78,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
 
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'

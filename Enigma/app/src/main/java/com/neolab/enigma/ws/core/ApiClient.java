@@ -20,6 +20,11 @@ import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
+
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -38,7 +43,7 @@ public final class ApiClient {
     private static final String HEADER_AUTH = "Authorization";
     private static final String HEADER_LANGUAGE = "language";
     private static final String AUTH_PREFIX = "Bearer ";
-    private static final int TIMEOUT_CONNECTION = 5;
+    private static final int TIMEOUT_CONNECTION = 60;
 
     @SuppressLint("StaticFieldLeak")
     private static ApiClient sInstance;
@@ -98,6 +103,13 @@ public final class ApiClient {
         okHttpClient.setConnectTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
         okHttpClient.setReadTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
         okHttpClient.setWriteTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
+        okHttpClient.setHostnameVerifier(new HostnameVerifier() {
+            @SuppressLint("BadHostnameVerifier")
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        });
 
         // RestAdapter
         RestAdapter restAdapter = new RestAdapter.Builder()

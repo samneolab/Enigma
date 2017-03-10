@@ -90,6 +90,7 @@
     <string name="user_update_information_email_address">Email address</string>
     <string name="user_update_information_update">Edit</string>
     <string name="user_update_information_stop_using_service">Stop using service</string>
+    <string name="user_update_information_current_password">Current password</string>
 
     <!-- User stop using service -->
     <string name="user_stop_service_title">Stop using service</string>

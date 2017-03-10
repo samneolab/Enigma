@@ -174,8 +174,8 @@ public final class ApiRequest {
      * @param isGettingAnnouncement set value that get from get user information api
      * @param callback user information response
      */
-    public static void updateUserInformation(String email, int isGettingAnnouncement, ApiCallback<UserUpdateInforResponse> callback){
-        ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, callback);
+    public static void updateUserInformation(String email, int isGettingAnnouncement, String currentPassword, ApiCallback<UserUpdateInforResponse> callback){
+        ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, currentPassword, callback);
     }
 
     /**
