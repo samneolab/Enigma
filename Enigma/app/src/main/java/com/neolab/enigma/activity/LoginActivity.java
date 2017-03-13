@@ -69,10 +69,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if (EniEncryptionUtil.isLogin(this)) {
-            finish();
-            startActivity(MainActivity.class);
-        }
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         findView();
