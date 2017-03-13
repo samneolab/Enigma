@@ -111,7 +111,7 @@ public class ResetPasswordViaPhoneActivity extends BaseActivity implements View.
                 String companyCode = mCompanyIdEditText.getText().toString().trim();
                 String employeeCode = mEmployeeIdEditText.getText().toString().trim();
                 String employeeName = mEmployeeNameEditText.getText().toString().trim();
-                int phoneNumber = Integer.parseInt(mPhoneNumberEditText.getText().toString().trim());
+                String phoneNumber = mPhoneNumberEditText.getText().toString().trim();
                 resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber);
                 break;
             case R.id.toolbar_back_textView:
@@ -134,7 +134,7 @@ public class ResetPasswordViaPhoneActivity extends BaseActivity implements View.
      * @param employeeName Employee name
      * @param phoneNumber Phone number
      */
-    private void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, int phoneNumber) {
+    private void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, String phoneNumber) {
         eniShowLoading();
         ApiRequest.resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber, new ApiCallback<ApiResponse>() {
             @Override

@@ -112,7 +112,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/password/forgot")
     void resetPasswordViaPhone(@Field(ApiParameter.COMPANY_CODE) String companyCode, @Field(ApiParameter.EMPLOYEE_CODE) String employeeCode,
-                               @Field(ApiParameter.EMPLOYEE_NAME) String employeeName, @Field(ApiParameter.EMPLOYEE_PHONE) int phoneNumber,
+                               @Field(ApiParameter.EMPLOYEE_NAME) String employeeName, @Field(ApiParameter.EMPLOYEE_PHONE) String phoneNumber,
                                 ApiCallback<ApiResponse> callback);
 
     @GET("/employee/agree")

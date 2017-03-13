@@ -242,7 +242,7 @@ public final class ApiRequest {
      * @param phoneNumber Phone Number
      * @param callback Callback
      */
-    public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, int phoneNumber, ApiCallback<ApiResponse> callback) {
+    public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, String phoneNumber, ApiCallback<ApiResponse> callback) {
         ApiClient.getService().resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber, callback);
     }
 
