@@ -14,6 +14,7 @@ import com.neolab.enigma.ws.respone.login.LoginResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.payment.ValidateMoneyPaymentResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
 import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
@@ -102,6 +103,16 @@ public final class ApiRequest {
      */
     public static void getMaxMoneyPrepayment(ApiCallback<FeeResponse> callback) {
         ApiClient.getService().getMaxMoneyPrepayment(callback);
+    }
+
+    /**
+     * Validate the money that request payment
+     *
+     * @param amountOfSalary Amount of salary payment
+     * @param callback callback
+     */
+    public static void validateMoneyPrepayment(int amountOfSalary, ApiCallback<ValidateMoneyPaymentResponse> callback) {
+        ApiClient.getService().validateMoneyPrepayment(amountOfSalary, callback);
     }
 
     /**

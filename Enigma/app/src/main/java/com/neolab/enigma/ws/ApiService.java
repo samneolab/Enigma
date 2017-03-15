@@ -13,6 +13,7 @@ import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
+import com.neolab.enigma.ws.respone.payment.ValidateMoneyPaymentResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
 import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
@@ -59,6 +60,10 @@ public interface ApiService {
 
     @GET("/payment-request/fee-setting")
     void getMaxMoneyPrepayment(ApiCallback<FeeResponse> callback);
+
+    @FormUrlEncoded
+    @POST("/payment-request/validate")
+    void validateMoneyPrepayment(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, ApiCallback<ValidateMoneyPaymentResponse> callback);
 
     @FormUrlEncoded
     @POST("/payment-request")

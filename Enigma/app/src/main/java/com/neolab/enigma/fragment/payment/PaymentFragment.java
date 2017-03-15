@@ -23,6 +23,7 @@ import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
 import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
+import com.neolab.enigma.ws.respone.payment.ValidateMoneyPaymentResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -37,8 +38,6 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
     private EditText mMoneyPrepaymentEditText;
     private View mApplyPrepaymentLayout;
     private View mApplyPrepaymentButton;
-
-    private SalaryDto mSalaryDto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,40 +55,6 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
         // Disable apply prepayment layout
         mApplyPrepaymentLayout.setEnabled(false);
         mApplyPrepaymentButton.setEnabled(false);
-        getMaxPaymentRequest();
-    }
-
-    /**
-     * The method is used to get maximum money for the prepayment
-     */
-    private void getMaxPaymentRequest() {
-        eniShowNowLoading(getActivity());
-        ApiRequest.getMaxMoneyPrepayment(new ApiCallback<FeeResponse>() {
-            @Override
-            public void failure(RetrofitError retrofitError, ApiError apiError) {
-                eniCancelNowLoading();
-                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
-                if (body == null) {
-                    return;
-                }
-                // User stopped service
-                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
-                } else {
-                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void success(FeeResponse feeResponse, Response response) {
-                eniCancelNowLoading();
-                if (feeResponse.statusCode == ApiCode.SUCCESS) {
-                    if (feeResponse.data != null) {
-                        mSalaryDto = feeResponse.data;
-                    }
-                }
-            }
-        });
     }
 
     @Override
@@ -116,11 +81,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (mSalaryDto == null) {
-                return;
-            }
             if (mMoneyPrepaymentEditText.getText().toString().length() > 0
-                    && mSalaryDto.maxPayment > 0
                     && Integer.parseInt(mMoneyPrepaymentEditText.getText().toString().trim()) > 0) {
                 mApplyPrepaymentLayout.setEnabled(true);
                 mApplyPrepaymentButton.setEnabled(true);
@@ -150,8 +111,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
             case R.id.payment_apply_for_prepayment_layout:
                 ConfirmPaymentFragment confirmPaymentFragment = new ConfirmPaymentFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(ConfirmPaymentFragment.KEY_FEE, mSalaryDto);
-                bundle.putString(ConfirmPaymentFragment.KEY_AMOUNT_MONEY_PAYMENT, mMoneyPrepaymentEditText.getText().toString());
+                bundle.putString(ConfirmPaymentFragment.KEY_AMOUNT_MONEY_PAYMENT, mMoneyPrepaymentEditText.getText().toString().trim());
                 confirmPaymentFragment.setArguments(bundle);
                 replaceFragment(confirmPaymentFragment, true);
                 break;

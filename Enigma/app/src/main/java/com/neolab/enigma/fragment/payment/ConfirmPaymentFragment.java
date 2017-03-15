@@ -25,6 +25,7 @@ import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
 import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.payment.ValidateMoneyPaymentResponse;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -34,7 +35,6 @@ import retrofit.client.Response;
  */
 public class ConfirmPaymentFragment extends BaseFragment implements View.OnClickListener{
 
-    public static final String KEY_FEE = "fee";
     public static final String KEY_AMOUNT_MONEY_PAYMENT = "amount_money_payment";
 
     private TextView mTitleTextView;
@@ -69,20 +69,40 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     protected void initData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            SalaryDto salaryDto = bundle.getParcelable(KEY_FEE);
             mAmountSalaryPrepayment = Integer.parseInt(bundle.getString(KEY_AMOUNT_MONEY_PAYMENT)) * 1000;
             mAmountSalaryPrepaymentTextView.setText(EniFormatUtil.convertMoneyFormat(mAmountSalaryPrepayment));
-            mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(EniUtil.getFeeUsageSystem(salaryDto, mAmountSalaryPrepayment)));
-            if (mAmountSalaryPrepayment <= salaryDto.maxPayment) {
-                mPrepaymentAmountExceededTextView.setVisibility(View.GONE);
-                mApplyPaymentLayout.setVisibility(View.VISIBLE);
-                mTitleTextView.setText(getResources().getString(R.string.confirm_payment_confirm_apply_prepayment));
-            } else {
+            doValidateSalaryPayment(mAmountSalaryPrepayment);
+        }
+    }
+
+    /**
+     * Call api validate salary payment
+     *
+     * @param amountOfSalary Amount of salary
+     */
+    private void doValidateSalaryPayment(int amountOfSalary) {
+        eniShowNowLoading(getActivity());
+        ApiRequest.validateMoneyPrepayment(amountOfSalary, new ApiCallback<ValidateMoneyPaymentResponse>() {
+            @Override
+            public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
                 mPrepaymentAmountExceededTextView.setVisibility(View.VISIBLE);
                 mApplyPaymentLayout.setVisibility(View.GONE);
                 mTitleTextView.setText(getResources().getString(R.string.confirm_payment_please_check_information));
             }
-        }
+
+            @Override
+            public void success(ValidateMoneyPaymentResponse validateMoneyPaymentResponse, Response response) {
+                eniCancelNowLoading();
+                if (validateMoneyPaymentResponse == null) {
+                    return;
+                }
+                mPrepaymentAmountExceededTextView.setVisibility(View.GONE);
+                mApplyPaymentLayout.setVisibility(View.VISIBLE);
+                mTitleTextView.setText(getResources().getString(R.string.confirm_payment_confirm_apply_prepayment));
+                mFeeUsageSystemTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.totalFee));
+            }
+        });
     }
 
     @Override
