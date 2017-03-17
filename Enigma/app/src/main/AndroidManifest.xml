@@ -15,6 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/EniTheme.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden">
+
+        <meta-data android:name="com.urbanairship.autopilot"
+            android:value="com.neolab.enigma.service.EnigmaAutopilot"/>
+
+        <receiver android:name=".service.EnigmaAirshipReceiver"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
+                <action android:name="com.urbanairship.push.OPENED" />
+                <action android:name="com.urbanairship.push.RECEIVED" />
+                <action android:name="com.urbanairship.push.DISMISSED" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/EniTheme.NoActionBar">

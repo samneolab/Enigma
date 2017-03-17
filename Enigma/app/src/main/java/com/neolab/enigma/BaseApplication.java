@@ -7,6 +7,7 @@ import com.neolab.enigma.activity.MainActivity;
 import com.neolab.enigma.preference.EncryptionPreference;
 import com.neolab.enigma.ws.core.ApiClient;
 import com.neolab.enigma.ws.core.ApiConfig;
+import com.urbanairship.UAirship;
 
 /**
  * @author LongHV.

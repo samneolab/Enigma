@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="productionAppKey">TPZeUY1oSsC6Vilavq4FRw</string>
+    <string name="productionAppSecret">R_CTBIP0Scy85i8gd-Korw</string>
+    <string name="gcmSender">883831011023</string>
+
+</resources>
