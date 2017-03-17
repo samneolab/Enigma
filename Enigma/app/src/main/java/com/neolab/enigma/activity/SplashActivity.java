@@ -21,11 +21,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (EniEncryptionUtil.isLogin(SplashActivity.this)) {
-                    startActivity(MainActivity.class);
-                } else {
-                    startActivity(LoginActivity.class);
-                }
+                startActivity(LoginActivity.class);
                 finish();
             }
         }, TIME_DELAY);

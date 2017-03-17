@@ -5,6 +5,7 @@ import com.neolab.enigma.ws.respone.ApiResponse;
 import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
 import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
 import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
+import com.neolab.enigma.ws.respone.payment.CaptchaImageResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
 import com.neolab.enigma.ws.respone.login.LoginResponse;
@@ -39,6 +40,9 @@ import retrofit.http.QueryMap;
  */
 public interface ApiService {
 
+
+    static final String GET_CAPTCHA_IMAGE = "/captcha-images";
+
     @FormUrlEncoded
     @POST("/authenticate")
     void login(@Field(ApiParameter.COMPANY_CODE) String companyCode,
@@ -67,7 +71,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/payment-request")
-    void paymentRequest(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, ApiCallback<PaymentRequestResponse> callback);
+    void paymentRequest(@Field(ApiParameter.AMOUNT_OF_SALARY) int amountOfSalary, @Field(ApiParameter.CAPTCHA) String captcha,
+                        @Field(ApiParameter.CAPCHA_ID) String captchaId, ApiCallback<PaymentRequestResponse> callback);
 
     @GET("/payment-request")
     void getHistoryRecentPaymentOfMonth(ApiCallback<HistoryThisMonthResponse> callback);
@@ -122,5 +127,8 @@ public interface ApiService {
 
     @GET("/employee/agree")
     void getTermAndCondition(ApiCallback<TermUsingServiceResponse> callback);
+
+    @GET(GET_CAPTCHA_IMAGE)
+    void getCaptchaImage(ApiCallback<CaptchaImageResponse> callback);
 
 }

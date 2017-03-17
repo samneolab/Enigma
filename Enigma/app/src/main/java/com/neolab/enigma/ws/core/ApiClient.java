@@ -43,7 +43,7 @@ public final class ApiClient {
     private static final String HEADER_AUTH = "Authorization";
     private static final String HEADER_LANGUAGE = "language";
     private static final String AUTH_PREFIX = "Bearer ";
-    private static final int TIMEOUT_CONNECTION = 60;
+    private static final int TIMEOUT_CONNECTION = 30;
 
     @SuppressLint("StaticFieldLeak")
     private static ApiClient sInstance;

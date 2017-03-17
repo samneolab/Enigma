@@ -11,6 +11,7 @@ import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
 import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
 import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
 import com.neolab.enigma.ws.respone.login.LoginResponse;
+import com.neolab.enigma.ws.respone.payment.CaptchaImageResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
@@ -121,8 +122,8 @@ public final class ApiRequest {
      * @param amountOfSalary the salary has requested
      * @param callback       Callback
      */
-    public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback) {
-        ApiClient.getService().paymentRequest(amountOfSalary, callback);
+    public static void paymentRequest(int amountOfSalary, String captcha, String captchaId, ApiCallback<PaymentRequestResponse> callback) {
+        ApiClient.getService().paymentRequest(amountOfSalary, captcha, captchaId, callback);
     }
 
     /**
@@ -264,6 +265,15 @@ public final class ApiRequest {
      */
     public static void getTermAndCondition(ApiCallback<TermUsingServiceResponse> callback) {
         ApiClient.getService().getTermAndCondition(callback);
+    }
+
+    /**
+     * Get captcha image to validate
+     *
+     * @param callback Callback
+     */
+    public static void getCaptchaImage(ApiCallback<CaptchaImageResponse> callback) {
+        ApiClient.getService().getCaptchaImage(callback);
     }
 
 }

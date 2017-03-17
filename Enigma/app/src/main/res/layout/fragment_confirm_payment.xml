@@ -26,11 +26,11 @@
             android:text="@string/confirm_payment_confirm_apply_prepayment" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/confirm_payment_amount"
-            android:id="@+id/textView" />
+            android:text="@string/confirm_payment_amount" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,6 +102,80 @@
             android:textSize="@dimen/text_12sp"
             android:textStyle="bold"
             android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/confirm_payment_captcha_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/confirm_payment_captcha" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/confirm_payment_captcha_imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:scaleType="fitCenter" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/confirm_payment_refresh_captcha_code_layout"
+                    android:layout_width="wrap_content"
+                    android:foreground="@drawable/button_foreground"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_refresh" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/confirm_payment_please_enter_captcha" />
+
+            <com.neolab.enigma.ui.EniEditText
+                android:id="@+id/confirm_payment_captcha_code_editText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_edittext_height"
+                android:background="@drawable/edittext_payment_payment_normal"
+                android:maxLines="1"
+                android:textColor="@color/login_editText_text"
+                android:textSize="@dimen/text_15sp" />
+
+            <TextView
+                android:id="@+id/confirm_payment_captcha_error_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/confirm_payment_prepayment_amount_exceeded"
+                android:textSize="@dimen/text_12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -119,12 +193,13 @@
             android:foreground="@drawable/button_foreground">
 
             <Button
+                android:id="@+id/confirm_payment_apply_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_apply_for_prepayment_height"
                 android:layout_gravity="center"
-                android:background="@drawable/button_payment_confirm_payment_apply"
+                android:background="@drawable/button_history_payment_withdraw_payment"
                 android:clickable="false"
-                android:enabled="true"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="@string/confirm_payment_apply"
                 android:textColor="@color/white" />

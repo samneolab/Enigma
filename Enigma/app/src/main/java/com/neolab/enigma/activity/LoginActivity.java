@@ -28,6 +28,7 @@ import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniValidateUtil;
+import com.neolab.enigma.util.StringUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
@@ -95,6 +96,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 mEmployeePasswordEditText.setSelection(mEmployeePasswordEditText.length());
             }
         });
+        // Remember user information
+        EncryptionPreference encryptionPreference = new EncryptionPreference(getApplicationContext());
+        if (StringUtil.isNotBlank(encryptionPreference.companyCode)) {
+            mCompanyCodeEditText.setText(encryptionPreference.companyCode);
+        }
+        if (StringUtil.isNotBlank(encryptionPreference.employeeCode)) {
+            mEmployeeCodeEditText.setText(encryptionPreference.employeeCode);
+        }
     }
 
     /**
@@ -219,6 +228,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 encryptionPreference.userId = String.valueOf(userDto.id);
                 encryptionPreference.isUserLogin = true;
                 encryptionPreference.loginStatusCode = userDto.status;
+                encryptionPreference.companyCode = loginResponse.data.userDto.companyDto.code;
+                encryptionPreference.employeeCode = loginResponse.data.userDto.code;
                 encryptionPreference.write();
                 transferScreen(userDto.status, userDto.name);
             }

@@ -16,7 +16,7 @@ public class UserDto {
     @SerializedName("company_id")
     public int companyId;
     @Expose
-    public int code;
+    public String code;
     @Expose
     public String email;
     @Expose
