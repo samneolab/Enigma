@@ -69,6 +69,16 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!isTaskRoot()) {
+            final Intent intent = getIntent();
+            if (intent != null) {
+                final String intentAction = intent.getAction();
+                if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && intentAction != null && intentAction.equals(Intent.ACTION_MAIN)) {
+                    finish();
+                    return;
+                }
+            }
+        }
         setContentView(R.layout.activity_login);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -268,21 +278,24 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             case EniConstant.UserStatus.APPROVED:
                 intent = new Intent(LoginActivity.this, TermServiceActivity.class);
                 intent.putExtra(EniConstant.NAME_KEY, name);
-                finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+                finish();
                 break;
             case EniConstant.UserStatus.AGREED_TERM_AND_CONDITION:
                 intent = new Intent(LoginActivity.this, AccountConfirmationActivity.class);
                 intent.putExtra(EniConstant.NAME_KEY, name);
-                finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+                finish();
                 break;
             case EniConstant.UserStatus.MEMBER:
             case EniConstant.UserStatus.STOP_SERVICE:
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
                 finish();
-                startActivity(MainActivity.class);
                 break;
             default:
                 break;

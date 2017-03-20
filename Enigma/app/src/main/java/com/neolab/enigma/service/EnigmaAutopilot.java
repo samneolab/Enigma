@@ -13,7 +13,8 @@ import static android.util.Log.DEBUG;
 import static android.util.Log.ERROR;
 
 /**
- * Config api key
+ * Config api key, it called in manifest file,
+ * Don't remove it.
  *
  * @author Pika.
  */

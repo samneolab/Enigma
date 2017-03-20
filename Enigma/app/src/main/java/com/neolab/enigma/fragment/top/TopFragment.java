@@ -1,6 +1,5 @@
 package com.neolab.enigma.fragment.top;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
-import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 import com.neolab.enigma.dto.ws.payment.MoneyPrepaymentDto;
@@ -34,7 +32,6 @@ import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
-import com.neolab.enigma.ws.respone.login.LoginErrorResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 
 import java.util.ArrayList;

@@ -44,7 +44,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="false"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/EniTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
