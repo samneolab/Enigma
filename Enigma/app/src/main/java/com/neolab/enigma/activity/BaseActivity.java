@@ -36,6 +36,14 @@ public class BaseActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+        super.onDestroy();
+    }
+
     protected void eniShowLoading() {
         synchronized (mutex) {
             mProgressDialog = new ProgressDialog(this);
