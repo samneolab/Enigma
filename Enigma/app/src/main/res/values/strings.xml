@@ -21,6 +21,7 @@
     <string name="item_top">Top</string>
     <string name="item_update_profile">User information</string>
     <string name="item_logout">Logout</string>
+    <string name="item_term_of_service">Terms of service</string>
 
     <!-- Top Fragment -->
     <string name="top_notification">Notification</string>
@@ -176,5 +177,8 @@
     <string name="user_reset_password_via_phone_complete_send">Sent</string>
     <string name="user_reset_password_via_phone_complete_check_content">Please check the contents you entered.</string>
     <string name="user_reset_password_via_phone_complete_go_login">To the login screen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

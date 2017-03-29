@@ -21,6 +21,7 @@
     <string name="item_top">トップへ</string>
     <string name="item_update_profile">利用者情報</string>
     <string name="item_logout">ログアウト</string>
+    <string name="item_term_of_service">利用規約</string>
 
     <!-- Top Fragment -->
     <string name="top_notification">お知らせ</string>

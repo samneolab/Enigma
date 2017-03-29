@@ -43,6 +43,8 @@ public class EniConstant {
         public static final int DISPLAY_BACK_TITLE_DRAWER = 4;
         /** Visible only title */
         public static final int ONLY_TITLE = 5;
+        /** Visible only drawer menu */
+        public static final int ONLY_DRAWER_MENU = 6;
     }
 
     /**
@@ -51,7 +53,8 @@ public class EniConstant {
     public static final class MenuItem {
         public static final int TOP_ITEM = 1;
         public static final int USER_INFORMATION = 2;
-        public static final int LOGOUT = 3;
+        public static final int TERM_OF_SERVICE = 3;
+        public static final int LOGOUT = 4;
     }
 
     /** Request salary is applying, waiting system */

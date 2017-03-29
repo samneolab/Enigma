@@ -24,6 +24,7 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.other.TermOfServiceFragment;
 import com.neolab.enigma.fragment.user.CompleteStopServiceFragment;
 import com.neolab.enigma.fragment.user.UserUpdateInformationFragment;
 import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
@@ -139,6 +140,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 logout();
             } else if (currentFragment instanceof TopFragment) {
                 finish();
+            } else if (currentFragment instanceof TermOfServiceFragment) {
+                TopFragment topFragment = new TopFragment();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.animation_fade_in_left_to_right, R.anim.animation_fade_out_left_to_right, 0, 0);
+                transaction.replace(R.id.main_root_frameLayout, topFragment);
+                transaction.commit();
             } else {
                 super.onBackPressed();
             }
@@ -194,6 +202,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     break;
                 case EniConstant.MenuItem.USER_INFORMATION:
                     addFragment(new UserUpdateInformationFragment(), true);
+                    break;
+                case EniConstant.MenuItem.TERM_OF_SERVICE:
+                    addFragment(new TermOfServiceFragment(), false);
                     break;
                 case EniConstant.MenuItem.LOGOUT:
                     logout();
@@ -259,6 +270,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         menuDto = new MenuDto();
         menuDto.id = 3;
+        menuDto.icon = R.drawable.ic_terms_of_service;
+        menuDto.title = getString(R.string.item_term_of_service);
+        menuDtoList.add(menuDto);
+
+        menuDto = new MenuDto();
+        menuDto.id = 4;
         menuDto.icon = R.drawable.ic_logout;
         menuDto.title = getString(R.string.item_logout);
         menuDtoList.add(menuDto);
@@ -299,6 +316,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case EniConstant.ToolbarType.ONLY_TITLE:
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
+                break;
+            case EniConstant.ToolbarType.ONLY_DRAWER_MENU:
+                mMenuDrawerImageView.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
