@@ -112,12 +112,20 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         ApiRequest.validateMoneyPrepayment(amountOfSalary, new ApiCallback<ValidateMoneyPaymentResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
-                eniCancelNowLoading();
-                mApplyPaymentLayout.setEnabled(false);
-                mApplyPaymentButton.setEnabled(false);
-                mPrepaymentAmountExceededTextView.setVisibility(View.VISIBLE);
-                mCaptchaLayout.setVisibility(View.GONE);
-                mTitleTextView.setText(getResources().getString(R.string.confirm_payment_please_check_information));
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    mApplyPaymentLayout.setEnabled(false);
+                    mApplyPaymentButton.setEnabled(false);
+                    mPrepaymentAmountExceededTextView.setVisibility(View.VISIBLE);
+                    mCaptchaLayout.setVisibility(View.GONE);
+                    mTitleTextView.setText(getResources().getString(R.string.confirm_payment_please_check_information));
+                }
             }
 
             @Override
@@ -249,7 +257,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                 }
                 // User stopped service
                 if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
+                    goStopServiceScreen(body.message);
                 } else if (body.error.captcha != null && body.error.captcha.size() > 0) {
                     mCaptchaMessageErrorTextView.setVisibility(View.VISIBLE);
                     mCaptchaMessageErrorTextView.setText(body.error.captcha.get(0));

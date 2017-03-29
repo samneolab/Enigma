@@ -132,7 +132,7 @@ public class HistoryPaymentThisMonthFragment extends BaseFragment implements Vie
                 }
                 // User stopped service
                 if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
+                    goStopServiceScreen(body.message);
                 } else {
                     Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
                 }

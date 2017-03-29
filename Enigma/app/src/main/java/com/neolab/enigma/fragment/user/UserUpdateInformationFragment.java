@@ -95,7 +95,7 @@ public class UserUpdateInformationFragment extends BaseFragment implements View.
                 }
                 // User stopped service
                 if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
+                    goStopServiceScreen(body.message);
                 }else {
                     Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -204,7 +204,7 @@ public class UserUpdateInformationFragment extends BaseFragment implements View.
                 }
                 // User stopped service
                 if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
+                    goStopServiceScreen(body.message);
                 } else if (body.code == ApiCode.DATA_CHECK_FAIL && body.error != null) {
                     // Check error response and display it.
                     if (body.error.currentPassword != null && body.error.currentPassword.size() > 0) {

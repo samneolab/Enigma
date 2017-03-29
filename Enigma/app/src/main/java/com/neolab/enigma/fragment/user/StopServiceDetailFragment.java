@@ -115,7 +115,7 @@ public class StopServiceDetailFragment extends BaseFragment implements View.OnCl
                 }
                 // User stopped service
                 if (body.code == ApiCode.USER_STOPPED_SERVICE) {
-                    goStopServiceScreen();
+                    goStopServiceScreen(body.message);
                 } else {
                     EniDialogUtil.showAlertDialog(getFragmentManager(), getParentFragment(), body.message, getClass().getName());
                 }

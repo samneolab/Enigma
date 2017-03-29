@@ -26,7 +26,6 @@ import com.neolab.enigma.dto.user.UserDto;
 import com.neolab.enigma.preference.EncryptionPreference;
 import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniDialogUtil;
-import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.util.StringUtil;
 import com.neolab.enigma.ws.ApiCode;
@@ -219,7 +218,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 // User stopped service or account don't approve
                 if (body.code == ApiCode.ACCOUNT_UNAPPROVE || body.code == ApiCode.USER_STOPPED_SERVICE) {
                     LoginErrorResponse errorResponse = (LoginErrorResponse) retrofitError.getBodyAs(LoginErrorResponse.class);
-                    transferScreen(errorResponse.loginStateResponse.status);
+                    transferScreenWhenLoginError(errorResponse.loginStateResponse.status, body.message);
                 } else {
                     EniDialogUtil.showAlertDialog(getSupportFragmentManager(), null,  body.message, getClass().getName());
                 }
@@ -241,7 +240,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 encryptionPreference.companyCode = loginResponse.data.userDto.companyDto.code;
                 encryptionPreference.employeeCode = loginResponse.data.userDto.code;
                 encryptionPreference.write();
-                transferScreen(userDto.status, userDto.name);
+                transferScreenWhenLoginSuccess(userDto.status, userDto.name);
             }
         });
     }
@@ -251,7 +250,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      *
      * @param status account state
      */
-    private void transferScreen(final int status) {
+    private void transferScreenWhenLoginError(final int status, final String messageError) {
         switch (status) {
             case EniConstant.UserStatus.CREATE_ACCOUNT:
                 finish();
@@ -259,7 +258,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 break;
             case EniConstant.UserStatus.STOP_SERVICE:
                 finish();
-                startActivity(UserStoppedServiceActivity.class);
+                Intent intent = new Intent(LoginActivity.this, UserStoppedServiceActivity.class);
+                intent.putExtra(UserStoppedServiceActivity.EXTRA_MESSAGE_ERROR, messageError);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -272,7 +273,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * @param status Account state
      * @param name Name of user
      */
-    private void transferScreen(final int status, final String name) {
+    private void transferScreenWhenLoginSuccess(final int status, final String name) {
         Intent intent;
         switch (status) {
             case EniConstant.UserStatus.APPROVED:

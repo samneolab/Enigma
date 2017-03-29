@@ -103,13 +103,6 @@ public final class ApiClient {
         okHttpClient.setConnectTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
         okHttpClient.setReadTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
         okHttpClient.setWriteTimeout(TIMEOUT_CONNECTION, TimeUnit.SECONDS);
-        okHttpClient.setHostnameVerifier(new HostnameVerifier() {
-            @SuppressLint("BadHostnameVerifier")
-            @Override
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        });
 
         // RestAdapter
         RestAdapter restAdapter = new RestAdapter.Builder()

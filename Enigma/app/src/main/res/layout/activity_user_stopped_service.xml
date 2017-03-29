@@ -47,17 +47,10 @@
                 android:text="@string/user_stopped_service_login_error" />
 
             <TextView
+                android:id="@+id/user_stopped_service_message_error_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/text_12sp"
-                android:text="@string/user_stopped_service_no_register" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal"
                 android:textSize="@dimen/text_12sp"

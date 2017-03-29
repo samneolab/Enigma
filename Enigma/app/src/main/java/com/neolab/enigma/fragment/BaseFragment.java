@@ -20,6 +20,7 @@ import android.view.Window;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
+import com.neolab.enigma.activity.LoginActivity;
 import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.util.EniEncryptionUtil;
@@ -151,11 +152,13 @@ public abstract class BaseFragment extends Fragment{
     /**
      * Navigate to stop service screen
      */
-    protected void goStopServiceScreen() {
+    protected void goStopServiceScreen(String messageError) {
         EniEncryptionUtil.resetDataForLogout(getActivity());
-        getActivity().finish();
-        startActivity(new Intent(getActivity(), UserStoppedServiceActivity.class));
+        Intent intent = new Intent(getActivity(), UserStoppedServiceActivity.class);
+        intent.putExtra(UserStoppedServiceActivity.EXTRA_MESSAGE_ERROR, messageError);
+        startActivity(intent);
         getActivity().overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+        getActivity().finish();
     }
 
     /**
