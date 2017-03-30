@@ -50,6 +50,8 @@
     <string name="confirm_payment_please_check_information">Please check this content.</string>
     <string name="confirm_payment_amount">Application amount</string>
     <string name="confirm_payment_fee_usage_system">System usage fee</string>
+    <string name="confirm_payment_consumption_tax">Consumption tax</string>
+    <string name="confirm_payment_received_money">Received money</string>
     <string name="confirm_payment_yen">yen</string>
     <string name="confirm_payment_apply">Apply</string>
     <string name="confirm_payment_prepayment_amount_exceeded">The amount of prepayable fee is exceeded.</string>

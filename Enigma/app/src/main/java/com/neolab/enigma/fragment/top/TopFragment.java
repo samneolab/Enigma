@@ -283,14 +283,15 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void success(EmergencyAnnouncementResponse emergencyAnnouncementResponse, Response response) {
                 eniCancelNowLoading();
-                if (emergencyAnnouncementResponse.statusCode == ApiCode.SUCCESS) {
-                    mEmergencyAnnouncementDto = emergencyAnnouncementResponse.mAnnouncementDto;
-                    if (mEmergencyAnnouncementDto != null) {
-                        mUrgentNotificationFrameLayout.setVisibility(View.VISIBLE);
-                        mUrgentNotificationTextView.setText(mEmergencyAnnouncementDto.title);
-                    } else {
-                        mUrgentNotificationFrameLayout.setVisibility(View.GONE);
-                    }
+                if (emergencyAnnouncementResponse == null) {
+                    return;
+                }
+                mEmergencyAnnouncementDto = emergencyAnnouncementResponse.mAnnouncementDto;
+                if (mEmergencyAnnouncementDto != null) {
+                    mUrgentNotificationFrameLayout.setVisibility(View.VISIBLE);
+                    mUrgentNotificationTextView.setText(mEmergencyAnnouncementDto.title);
+                } else {
+                    mUrgentNotificationFrameLayout.setVisibility(View.GONE);
                 }
             }
         });
@@ -325,24 +326,25 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void success(MoneyPrepaymentResponse moneyPrepaymentResponse, Response response) {
                 eniCancelNowLoading();
-                if (moneyPrepaymentResponse.statusCode == ApiCode.SUCCESS) {
-                    MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
-                    if (moneyPrepaymentDto != null) {
-                        mAmountPrepaymentAvailableTextView.setText(
-                                EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
-                        if (moneyPrepaymentDto.remainPayment > 0) {
-                            mApplyPrepaymentButton.setEnabled(true);
-                            mApplyPrepaymentLayout.setEnabled(true);
-                        } else {
-                            mApplyPrepaymentButton.setEnabled(false);
-                            mApplyPrepaymentLayout.setEnabled(false);
-                        }
-                        if (moneyPrepaymentDto.amountOfSalary > 0) {
-                            mMoneyPendingTextView.setText(
-                                    EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
-                        } else {
-                            mMoneyPendingTextView.setText(EniConstant.EMPTY);
-                        }
+                if (moneyPrepaymentResponse == null) {
+                    return;
+                }
+                MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
+                if (moneyPrepaymentDto != null) {
+                    mAmountPrepaymentAvailableTextView.setText(
+                            EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
+                    if (moneyPrepaymentDto.remainPayment > 0) {
+                        mApplyPrepaymentButton.setEnabled(true);
+                        mApplyPrepaymentLayout.setEnabled(true);
+                    } else {
+                        mApplyPrepaymentButton.setEnabled(false);
+                        mApplyPrepaymentLayout.setEnabled(false);
+                    }
+                    if (moneyPrepaymentDto.amountOfSalary > 0) {
+                        mMoneyPendingTextView.setText(
+                                EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
+                    } else {
+                        mMoneyPendingTextView.setText(EniConstant.EMPTY);
                     }
                 }
             }
@@ -381,11 +383,12 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 if (BuildConfig.DEBUG) {
                     EniLogUtil.d(getClass(), "[success]getAnnouncementList" + announcementResponse.statusCode);
                 }
-                if (announcementResponse.statusCode == ApiCode.SUCCESS) {
-                    if (announcementResponse.data.announcementDtoList != null) {
-                        mAnnouncementDtoList = announcementResponse.data.announcementDtoList;
-                        displayAnnouncement(mAnnouncementDtoList);
-                    }
+                if (announcementResponse == null) {
+                    return;
+                }
+                if (announcementResponse.data.announcementDtoList != null) {
+                    mAnnouncementDtoList = announcementResponse.data.announcementDtoList;
+                    displayAnnouncement(mAnnouncementDtoList);
                 }
             }
         });

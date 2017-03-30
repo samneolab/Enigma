@@ -35,31 +35,34 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * @author LongHV
+ * Confirm information prepayment
+ *
+ * @author Pika Long
  */
 public class ConfirmPaymentFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String KEY_AMOUNT_MONEY_PAYMENT = "amount_money_payment";
-    /**
-     * Captcha image width
-     */
+
+    /** Captcha image width */
     private static final int CAPTCHA_IMAGE_WIDTH = 800;
-    /**
-     * Captcha image height
-     */
+    /** Captcha image height */
     private static final int CAPTCHA_IMAGE_HEIGHT = 200;
+
+    private View mPrepaymentAmountExceededTextView;
+    private View mCaptchaLayout;
+    private View mRefreshCaptchaView;
 
     private TextView mTitleTextView;
     private TextView mAmountSalaryPrepaymentTextView;
     private TextView mFeeUsageSystemTextView;
-    private View mPrepaymentAmountExceededTextView;
+    private TextView mConsumptionTaxTextView;
+    private TextView mRecivedMoneyTextView;
+    private TextView mCaptchaMessageErrorTextView;
+
+    private EditText mCaptchaCodeEditText;
     private FrameLayout mApplyPaymentLayout;
     private Button mApplyPaymentButton;
     private ImageView mCaptchaImageView;
-    private View mCaptchaLayout;
-    private View mRefreshCaptchaView;
-    private TextView mCaptchaMessageErrorTextView;
-    private EditText mCaptchaCodeEditText;
 
     private int mAmountSalaryPrepayment;
     private String mCaptchaId;
@@ -81,6 +84,8 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         mAmountSalaryPrepaymentTextView = findViewById(R.id.confirm_payment_salary_prepayment_textView);
         mPrepaymentAmountExceededTextView = findViewById(R.id.confirm_payment_prepayment_amount_exceeded);
         mFeeUsageSystemTextView = findViewById(R.id.confirm_payment_fee_usage_system_textView);
+        mConsumptionTaxTextView = findViewById(R.id.confirm_payment_consumption_tax_textView);
+        mRecivedMoneyTextView = findViewById(R.id.confirm_payment_received_money_textView);
         mApplyPaymentLayout = findViewById(R.id.confirm_payment_apply_layout);
         mApplyPaymentButton = findViewById(R.id.confirm_payment_apply_button);
         mCaptchaImageView = findViewById(R.id.confirm_payment_captcha_imageView);
@@ -138,6 +143,8 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                 mCaptchaLayout.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(getResources().getString(R.string.confirm_payment_confirm_apply_prepayment));
                 mFeeUsageSystemTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.totalFee));
+                mConsumptionTaxTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.amountOfConsumptionTax));
+                mRecivedMoneyTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.receivedMoney));
             }
         });
     }

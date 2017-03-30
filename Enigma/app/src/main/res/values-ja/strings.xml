@@ -50,6 +50,8 @@
     <string name="confirm_payment_please_check_information">下記の内容についてご確認ください。</string>
     <string name="confirm_payment_amount">申請金額</string>
     <string name="confirm_payment_fee_usage_system">システム利用料</string>
+    <string name="confirm_payment_consumption_tax">消費税額</string>
+    <string name="confirm_payment_received_money">振込金額</string>
     <string name="confirm_payment_yen">円</string>
     <string name="confirm_payment_apply">申請する</string>
     <string name="confirm_payment_prepayment_amount_exceeded">前払い可能金額を超過しています。</string>
