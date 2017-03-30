@@ -127,29 +127,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
             Fragment currentFragment = getVisibleFragment(fragmentManager);
-            if (currentFragment instanceof CompletePaymentFragment
+            if (currentFragment instanceof TermOfServiceFragment
+                    || currentFragment instanceof UserUpdateInformationFragment
+                    || currentFragment instanceof CompletePaymentFragment
                     || currentFragment instanceof CompleteWithdrawPaymentFragment) {
-                // add top fragment to layout
-                TopFragment topFragment = new TopFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, 0);
-                transaction.replace(R.id.main_root_frameLayout, topFragment);
-                transaction.commit();
-            } else if (currentFragment instanceof CompleteStopServiceFragment) {
-                logout();
-            } else if (currentFragment instanceof TopFragment) {
-                finish();
-            } else if (currentFragment instanceof TermOfServiceFragment) {
                 TopFragment topFragment = new TopFragment();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.animation_fade_in_left_to_right, R.anim.animation_fade_out_left_to_right, 0, 0);
                 transaction.replace(R.id.main_root_frameLayout, topFragment);
                 transaction.commit();
-            } else {
-                super.onBackPressed();
+                return;
             }
+            if (currentFragment instanceof CompleteStopServiceFragment) {
+                logout();
+                return;
+            } if (currentFragment instanceof TopFragment) {
+                EniEncryptionUtil.resetDataForLogout(getApplicationContext());
+                finish();
+                return;
+            }
+            super.onBackPressed();
         }
     }
 
@@ -201,7 +199,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     addFragment(new TopFragment(), false);
                     break;
                 case EniConstant.MenuItem.USER_INFORMATION:
-                    addFragment(new UserUpdateInformationFragment(), true);
+                    addFragment(new UserUpdateInformationFragment(), false);
                     break;
                 case EniConstant.MenuItem.TERM_OF_SERVICE:
                     addFragment(new TermOfServiceFragment(), false);

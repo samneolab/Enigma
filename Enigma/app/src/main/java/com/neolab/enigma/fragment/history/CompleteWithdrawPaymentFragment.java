@@ -46,7 +46,7 @@ public class CompleteWithdrawPaymentFragment extends BaseFragment{
         mTopLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new TopFragment(), false);
+                onBackPressed();
             }
         });
     }

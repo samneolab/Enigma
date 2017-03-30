@@ -61,12 +61,7 @@ public class TermOfServiceFragment extends BaseFragment {
         (findViewById(R.id.other_term_service_back_layout)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TopFragment topFragment = new TopFragment();
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.setCustomAnimations(R.anim.animation_fade_in_left_to_right, R.anim.animation_fade_out_left_to_right, 0, 0);
-                transaction.replace(R.id.main_root_frameLayout, topFragment);
-                transaction.commit();
+                onBackPressed();
             }
         });
     }

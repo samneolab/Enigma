@@ -1,6 +1,8 @@
 package com.neolab.enigma.fragment.user;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -168,7 +170,7 @@ public class UserUpdateInformationFragment extends BaseFragment implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.user_update_information_back_layout:
-                getActivity().onBackPressed();
+                onBackPressed();
                 break;
             case R.id.user_update_information_update_information_layout:
                 updateUserInformationApi();
