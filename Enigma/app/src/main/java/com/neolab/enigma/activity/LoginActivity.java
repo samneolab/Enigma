@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
@@ -213,6 +214,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 eniCancelNowLoading();
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 if (body == null) {
+                    Toast.makeText(LoginActivity.this, apiError.getError().getMessage(), Toast.LENGTH_LONG).show();
                     return;
                 }
                 // User stopped service or account don't approve

@@ -285,6 +285,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onHeaderListener(HeaderDto headerDto) {
         mLogoImageView.setVisibility(View.GONE);
         mMenuDrawerImageView.setVisibility(View.GONE);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mBackTextView.setVisibility(View.GONE);
         mTitleTextView.setVisibility(View.GONE);
         if (headerDto == null) {
@@ -294,11 +295,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case EniConstant.ToolbarType.HOME:
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.DISPLAY_BACK_LOGO_DRAWER:
                 mBackTextView.setVisibility(View.VISIBLE);
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.DISPLAY_BACK_TITLE:
                 mBackTextView.setVisibility(View.VISIBLE);
@@ -310,6 +313,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.ONLY_TITLE:
                 mTitleTextView.setVisibility(View.VISIBLE);
@@ -317,6 +321,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case EniConstant.ToolbarType.ONLY_DRAWER_MENU:
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             default:
                 break;

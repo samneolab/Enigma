@@ -15,11 +15,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/top_notification_item_height"
-            android:layout_marginEnd="@dimen/top_notification_item_padding_right"
-            android:layout_marginLeft="@dimen/top_notification_item_padding_left"
-            android:layout_marginRight="@dimen/top_notification_item_padding_right"
-            android:layout_marginStart="@dimen/top_notification_item_padding_left"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
@@ -31,6 +28,7 @@
                 android:layout_marginEnd="@dimen/top_line_margin_left"
                 android:layout_marginRight="@dimen/top_line_margin_left"
                 android:layout_weight="1"
+                android:textSize="@dimen/text_15sp"
                 android:ellipsize="end"
                 android:maxLines="1" />
 
