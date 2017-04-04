@@ -12,8 +12,8 @@ import com.neolab.enigma.BuildConfig;
  */
 public final class EniLogUtil {
 
-    /** タグ */
-    private static final String TAG = "Demo.neolab";
+    /** Tag */
+    private static final String TAG = "Enigma.neolab.com";
 
     /** For message format [ */
     private static final String BRACKET_START = "[";
@@ -22,10 +22,10 @@ public final class EniLogUtil {
     private static final String BRACKET_END = "] ";
 
     /** Name package */
-    private static final String MY_PKG_NAME = "neolab.Demo";
+    private static final String MY_PKG_NAME = "com.neolab.enigma";
 
     /**
-     * Output a debug message.
+     * Log a debug message.
      * 
      * @param cls class
      * @param msg message
@@ -37,7 +37,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output a debug message.
+     * Log a debug message.
      *
      * <p>
      * Break a line with the specified number of characters
@@ -58,7 +58,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output debug messages.
+     * Log debug messages.
      * 
      * @param cls class
      * @param msg message
@@ -71,7 +71,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output error message.
+     * Log error message.
      * 
      * @param cls class
      * @param msg message
@@ -83,7 +83,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output error message.
+     * Log error message.
      * 
      * @param cls class
      * @param msg message
@@ -96,7 +96,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output information message.
+     * Log information message.
      * 
      * @param cls class
      * @param msg message
@@ -108,7 +108,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output information message.
+     * Log information message.
      *
      * @param cls class
      * @param msg message
@@ -121,7 +121,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output detail message.
+     * Log detail message.
      * 
      * @param cls class
      * @param msg message
@@ -133,7 +133,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output detail message.
+     * Log detail message.
      * 
      * @param cls class
      * @param msg message
@@ -146,7 +146,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output detail message..
+     * Log detail message..
      * 
      * @param cls class
      * @param msg message
@@ -158,7 +158,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output warning message.
+     * Log warning message.
      * 
      * @param cls class
      * @param tr message
@@ -170,7 +170,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output warning message.
+     * Log warning message.
      * 
      * @param cls class
      * @param msg message
@@ -183,7 +183,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output unexpected message
+     * Log unexpected message
      * 
      * @param cls class
      * @param msg message
@@ -195,7 +195,7 @@ public final class EniLogUtil {
     }
 
     /**
-     * Output unexpected message
+     * Log unexpected message
      * 
      * @param cls class
      * @param msg message
@@ -207,22 +207,19 @@ public final class EniLogUtil {
         }
     }
 
-
-    /**
-     * Constructor.
-     */
-    private EniLogUtil() {
-    }
-
     /**
      * Get class name.
      * 
      * @param cls class
      * @return class name excluding package name
      */
-    private static String getMyClassName(Class<?> cls)
-    {
+    private static String getMyClassName(Class<?> cls) {
         return cls.getName().replace(MY_PKG_NAME, "");
     }
 
+    /**
+     * Constructor.
+     */
+    private EniLogUtil() {
+    }
 }

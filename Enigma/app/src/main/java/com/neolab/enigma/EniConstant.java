@@ -43,8 +43,8 @@ public class EniConstant {
         public static final int DISPLAY_BACK_TITLE_DRAWER = 4;
         /** Visible only title */
         public static final int ONLY_TITLE = 5;
-        /** Visible only drawer menu */
-        public static final int ONLY_DRAWER_MENU = 6;
+        /** Visible drawer menu and title*/
+        public static final int ONLY_DRAWER_AND_TITLE = 6;
     }
 
     /**

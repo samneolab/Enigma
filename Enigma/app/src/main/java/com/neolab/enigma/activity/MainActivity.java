@@ -319,8 +319,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
                 break;
-            case EniConstant.ToolbarType.ONLY_DRAWER_MENU:
+            case EniConstant.ToolbarType.ONLY_DRAWER_AND_TITLE:
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mTitleTextView.setVisibility(View.VISIBLE);
+                mTitleTextView.setText(headerDto.title);
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             default:

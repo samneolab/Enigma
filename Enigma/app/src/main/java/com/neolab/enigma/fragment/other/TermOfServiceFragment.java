@@ -2,9 +2,6 @@ package com.neolab.enigma.fragment.other;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.fragment.BaseFragment;
-import com.neolab.enigma.fragment.top.TopFragment;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
@@ -69,7 +65,8 @@ public class TermOfServiceFragment extends BaseFragment {
     @Override
     protected HeaderDto getHeaderTypeDto() {
         HeaderDto headerDto = new HeaderDto();
-        headerDto.type = EniConstant.ToolbarType.ONLY_DRAWER_MENU;
+        headerDto.type = EniConstant.ToolbarType.ONLY_DRAWER_AND_TITLE;
+        headerDto.title = getString(R.string.item_term_of_service);
         return headerDto;
     }
 
