@@ -117,6 +117,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         ApiRequest.validateMoneyPrepayment(amountOfSalary, new ApiCallback<ValidateMoneyPaymentResponse>() {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
+                eniCancelNowLoading();
                 ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
                 if (body == null) {
                     return;
