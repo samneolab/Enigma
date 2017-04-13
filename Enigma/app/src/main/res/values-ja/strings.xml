@@ -39,7 +39,7 @@
 
     <!-- Payment Fragment -->
     <string name="payment_title">前払い申請</string>
-    <string name="payment_fill_money_apply">申請する金額をご記入ください。</string>
+    <string name="payment_fill_money_apply">申請する金額を入力してください。</string>
     <string name="payment_amount">申請金額</string>
     <string name="payment_yen">,000円</string>
     <string name="payment_prepayment_application_amount">＊前払い申請金額は1,000円単位となります。</string>
