@@ -1,6 +1,5 @@
 package com.neolab.enigma.fragment.top;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +29,7 @@ import com.neolab.enigma.ws.ApiParameter;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementDetailResponse;
 import com.neolab.enigma.ws.respone.announcement.AnnouncementResponse;
 import com.neolab.enigma.ws.respone.announcement.EmergencyAnnouncementResponse;
@@ -73,6 +74,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     private FrameLayout mReloadScreenLayout;
     private View mMessageNoNotificationTextView;
 
+    private View mNotificationAdmin1ImageView;
+    private View mNotificationAdmin2ImageView;
+    private View mNotificationAdmin3ImageView;
+    private View mUrgentNotificationAdminView;
+
     /**
      * Emergency announcement
      */
@@ -113,6 +119,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
         mViewHistoryEveryMonthLayout = findViewById(R.id.top_view_history_every_month_layout);
         mReloadScreenLayout = findViewById(R.id.top_reload_screen_layout);
         mMessageNoNotificationTextView = findViewById(R.id.top_message_no_notification_textView);
+
+        mNotificationAdmin1ImageView = findViewById(R.id.top_notification_admin1_imageView);
+        mNotificationAdmin2ImageView = findViewById(R.id.top_notification_admin2_imageView);
+        mNotificationAdmin3ImageView = findViewById(R.id.top_notification_admin3_imageView);
+        mUrgentNotificationAdminView = findViewById(R.id.top_urgent_notification_admin_type_textView);
 
         mAmountPrepaymentAvailableTextView = findViewById(R.id.top_amount_prepayment_available_textView);
         mMoneyPendingTextView = findViewById(R.id.top_money_pending_textView);
@@ -164,12 +175,21 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     private void displayAnnouncement(List<AnnouncementDto> announcementDtoList) {
         switch (announcementDtoList.size()) {
             case 3:
+                if (announcementDtoList.get(2).type == EniConstant.ANNOUNCEMENET_ADMIN_TYPE) {
+                    mNotificationAdmin3ImageView.setVisibility(View.VISIBLE);
+                }
                 mNotificationItem3Layout.setVisibility(View.VISIBLE);
                 mNotificationItem3TexView.setText(announcementDtoList.get(2).title);
             case 2:
+                if (announcementDtoList.get(1).type == EniConstant.ANNOUNCEMENET_ADMIN_TYPE) {
+                    mNotificationAdmin2ImageView.setVisibility(View.VISIBLE);
+                }
                 mNotificationItem2Layout.setVisibility(View.VISIBLE);
                 mNotificationItem2TexView.setText(announcementDtoList.get(1).title);
             case 1:
+                if (announcementDtoList.get(0).type == EniConstant.ANNOUNCEMENET_ADMIN_TYPE) {
+                    mNotificationAdmin1ImageView.setVisibility(View.VISIBLE);
+                }
                 mNotificationItem1Layout.setVisibility(View.VISIBLE);
                 mNotificationItem1TexView.setText(announcementDtoList.get(0).title);
                 break;
@@ -229,7 +249,16 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -254,23 +283,38 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
                 mUrgentNotificationFrameLayout.setVisibility(View.GONE);
-                if (BuildConfig.DEBUG) {
-                    EniLogUtil.d(getClass(), "[getEmergencyAnnouncement] " + apiError.getError());
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
                 }
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void success(EmergencyAnnouncementResponse emergencyAnnouncementResponse, Response response) {
                 eniCancelNowLoading();
-                if (emergencyAnnouncementResponse.statusCode == ApiCode.SUCCESS) {
-                    mEmergencyAnnouncementDto = emergencyAnnouncementResponse.mAnnouncementDto;
-                    if (mEmergencyAnnouncementDto != null) {
-                        mUrgentNotificationFrameLayout.setVisibility(View.VISIBLE);
-                        mUrgentNotificationTextView.setText(mEmergencyAnnouncementDto.title);
-                    } else {
-                        mUrgentNotificationFrameLayout.setVisibility(View.GONE);
+                if (emergencyAnnouncementResponse == null) {
+                    return;
+                }
+                mEmergencyAnnouncementDto = emergencyAnnouncementResponse.mAnnouncementDto;
+                if (mEmergencyAnnouncementDto != null) {
+                    mUrgentNotificationFrameLayout.setVisibility(View.VISIBLE);
+                    mUrgentNotificationTextView.setText(mEmergencyAnnouncementDto.title);
+                    if (mEmergencyAnnouncementDto.type == EniConstant.ANNOUNCEMENET_ADMIN_TYPE) {
+                        mUrgentNotificationAdminView.setVisibility(View.VISIBLE);
                     }
+                } else {
+                    mUrgentNotificationFrameLayout.setVisibility(View.GONE);
                 }
             }
         });
@@ -285,30 +329,45 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
+                }
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void success(MoneyPrepaymentResponse moneyPrepaymentResponse, Response response) {
                 eniCancelNowLoading();
-                if (moneyPrepaymentResponse.statusCode == ApiCode.SUCCESS) {
-                    MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
-                    if (moneyPrepaymentDto != null) {
-                        mAmountPrepaymentAvailableTextView.setText(
-                                EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
-                        if (moneyPrepaymentDto.remainPayment > 0) {
-                            mApplyPrepaymentButton.setEnabled(true);
-                            mApplyPrepaymentLayout.setEnabled(true);
-                        } else {
-                            mApplyPrepaymentButton.setEnabled(false);
-                            mApplyPrepaymentLayout.setEnabled(false);
-                        }
-                        if (moneyPrepaymentDto.amountOfSalary > 0) {
-                            mMoneyPendingTextView.setText(
-                                    EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
-                        } else {
-                            mMoneyPendingTextView.setText(EniConstant.EMPTY);
-                        }
+                if (moneyPrepaymentResponse == null) {
+                    return;
+                }
+                MoneyPrepaymentDto moneyPrepaymentDto = moneyPrepaymentResponse.data;
+                if (moneyPrepaymentDto != null) {
+                    mAmountPrepaymentAvailableTextView.setText(
+                            EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.remainPayment));
+                    if (moneyPrepaymentDto.remainPayment > 0) {
+                        mApplyPrepaymentButton.setEnabled(true);
+                        mApplyPrepaymentLayout.setEnabled(true);
+                    } else {
+                        mApplyPrepaymentButton.setEnabled(false);
+                        mApplyPrepaymentLayout.setEnabled(false);
+                    }
+                    if (moneyPrepaymentDto.amountOfSalary > 0) {
+                        mMoneyPendingTextView.setText(
+                                EniFormatUtil.convertMoneyFormat(moneyPrepaymentDto.amountOfSalary));
+                    } else {
+                        mMoneyPendingTextView.setText(EniConstant.EMPTY);
                     }
                 }
             }
@@ -324,10 +383,21 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                if (BuildConfig.DEBUG) {
-                    EniLogUtil.d(getClass(), "[failure]getAnnouncementList " + apiError.getError());
+                if (getActivity() != null) {
+                    if (getActivity().isFinishing()) {
+                        return;
+                    }
                 }
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -336,11 +406,12 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
                 if (BuildConfig.DEBUG) {
                     EniLogUtil.d(getClass(), "[success]getAnnouncementList" + announcementResponse.statusCode);
                 }
-                if (announcementResponse.statusCode == ApiCode.SUCCESS) {
-                    if (announcementResponse.data.announcementDtoList != null) {
-                        mAnnouncementDtoList = announcementResponse.data.announcementDtoList;
-                        displayAnnouncement(mAnnouncementDtoList);
-                    }
+                if (announcementResponse == null) {
+                    return;
+                }
+                if (announcementResponse.data.announcementDtoList != null) {
+                    mAnnouncementDtoList = announcementResponse.data.announcementDtoList;
+                    displayAnnouncement(mAnnouncementDtoList);
                 }
             }
         });

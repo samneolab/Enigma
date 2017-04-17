@@ -1,10 +1,6 @@
 package com.neolab.enigma.util;
 
-import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.dto.ws.payment.SalaryDto;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Enigma Utility process decisions on specific conditions.

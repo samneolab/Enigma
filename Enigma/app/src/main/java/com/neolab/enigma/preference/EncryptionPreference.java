@@ -19,6 +19,11 @@ public class EncryptionPreference extends BasePreference {
     private static final String KEY_TOKEN = "token";
     /** UserId key */
     private static final String KEY_USER_ID = "userId";
+    /** Company code key */
+    private static final String KEY_COMPANY_CODE = "companyCode";
+    /** Employee code key */
+    private static final String KEY_EMPLOYEE_CODE = "employeeCode";
+
     /** Check user login flag key */
     private static final String KEY_IS_USER_LOGIN = "isUserLogin";
     /** Login state key */
@@ -32,6 +37,10 @@ public class EncryptionPreference extends BasePreference {
     public boolean isUserLogin;
     /** Login status */
     public int loginStatusCode;
+    /** Company code */
+    public String companyCode;
+    /** Employee code */
+    public String employeeCode;
 
     /**
      * Constructor
@@ -53,6 +62,8 @@ public class EncryptionPreference extends BasePreference {
     protected void setData(SharedPreferences.Editor editor) {
         editor.putString(KEY_TOKEN, token);
         editor.putString(KEY_USER_ID, userId);
+        editor.putString(KEY_COMPANY_CODE, companyCode);
+        editor.putString(KEY_EMPLOYEE_CODE, employeeCode);
         editor.putInt(KEY_LOGIN_STATUS, loginStatusCode);
         editor.putBoolean(KEY_IS_USER_LOGIN, isUserLogin);
     }
@@ -61,6 +72,8 @@ public class EncryptionPreference extends BasePreference {
     protected void getData(SharedPreferences preferences) {
         token = preferences.getString(KEY_TOKEN, EniConstant.TOKEN_DEFAULT);
         userId = preferences.getString(KEY_USER_ID, EniConstant.USER_ID_DEFAULT);
+        companyCode = preferences.getString(KEY_COMPANY_CODE, EniConstant.EMPTY);
+        employeeCode = preferences.getString(KEY_EMPLOYEE_CODE, EniConstant.EMPTY);
         loginStatusCode = preferences.getInt(KEY_LOGIN_STATUS, EniConstant.USER_STATUS_DEFAULT);
         isUserLogin = preferences.getBoolean(KEY_IS_USER_LOGIN, false);
     }
@@ -71,10 +84,8 @@ public class EncryptionPreference extends BasePreference {
      * @return true if user login, otherwise false
      */
     public boolean isLogin() {
-        if (StringUtil.isNotBlank(userId) && StringUtil.isNotBlank(token)
-                && loginStatusCode == EniConstant.UserStatus.MEMBER) {
-            return true;
-        }
-        return false;
+        return (StringUtil.isNotBlank(userId)
+                && StringUtil.isNotBlank(token)
+                && loginStatusCode == EniConstant.UserStatus.MEMBER);
     }
 }

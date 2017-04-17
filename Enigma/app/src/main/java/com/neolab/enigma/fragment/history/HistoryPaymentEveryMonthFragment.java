@@ -22,6 +22,7 @@ import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
 
 import java.util.ArrayList;
@@ -37,8 +38,6 @@ public class HistoryPaymentEveryMonthFragment extends BaseFragment implements Vi
 
     private EniListView mMonthPaymentListView;
     private View mStickyFooterView;
-    private View mFooterView;
-    private View mHeaderView;
     private View mViewHistoryRecentPaymentLayout;
 
     /** Check last item visible */
@@ -65,7 +64,16 @@ public class HistoryPaymentEveryMonthFragment extends BaseFragment implements Vi
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -90,10 +98,10 @@ public class HistoryPaymentEveryMonthFragment extends BaseFragment implements Vi
         mViewHistoryRecentPaymentLayout = findViewById(R.id.history_payment_this_month_view_history_recent_payment_layout);
         mStickyFooterView = findViewById(R.id.history_payment_every_month_sticky_footer_view);
         final LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mHeaderView = inflater.inflate(R.layout.history_payment_every_month_header, null, false);
-        mFooterView = inflater.inflate(R.layout.history_payment_every_month_footer, null, false);
-        mMonthPaymentListView.addHeaderView(mHeaderView);
-        mMonthPaymentListView.addFooterView(mFooterView);
+        View headerView = inflater.inflate(R.layout.history_payment_every_month_header, null, false);
+        View footerView = inflater.inflate(R.layout.history_payment_every_month_footer, null, false);
+        mMonthPaymentListView.addHeaderView(headerView);
+        mMonthPaymentListView.addFooterView(footerView);
     }
 
     @Override

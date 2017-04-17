@@ -12,11 +12,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.util.EniLanguageUtil;
 import com.neolab.enigma.util.EniLogUtil;
+import com.neolab.enigma.util.EniUtil;
 import com.neolab.enigma.ws.ApiService;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
@@ -36,7 +43,7 @@ public final class ApiClient {
     private static final String HEADER_AUTH = "Authorization";
     private static final String HEADER_LANGUAGE = "language";
     private static final String AUTH_PREFIX = "Bearer ";
-    private static final int TIMEOUT_CONNECTION = 5;
+    private static final int TIMEOUT_CONNECTION = 30;
 
     @SuppressLint("StaticFieldLeak")
     private static ApiClient sInstance;
@@ -58,7 +65,7 @@ public final class ApiClient {
             if (!TextUtils.isEmpty(accessToken)) {
                 request.addHeader(HEADER_AUTH, AUTH_PREFIX + accessToken);
             }
-            request.addHeader(HEADER_LANGUAGE, "ja");
+            request.addHeader(HEADER_LANGUAGE, EniLanguageUtil.getPrefixDeviceLanguage());
         }
     };
 

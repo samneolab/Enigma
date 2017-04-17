@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.neolab.enigma.EniConstant;
 import com.neolab.enigma.R;
 import com.neolab.enigma.dto.ws.announcement.AnnouncementDto;
 
@@ -49,6 +51,7 @@ public class AnnouncementListAdapter extends BaseAdapter {
             convertView = mLayoutInflater.inflate(R.layout.announcement_list_item, null);
             viewHolder = new ViewHolder();
             viewHolder.titleTextView = (TextView) convertView.findViewById(R.id.announcement_list_item_title_textView);
+            viewHolder.announcementAdminImageView = convertView.findViewById(R.id.top_notification_admin_imageView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -56,6 +59,9 @@ public class AnnouncementListAdapter extends BaseAdapter {
 
         AnnouncementDto announcementDto = (AnnouncementDto)getItem(position);
         viewHolder.titleTextView.setText(announcementDto.title);
+        if (announcementDto.type == EniConstant.ANNOUNCEMENET_ADMIN_TYPE) {
+            viewHolder.announcementAdminImageView.setVisibility(View.VISIBLE);
+        }
         return convertView;
     }
 
@@ -73,5 +79,6 @@ public class AnnouncementListAdapter extends BaseAdapter {
      */
     private static class ViewHolder {
         TextView titleTextView;
+        View announcementAdminImageView;
     }
 }

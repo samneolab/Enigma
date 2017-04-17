@@ -4,8 +4,8 @@
     <string name="image_dsc" />
 
     <!--login-->
-    <string name="login">Login</string>
-    <string name="login_title">Please enter login information.</string>
+    <string name="login">ログイン</string>
+    <string name="login_title">ログイン情報を入力してください。</string>
     <string name="login_company_id">企業ID（企業コード）</string>
     <string name="login_employee_id">ID（従業員コード）</string>
     <string name="login_password">パスワード</string>
@@ -21,14 +21,14 @@
     <string name="item_top">トップへ</string>
     <string name="item_update_profile">利用者情報</string>
     <string name="item_logout">ログアウト</string>
+    <string name="item_term_of_service">利用規約</string>
 
     <!-- Top Fragment -->
     <string name="top_notification">お知らせ</string>
     <string name="top_past_notification_list"><u>過去のお知らせ一覧</u></string>
-    <string name="top_urgent_notification">緊急性の高いニュースを表示します</string>
     <string name="top_amount_prepaid_available">現在の前払い可能金額</string>
     <string name="top_yen_unit">￥</string>
-    <string name="top_amount_including_system_usage_fee">システム利用料を含む金額です</string>
+    <string name="top_amount_including_system_usage_fee">内システム利用料を含む金額です</string>
     <string name="top_applying">申請中</string>
     <string name="top_apply_for_prepayment">前払い申請をする</string>
     <string name="top_view_history_for_this_month">今月の履歴を見る</string>
@@ -39,7 +39,7 @@
 
     <!-- Payment Fragment -->
     <string name="payment_title">前払い申請</string>
-    <string name="payment_fill_money_apply">申請する金額をご記入ください。</string>
+    <string name="payment_fill_money_apply">申請する金額を入力してください。</string>
     <string name="payment_amount">申請金額</string>
     <string name="payment_yen">,000円</string>
     <string name="payment_prepayment_application_amount">＊前払い申請金額は1,000円単位となります。</string>
@@ -50,9 +50,14 @@
     <string name="confirm_payment_please_check_information">下記の内容についてご確認ください。</string>
     <string name="confirm_payment_amount">申請金額</string>
     <string name="confirm_payment_fee_usage_system">システム利用料</string>
+    <string name="confirm_payment_consumption_tax">消費税額</string>
+    <string name="confirm_payment_received_money">振込金額</string>
     <string name="confirm_payment_yen">円</string>
     <string name="confirm_payment_apply">申請する</string>
     <string name="confirm_payment_prepayment_amount_exceeded">前払い可能金額を超過しています。</string>
+    <string name="confirm_payment_captcha">キャプチャ</string>
+    <string name="confirm_payment_please_enter_captcha">表示されている数字を入力してください。</string>
+    <string name="confirm_payment_total_fee_include_tax">システム手数料（税込）</string>
 
     <!-- Complete payment fragment -->
     <string name="complete_payment_application_was_accepted">申請を受け付けました。</string>
@@ -91,6 +96,7 @@
     <string name="user_update_information_email_address">メールアドレス</string>
     <string name="user_update_information_update">修正する</string>
     <string name="user_update_information_stop_using_service">サービスの利用を停止する</string>
+    <string name="user_update_information_current_password">現在のパスワード</string>
 
     <!-- User stop using service -->
     <string name="user_stop_service_title">サービス利用停止</string>

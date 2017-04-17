@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.neolab.enigma.R;
 import com.neolab.enigma.activity.BaseActivity;
 import com.neolab.enigma.activity.LoginActivity;
+import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniDialogUtil;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiRequest;
@@ -44,8 +45,8 @@ public class ResetPasswordViaEmailActivity extends BaseActivity implements View.
     }
 
     private void findView() {
-        mCompanyCodeEditText = (EditText) findViewById(R.id.user_reset_password_via_email_company_code_editText);
-        mEmailEditText = (EditText) findViewById(R.id.user_reset_password_via_email_email_editText);
+        mCompanyCodeEditText = (EniEditText) findViewById(R.id.user_reset_password_via_email_company_code_editText);
+        mEmailEditText = (EniEditText) findViewById(R.id.user_reset_password_via_email_email_editText);
         mSendLayout = findViewById(R.id.user_reset_password_via_email_send_layout);
         mSendButton = (Button) findViewById(R.id.user_reset_password_via_email_send_button);
         mBackLayout = findViewById(R.id.toolbar_back_textView);

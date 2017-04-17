@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,10 @@ import android.view.Window;
 
 import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
+import com.neolab.enigma.activity.LoginActivity;
+import com.neolab.enigma.activity.user.UserStoppedServiceActivity;
 import com.neolab.enigma.dto.HeaderDto;
+import com.neolab.enigma.util.EniEncryptionUtil;
 import com.neolab.enigma.util.EniLogUtil;
 
 /**
@@ -26,7 +31,7 @@ import com.neolab.enigma.util.EniLogUtil;
  *
  * @author LongHV.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment{
 
     protected abstract void initData();
 
@@ -40,32 +45,16 @@ public abstract class BaseFragment extends Fragment {
         public boolean lock;
     }
 
-    /**
-     * Semaphore
-     */
+    /** Semaphore */
     private final EniSemaphore semaphoreSingleDialog = new EniSemaphore();
 
-    /**
-     * Control access
-     */
+    /** Control access */
     private final Object mutex = new Object();
 
-    /**
-     * Loading progress
-     */
+    /** Loading progress */
     private ProgressDialog mProgressDialog;
-    /**
-     * show loading flag
-     */
-    private boolean isShowLoading;
-    /**
-     * Count request cancel loading
-     */
-    private int requestCancelLoadingCount = 0;
-    /**
-     * Count request show loading
-     */
-    private int mRequestShowLoadingCount = 0;
+    /** Count request show loading */
+    private int mLoadingDialogCounter = 0;
 
     /**
      * The view global
@@ -161,22 +150,35 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
+     * Navigate to stop service screen
+     */
+    protected void goStopServiceScreen(String messageError) {
+        EniEncryptionUtil.resetDataForLogout(getActivity());
+        Intent intent = new Intent(getActivity(), UserStoppedServiceActivity.class);
+        intent.putExtra(UserStoppedServiceActivity.EXTRA_MESSAGE_ERROR, messageError);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
+        getActivity().finish();
+    }
+
+    /**
      * Show dialog loading when call api
      *
      * @param context Context
      */
     protected void eniShowNowLoading(Context context) {
-        mRequestShowLoadingCount++;
-        if (!isShowLoading) {
-            isShowLoading = true;
-            synchronized (mutex) {
-                mProgressDialog = new ProgressDialog(context);
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                mProgressDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                mProgressDialog.show();
-                mProgressDialog.setContentView(R.layout.loading);
+        synchronized (mutex) {
+            if (mLoadingDialogCounter == 0) {
+                if (getActivity() != null && !getActivity().isFinishing()) {
+                    mProgressDialog = new ProgressDialog(context);
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    mProgressDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    mProgressDialog.show();
+                    mProgressDialog.setContentView(R.layout.loading);
+                }
             }
+            mLoadingDialogCounter++;
         }
     }
 
@@ -184,14 +186,16 @@ public abstract class BaseFragment extends Fragment {
      * Cancel display dialog
      */
     public boolean eniCancelNowLoading() {
-        requestCancelLoadingCount++;
-        if (mRequestShowLoadingCount == requestCancelLoadingCount) {
-            synchronized (mutex) {
-                resetShowLoading();
-                if (mProgressDialog == null) {
-                    return true;
+        synchronized (mutex) {
+            if (mProgressDialog == null) {
+                return true;
+            }
+            mLoadingDialogCounter--;
+            if (mLoadingDialogCounter <= 0) {
+                if (getActivity() != null && !getActivity().isFinishing()) {
+                    mProgressDialog.dismiss();
                 }
-                mProgressDialog.dismiss();
+                mLoadingDialogCounter = 0;
                 return true;
             }
         }
@@ -201,19 +205,20 @@ public abstract class BaseFragment extends Fragment {
     /**
      * popping the fragment back stack or finishing the activity.
      */
-    protected void onBackPressed(){
+    protected void onBackPressed() {
         if (getActivity() != null) {
             getActivity().onBackPressed();
         }
     }
 
-    /**
-     * Reset status loading dialog
-     */
-    private void resetShowLoading() {
-        isShowLoading = false;
-        requestCancelLoadingCount = 0;
-        mRequestShowLoadingCount = 0;
+    @Override
+    public void onDestroy() {
+        if (getActivity() != null
+                && !getActivity().isFinishing()
+                && mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+        super.onDestroy();
     }
 
     /**

@@ -15,8 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/EniTheme.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden">
+
+        <meta-data android:name="com.urbanairship.autopilot"
+            android:value="com.neolab.enigma.service.EnigmaAutopilot"/>
+
+        <receiver android:name=".service.EnigmaAirshipReceiver"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
+                <action android:name="com.urbanairship.push.OPENED" />
+                <action android:name="com.urbanairship.push.RECEIVED" />
+                <action android:name="com.urbanairship.push.DISMISSED" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/EniTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +44,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="false"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/EniTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
@@ -77,6 +93,11 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.user.ResetPasswordViaPhoneCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />

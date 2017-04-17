@@ -11,9 +11,11 @@ import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
 import com.neolab.enigma.ws.respone.history.HistoryThisMonthResponse;
 import com.neolab.enigma.ws.respone.history.MonthPaymentResponse;
 import com.neolab.enigma.ws.respone.login.LoginResponse;
+import com.neolab.enigma.ws.respone.payment.CaptchaImageResponse;
 import com.neolab.enigma.ws.respone.payment.FeeResponse;
 import com.neolab.enigma.ws.respone.payment.MoneyPrepaymentResponse;
 import com.neolab.enigma.ws.respone.payment.PaymentRequestResponse;
+import com.neolab.enigma.ws.respone.payment.ValidateMoneyPaymentResponse;
 import com.neolab.enigma.ws.respone.user.StopServiceResponse;
 import com.neolab.enigma.ws.respone.user.TermUsingServiceResponse;
 import com.neolab.enigma.ws.respone.user.UserAgreeTermResponse;
@@ -105,13 +107,23 @@ public final class ApiRequest {
     }
 
     /**
+     * Validate the money that request payment
+     *
+     * @param amountOfSalary Amount of salary payment
+     * @param callback callback
+     */
+    public static void validateMoneyPrepayment(int amountOfSalary, ApiCallback<ValidateMoneyPaymentResponse> callback) {
+        ApiClient.getService().validateMoneyPrepayment(amountOfSalary, callback);
+    }
+
+    /**
      * Request prepayment salary
      *
      * @param amountOfSalary the salary has requested
      * @param callback       Callback
      */
-    public static void paymentRequest(int amountOfSalary, ApiCallback<PaymentRequestResponse> callback) {
-        ApiClient.getService().paymentRequest(amountOfSalary, callback);
+    public static void paymentRequest(int amountOfSalary, String captcha, String captchaId, ApiCallback<PaymentRequestResponse> callback) {
+        ApiClient.getService().paymentRequest(amountOfSalary, captcha, captchaId, callback);
     }
 
     /**
@@ -174,8 +186,8 @@ public final class ApiRequest {
      * @param isGettingAnnouncement set value that get from get user information api
      * @param callback user information response
      */
-    public static void updateUserInformation(String email, int isGettingAnnouncement, ApiCallback<UserUpdateInforResponse> callback){
-        ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, callback);
+    public static void updateUserInformation(String email, int isGettingAnnouncement, String currentPassword, ApiCallback<UserUpdateInforResponse> callback){
+        ApiClient.getService().updateUserInformation(email, isGettingAnnouncement, currentPassword, callback);
     }
 
     /**
@@ -242,7 +254,7 @@ public final class ApiRequest {
      * @param phoneNumber Phone Number
      * @param callback Callback
      */
-    public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, int phoneNumber, ApiCallback<ApiResponse> callback) {
+    public static void resetPasswordViaPhone(String companyCode, String employeeCode, String employeeName, String phoneNumber, ApiCallback<ApiResponse> callback) {
         ApiClient.getService().resetPasswordViaPhone(companyCode, employeeCode, employeeName, phoneNumber, callback);
     }
 
@@ -253,6 +265,15 @@ public final class ApiRequest {
      */
     public static void getTermAndCondition(ApiCallback<TermUsingServiceResponse> callback) {
         ApiClient.getService().getTermAndCondition(callback);
+    }
+
+    /**
+     * Get captcha image to validate
+     *
+     * @param callback Callback
+     */
+    public static void getCaptchaImage(ApiCallback<CaptchaImageResponse> callback) {
+        ApiClient.getService().getCaptchaImage(callback);
     }
 
 }

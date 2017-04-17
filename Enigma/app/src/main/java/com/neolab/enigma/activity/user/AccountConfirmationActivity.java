@@ -17,6 +17,7 @@ import com.neolab.enigma.R;
 import com.neolab.enigma.activity.BaseActivity;
 import com.neolab.enigma.activity.LoginActivity;
 import com.neolab.enigma.preference.EncryptionPreference;
+import com.neolab.enigma.ui.EniEditText;
 import com.neolab.enigma.util.EniValidateUtil;
 import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
@@ -63,9 +64,9 @@ public class AccountConfirmationActivity extends BaseActivity implements View.On
     private void findView() {
         mTitleTextView = (TextView) findViewById(R.id.title_textView);
         mNameTextView = (TextView) findViewById(R.id.user_account_confirmation_name_textView);
-        mEmailEditText = (EditText) findViewById(R.id.user_account_confirmation_email_editText);
-        mPasswordEditText = (EditText) findViewById(R.id.user_account_confirmation_password_editText);
-        mPasswordConfirmEditText = (EditText) findViewById(R.id.user_account_confirmation_confirm_editText);
+        mEmailEditText = (EniEditText) findViewById(R.id.user_account_confirmation_email_editText);
+        mPasswordEditText = (EniEditText) findViewById(R.id.user_account_confirmation_password_editText);
+        mPasswordConfirmEditText = (EniEditText) findViewById(R.id.user_account_confirmation_confirm_editText);
         mStartUsingServiceButton = (Button) findViewById(R.id.user_account_confirmation_start_using_button);
         mStartUsingServiceView = findViewById(R.id.user_account_confirmation_start_using_layout);
         mBackTopView = findViewById(R.id.user_account_confirmation_back_layout);

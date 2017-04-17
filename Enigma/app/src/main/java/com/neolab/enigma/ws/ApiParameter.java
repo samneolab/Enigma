@@ -16,6 +16,8 @@ public final class ApiParameter {
     public static final String EMPLOYEE_PHONE = "employee_phone";
     public static final String EMPLOYEE_PASSWORD = "employee_password";
     public static final String AMOUNT_OF_SALARY = "amount_of_salary";
+    public static final String CAPTCHA = "captcha";
+    public static final String CAPCHA_ID = "captcha_id";
 
     /***************************************
      * User information Parameter

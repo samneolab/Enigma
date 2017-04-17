@@ -24,6 +24,7 @@ import com.neolab.enigma.activity.adapter.DrawerAdapter;
 import com.neolab.enigma.dto.HeaderDto;
 import com.neolab.enigma.dto.menu.MenuDto;
 import com.neolab.enigma.fragment.BaseFragment.OnBaseFragmentListener;
+import com.neolab.enigma.fragment.other.TermOfServiceFragment;
 import com.neolab.enigma.fragment.user.CompleteStopServiceFragment;
 import com.neolab.enigma.fragment.user.UserUpdateInformationFragment;
 import com.neolab.enigma.fragment.history.CompleteWithdrawPaymentFragment;
@@ -51,8 +52,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     /** Drawer layout */
     private DrawerLayout mDrawerLayout;
-    /** ListView include menu item */
-    private ListView mDrawerListView;
     /** Toolbar */
     private Toolbar mToolbar;
     private View mBackTextView;
@@ -90,13 +89,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initDrawer() {
         mMenuDrawerImageView = findViewById(R.id.toolbar_menu_drawer_imageView);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerListView = (ListView) findViewById(R.id.drawer_listView);
+        /* ListView include menu item */
+        ListView drawerListView = (ListView) findViewById(R.id.drawer_listView);
         final LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = inflater.inflate(R.layout.nav_header_main, null, false);
         DrawerAdapter adapter = new DrawerAdapter(this, getMenuItemDto());
-        mDrawerListView.addHeaderView(headerView, null, true);
-        mDrawerListView.setAdapter(adapter);
-        mDrawerListView.setOnItemClickListener(onItemClickListener);
+        drawerListView.addHeaderView(headerView, null, true);
+        drawerListView.setAdapter(adapter);
+        drawerListView.setOnItemClickListener(onItemClickListener);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @SuppressLint("RtlHardcoded")
@@ -127,22 +127,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
             Fragment currentFragment = getVisibleFragment(fragmentManager);
-            if (currentFragment instanceof CompletePaymentFragment
+            if (currentFragment instanceof TermOfServiceFragment
+                    || currentFragment instanceof UserUpdateInformationFragment
+                    || currentFragment instanceof CompletePaymentFragment
                     || currentFragment instanceof CompleteWithdrawPaymentFragment) {
-                // add top fragment to layout
                 TopFragment topFragment = new TopFragment();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, 0);
+                transaction.setCustomAnimations(R.anim.animation_fade_in_left_to_right, R.anim.animation_fade_out_left_to_right, 0, 0);
                 transaction.replace(R.id.main_root_frameLayout, topFragment);
                 transaction.commit();
-            } else if (currentFragment instanceof CompleteStopServiceFragment) {
-                logout();
-            } else if (currentFragment instanceof TopFragment) {
-                finish();
-            } else {
-                super.onBackPressed();
+                return;
             }
+            if (currentFragment instanceof CompleteStopServiceFragment) {
+                logout();
+                return;
+            } if (currentFragment instanceof TopFragment) {
+                EniEncryptionUtil.resetDataForLogout(getApplicationContext());
+                finish();
+                return;
+            }
+            super.onBackPressed();
         }
     }
 
@@ -194,7 +199,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     addFragment(new TopFragment(), false);
                     break;
                 case EniConstant.MenuItem.USER_INFORMATION:
-                    addFragment(new UserUpdateInformationFragment(), true);
+                    addFragment(new UserUpdateInformationFragment(), false);
+                    break;
+                case EniConstant.MenuItem.TERM_OF_SERVICE:
+                    addFragment(new TermOfServiceFragment(), false);
                     break;
                 case EniConstant.MenuItem.LOGOUT:
                     logout();
@@ -260,6 +268,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         menuDto = new MenuDto();
         menuDto.id = 3;
+        menuDto.icon = R.drawable.ic_terms_of_service;
+        menuDto.title = getString(R.string.item_term_of_service);
+        menuDtoList.add(menuDto);
+
+        menuDto = new MenuDto();
+        menuDto.id = 4;
         menuDto.icon = R.drawable.ic_logout;
         menuDto.title = getString(R.string.item_logout);
         menuDtoList.add(menuDto);
@@ -271,6 +285,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onHeaderListener(HeaderDto headerDto) {
         mLogoImageView.setVisibility(View.GONE);
         mMenuDrawerImageView.setVisibility(View.GONE);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mBackTextView.setVisibility(View.GONE);
         mTitleTextView.setVisibility(View.GONE);
         if (headerDto == null) {
@@ -280,11 +295,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case EniConstant.ToolbarType.HOME:
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.DISPLAY_BACK_LOGO_DRAWER:
                 mBackTextView.setVisibility(View.VISIBLE);
                 mLogoImageView.setVisibility(View.VISIBLE);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.DISPLAY_BACK_TITLE:
                 mBackTextView.setVisibility(View.VISIBLE);
@@ -296,10 +313,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
                 mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             case EniConstant.ToolbarType.ONLY_TITLE:
                 mTitleTextView.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(headerDto.title);
+                break;
+            case EniConstant.ToolbarType.ONLY_DRAWER_AND_TITLE:
+                mMenuDrawerImageView.setVisibility(View.VISIBLE);
+                mTitleTextView.setVisibility(View.VISIBLE);
+                mTitleTextView.setText(headerDto.title);
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 break;
             default:
                 break;

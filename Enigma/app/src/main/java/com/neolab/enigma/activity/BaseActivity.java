@@ -9,7 +9,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import com.neolab.enigma.BuildConfig;
 import com.neolab.enigma.R;
+import com.neolab.enigma.util.EniLogUtil;
 
 /**
  * Base Activity
@@ -25,6 +27,22 @@ public class BaseActivity extends AppCompatActivity {
     private final Object mutex = new Object();
 
     private ProgressDialog mProgressDialog;
+
+    @Override
+    protected void onResume() {
+        if (BuildConfig.DEBUG) {
+            EniLogUtil.d(getClass(), "onResume");
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+        super.onDestroy();
+    }
 
     protected void eniShowLoading() {
         synchronized (mutex) {

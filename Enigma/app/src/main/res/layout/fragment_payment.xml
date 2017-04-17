@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
+            <com.neolab.enigma.ui.EniEditText
                 android:id="@+id/payment_money_payment_editText"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/login_edittext_height"

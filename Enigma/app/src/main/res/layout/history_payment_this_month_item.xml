@@ -22,14 +22,14 @@
 
             <TextView
                 android:id="@+id/history_payment_this_month_status_request_textView"
-                android:layout_width="60dp"
-                android:layout_height="20dp"
+                android:layout_width="72dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/button_history_payment_applying_status"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_12sp"
+                android:textSize="@dimen/text_10sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_13sp" />
+                    android:textSize="@dimen/text_15sp" />
 
                 <TextView
                     android:id="@+id/history_payment_this_month_date_request_textView"
@@ -57,7 +57,7 @@
                     android:maxLines="1"
                     android:text="@string/history_date_request"
                     android:textColor="@color/history_item_status_done"
-                    android:textSize="@dimen/text_11sp" />
+                    android:textSize="@dimen/text_12sp" />
             </LinearLayout>
 
             <ImageView

@@ -19,10 +19,12 @@ public class DetailPaymentDto {
     public int amountOfKichbackFee;
     @SerializedName("amount_of_transfer_fee")
     public int amountOfTransferFee;
-    @SerializedName("total_fee")
-    public int totalFee;
+    @SerializedName("amount_of_consumption_tax")
+    public int amountOfConsumptionTax;
+    @SerializedName("total_fee_include_tax")
+    public int totalFeeIncludeTax;
     @Expose
-    public long total;
+    public int total;
     @Expose
     public int status;
     @Expose

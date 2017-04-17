@@ -15,6 +15,8 @@ import com.neolab.enigma.activity.LoginActivity;
  */
 public class UserStoppedServiceActivity extends BaseActivity {
 
+    public static final String EXTRA_MESSAGE_ERROR = "MESSAGE_ERROR";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,10 @@ public class UserStoppedServiceActivity extends BaseActivity {
      * Initialize
      */
     private void initData() {
+        if (getIntent() != null) {
+            String messageError = getIntent().getStringExtra(EXTRA_MESSAGE_ERROR);
+            ((TextView) findViewById(R.id.user_stopped_service_message_error_textView)).setText(messageError);
+        }
         TextView titleTextView = (TextView) findViewById(R.id.title_textView);
         titleTextView.setText(getString(R.string.user_stopped_service_title));
         findViewById(R.id.user_stopped_service_go_login_screen_layout).setOnClickListener(new View.OnClickListener() {

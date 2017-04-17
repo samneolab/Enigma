@@ -19,5 +19,7 @@ public class AnnouncementDto {
     public String startTime;
     @SerializedName("is_emergency")
     public boolean isEmergency;
+    @Expose
+    public int type;
 
 }

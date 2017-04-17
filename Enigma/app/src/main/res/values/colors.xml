@@ -10,6 +10,7 @@
     <color name="white">#ffffff</color>
     <color name="text_primary">#333333</color>
     <color name="black">#000000</color>
+    <color name="red">#ce0000</color>
 
     <!-- Login screen -->
     <color name="login_editText_border">#8e8e8e</color>

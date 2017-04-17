@@ -43,6 +43,8 @@ public class EniConstant {
         public static final int DISPLAY_BACK_TITLE_DRAWER = 4;
         /** Visible only title */
         public static final int ONLY_TITLE = 5;
+        /** Visible drawer menu and title*/
+        public static final int ONLY_DRAWER_AND_TITLE = 6;
     }
 
     /**
@@ -51,7 +53,8 @@ public class EniConstant {
     public static final class MenuItem {
         public static final int TOP_ITEM = 1;
         public static final int USER_INFORMATION = 2;
-        public static final int LOGOUT = 3;
+        public static final int TERM_OF_SERVICE = 3;
+        public static final int LOGOUT = 4;
     }
 
     /** Request salary is applying, waiting system */
@@ -66,6 +69,8 @@ public class EniConstant {
     public static final String LARGE_SPACE = "  ";
     /** Empty */
     public static final String EMPTY = "";
+    /** Slash */
+    public static final String SLASH = "/";
 
     /** Number announcement item per page*/
     public static final int NUMBER_ANNOUNCEMENT_PER_PAGE = 15;
@@ -76,9 +81,13 @@ public class EniConstant {
     /** User agree with terms and conditions number */
     public static final int USER_AGREE_WITH_TERM_NUMBER = 1;
 
+    /** Default data share preference */
     public static final String TOKEN_DEFAULT = EMPTY;
     public static final String USER_ID_DEFAULT = EMPTY;
     public static final int USER_STATUS_DEFAULT = UserStatus.NONE_MEMBER;
+
+    /** Announcement type create by Admin */
+    public static final int ANNOUNCEMENET_ADMIN_TYPE = 1;
 
     public EniConstant(){
     }

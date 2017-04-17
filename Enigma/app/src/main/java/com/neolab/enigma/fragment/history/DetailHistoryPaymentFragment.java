@@ -24,6 +24,7 @@ import com.neolab.enigma.ws.ApiCode;
 import com.neolab.enigma.ws.ApiRequest;
 import com.neolab.enigma.ws.core.ApiCallback;
 import com.neolab.enigma.ws.core.ApiError;
+import com.neolab.enigma.ws.respone.ErrorResponse;
 import com.neolab.enigma.ws.respone.history.CancelPaymentResponse;
 import com.neolab.enigma.ws.respone.history.DetailPaymentResponse;
 
@@ -39,7 +40,8 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
 
     private TextView mDateRequestTextView;
     private TextView mSalaryRequestTextView;
-    private TextView mFeeUsageSystemTextView;
+    private TextView mReceivedMoneyTextView;
+    private TextView mTotalFeeIncludeTaxTextView;
     private View mBackLayout;
     private View mWithdrawRequestLayout;
     private View mWithdrawRequestButton;
@@ -69,10 +71,11 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
     protected void findView() {
         mDateRequestTextView = findViewById(R.id.history_detail_date_request_textView);
         mSalaryRequestTextView = findViewById(R.id.history_detail_salary_request_textView);
-        mFeeUsageSystemTextView = findViewById(R.id.history_detail_fee_usage_system_textView);
         mBackLayout = findViewById(R.id.history_detail_back_layout);
         mWithdrawRequestLayout = findViewById(R.id.history_detail_withdraw_request_layout);
         mWithdrawRequestButton = findViewById(R.id.history_detail_withdraw_request_button);
+        mReceivedMoneyTextView = findViewById(R.id.history_detail_received_money_textView);
+        mTotalFeeIncludeTaxTextView = findViewById(R.id.history_detail_total_fee_include_tax_textView);
 
     }
 
@@ -120,9 +123,18 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
-                mWithdrawRequestLayout.setClickable(false);
-                mWithdrawRequestButton.setEnabled(true);
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    mWithdrawRequestLayout.setClickable(false);
+                    mWithdrawRequestButton.setEnabled(false);
+                }
             }
 
             @Override
@@ -139,8 +151,9 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
                 DetailPaymentDto detailPaymentDto = detailPaymentResponse.data;
                 mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
                         + EniConstant.SPACE + EniFormatUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
-                mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.amountOfSalary));
-                mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.totalFee));
+                mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.total));
+                mReceivedMoneyTextView.setText(String.valueOf(detailPaymentDto.amountOfSalary));
+                mTotalFeeIncludeTaxTextView.setText(String.valueOf(detailPaymentDto.totalFeeIncludeTax));
             }
         });
     }
@@ -154,7 +167,16 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
             @Override
             public void failure(RetrofitError retrofitError, ApiError apiError) {
                 eniCancelNowLoading();
-                Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                ErrorResponse body = (ErrorResponse) retrofitError.getBodyAs(ErrorResponse.class);
+                if (body == null) {
+                    return;
+                }
+                // User stopped service
+                if (body.code == ApiCode.USER_STOPPED_SERVICE) {
+                    goStopServiceScreen(body.message);
+                } else {
+                    Toast.makeText(getActivity(), apiError.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
