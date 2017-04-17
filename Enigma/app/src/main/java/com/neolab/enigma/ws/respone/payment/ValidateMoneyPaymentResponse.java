@@ -22,16 +22,14 @@ public class ValidateMoneyPaymentResponse {
      */
     public class InformationPayment {
 
-        @SerializedName("amount_of_consumption_tax")
-        public int amountOfConsumptionTax;
         @SerializedName("amount_of_salary")
         public int amountOfSalary;
         @SerializedName("is_valid")
         public boolean isValid;
         @SerializedName("received_money")
         public int receivedMoney;
-        @SerializedName("total_fee")
-        public int totalFee;
+        @SerializedName("total_fee_include_tax")
+        public int totalFeeIncludeTax;
     }
 
 }

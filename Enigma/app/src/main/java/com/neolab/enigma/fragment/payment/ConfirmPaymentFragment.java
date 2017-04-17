@@ -54,10 +54,9 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
 
     private TextView mTitleTextView;
     private TextView mAmountSalaryPrepaymentTextView;
-    private TextView mFeeUsageSystemTextView;
-    private TextView mConsumptionTaxTextView;
     private TextView mRecivedMoneyTextView;
     private TextView mCaptchaMessageErrorTextView;
+    private TextView mTotalFeeIncludeTax;
 
     private EditText mCaptchaCodeEditText;
     private FrameLayout mApplyPaymentLayout;
@@ -83,8 +82,7 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         mTitleTextView = findViewById(R.id.confirm_payment_title_textView);
         mAmountSalaryPrepaymentTextView = findViewById(R.id.confirm_payment_salary_prepayment_textView);
         mPrepaymentAmountExceededTextView = findViewById(R.id.confirm_payment_prepayment_amount_exceeded);
-        mFeeUsageSystemTextView = findViewById(R.id.confirm_payment_fee_usage_system_textView);
-        mConsumptionTaxTextView = findViewById(R.id.confirm_payment_consumption_tax_textView);
+        mTotalFeeIncludeTax = findViewById(R.id.confirm_payment_total_fee_include_tax_textView);
         mRecivedMoneyTextView = findViewById(R.id.confirm_payment_received_money_textView);
         mApplyPaymentLayout = findViewById(R.id.confirm_payment_apply_layout);
         mApplyPaymentButton = findViewById(R.id.confirm_payment_apply_button);
@@ -102,7 +100,6 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
         Bundle bundle = getArguments();
         if (bundle != null) {
             mAmountSalaryPrepayment = Integer.parseInt(bundle.getString(KEY_AMOUNT_MONEY_PAYMENT)) * 1000;
-            mAmountSalaryPrepaymentTextView.setText(EniFormatUtil.convertMoneyFormat(mAmountSalaryPrepayment));
             doValidateSalaryPayment(mAmountSalaryPrepayment);
         }
     }
@@ -143,9 +140,9 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                 mPrepaymentAmountExceededTextView.setVisibility(View.GONE);
                 mCaptchaLayout.setVisibility(View.VISIBLE);
                 mTitleTextView.setText(getResources().getString(R.string.confirm_payment_confirm_apply_prepayment));
-                mFeeUsageSystemTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.totalFee));
-                mConsumptionTaxTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.amountOfConsumptionTax));
+                mTotalFeeIncludeTax.setText(String.valueOf(validateMoneyPaymentResponse.data.totalFeeIncludeTax));
                 mRecivedMoneyTextView.setText(String.valueOf(validateMoneyPaymentResponse.data.receivedMoney));
+                mAmountSalaryPrepaymentTextView.setText(EniFormatUtil.convertMoneyFormat(validateMoneyPaymentResponse.data.amountOfSalary));
             }
         });
     }

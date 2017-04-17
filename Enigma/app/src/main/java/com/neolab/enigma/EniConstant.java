@@ -86,6 +86,9 @@ public class EniConstant {
     public static final String USER_ID_DEFAULT = EMPTY;
     public static final int USER_STATUS_DEFAULT = UserStatus.NONE_MEMBER;
 
+    /** Announcement type create by Admin */
+    public static final int ANNOUNCEMENET_ADMIN_TYPE = 1;
+
     public EniConstant(){
     }
 

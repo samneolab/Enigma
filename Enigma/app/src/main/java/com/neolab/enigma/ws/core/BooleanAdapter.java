@@ -24,6 +24,7 @@ public class BooleanAdapter extends TypeAdapter<Boolean> {
 
     @Override
     public Boolean read(JsonReader in) throws IOException {
+        in.setLenient(true);
         JsonToken peek = in.peek();
         switch (peek) {
             case NULL:

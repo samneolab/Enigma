@@ -84,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/confirm_payment_fee_usage_system" />
+                            android:text="@string/confirm_payment_total_fee_include_tax" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -92,39 +92,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/confirm_payment_fee_usage_system_textView"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/login_edittext_height"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                android:background="@drawable/edittext_payment_payment_normal"
-                                android:gravity="center_vertical"
-                                android:textSize="@dimen/text_15sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginStart="4dp"
-                                android:text="@string/confirm_payment_yen"
-                                android:textColor="@color/payment_yen_unit"
-                                android:textSize="@dimen/text_15sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/confirm_payment_consumption_tax" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/confirm_payment_consumption_tax_textView"
+                                android:id="@+id/confirm_payment_total_fee_include_tax_textView"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/login_edittext_height"
                                 android:layout_gravity="center_vertical"

@@ -253,6 +253,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * @param status account state
      */
     private void transferScreenWhenLoginError(final int status, final String messageError) {
+        Intent intent;
         switch (status) {
             case EniConstant.UserStatus.CREATE_ACCOUNT:
                 finish();
@@ -260,11 +261,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 break;
             case EniConstant.UserStatus.STOP_SERVICE:
                 finish();
-                Intent intent = new Intent(LoginActivity.this, UserStoppedServiceActivity.class);
+                intent = new Intent(LoginActivity.this, UserStoppedServiceActivity.class);
                 intent.putExtra(UserStoppedServiceActivity.EXTRA_MESSAGE_ERROR, messageError);
                 startActivity(intent);
+                overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
                 break;
             default:
+                finish();
+                intent = new Intent(LoginActivity.this, UserStoppedServiceActivity.class);
+                intent.putExtra(UserStoppedServiceActivity.EXTRA_MESSAGE_ERROR, messageError);
+                startActivity(intent);
+                overridePendingTransition(R.anim.animation_fade_in_right_to_left, R.anim.animation_fade_out_right_to_left);
                 break;
         }
     }

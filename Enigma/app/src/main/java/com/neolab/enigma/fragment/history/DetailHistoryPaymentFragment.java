@@ -40,7 +40,8 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
 
     private TextView mDateRequestTextView;
     private TextView mSalaryRequestTextView;
-    private TextView mFeeUsageSystemTextView;
+    private TextView mReceivedMoneyTextView;
+    private TextView mTotalFeeIncludeTaxTextView;
     private View mBackLayout;
     private View mWithdrawRequestLayout;
     private View mWithdrawRequestButton;
@@ -70,10 +71,11 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
     protected void findView() {
         mDateRequestTextView = findViewById(R.id.history_detail_date_request_textView);
         mSalaryRequestTextView = findViewById(R.id.history_detail_salary_request_textView);
-        mFeeUsageSystemTextView = findViewById(R.id.history_detail_fee_usage_system_textView);
         mBackLayout = findViewById(R.id.history_detail_back_layout);
         mWithdrawRequestLayout = findViewById(R.id.history_detail_withdraw_request_layout);
         mWithdrawRequestButton = findViewById(R.id.history_detail_withdraw_request_button);
+        mReceivedMoneyTextView = findViewById(R.id.history_detail_received_money_textView);
+        mTotalFeeIncludeTaxTextView = findViewById(R.id.history_detail_total_fee_include_tax_textView);
 
     }
 
@@ -150,7 +152,8 @@ public class DetailHistoryPaymentFragment extends BaseFragment implements View.O
                 mDateRequestTextView.setText(getString(R.string.detail_history_date_apply)
                         + EniConstant.SPACE + EniFormatUtil.getDateRequestPaymentWithFormat(detailPaymentDto.appliedAt));
                 mSalaryRequestTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.total));
-                mFeeUsageSystemTextView.setText(EniFormatUtil.convertMoneyFormat(detailPaymentDto.totalFee));
+                mReceivedMoneyTextView.setText(String.valueOf(detailPaymentDto.amountOfSalary));
+                mTotalFeeIncludeTaxTextView.setText(String.valueOf(detailPaymentDto.totalFeeIncludeTax));
             }
         });
     }

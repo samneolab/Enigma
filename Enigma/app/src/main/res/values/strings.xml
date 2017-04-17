@@ -57,6 +57,7 @@
     <string name="confirm_payment_prepayment_amount_exceeded">The amount of prepayable fee is exceeded.</string>
     <string name="confirm_payment_captcha">Captcha</string>
     <string name="confirm_payment_please_enter_captcha">Please enter a number that is displayed.</string>
+    <string name="confirm_payment_total_fee_include_tax">System fee (including tax)</string>
 
     <!-- Complete payment fragment -->
     <string name="complete_payment_application_was_accepted">Application for acceptance has been completed</string>

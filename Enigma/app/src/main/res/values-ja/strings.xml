@@ -57,6 +57,7 @@
     <string name="confirm_payment_prepayment_amount_exceeded">前払い可能金額を超過しています。</string>
     <string name="confirm_payment_captcha">キャプチャ</string>
     <string name="confirm_payment_please_enter_captcha">表示されている数字を入力してください。</string>
+    <string name="confirm_payment_total_fee_include_tax">システム手数料（税込）</string>
 
     <!-- Complete payment fragment -->
     <string name="complete_payment_application_was_accepted">申請を受け付けました。</string>

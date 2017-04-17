@@ -21,6 +21,15 @@
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
 
+            <ImageView
+                android:id="@+id/top_notification_admin_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/ic_logo"
+                android:contentDescription="@string/image_dsc"
+                android:visibility="gone"/>
+
             <TextView
                 android:id="@+id/announcement_list_item_title_textView"
                 android:layout_width="0dp"
